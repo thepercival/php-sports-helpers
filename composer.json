@@ -62,6 +62,11 @@
       "rm -rf ../php-sports-planning/vendor/thepercival/php-sports-helpers",
       "mkdir ../php-sports-planning/vendor/thepercival/php-sports-helpers",
       "cp . ../php-sports-planning/vendor/thepercival/php-sports-helpers -R"
+    ],
+    "copy-sports-structure": [
+      "rm -rf ../php-sports-structure/vendor/thepercival/php-sports-helpers",
+      "mkdir ../php-sports-structure/vendor/thepercival/php-sports-helpers",
+      "cp . ../php-sports-structure/vendor/thepercival/php-sports-helpers -R"
     ]
   },
   "extra": {
