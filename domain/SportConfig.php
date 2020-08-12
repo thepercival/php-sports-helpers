@@ -28,4 +28,8 @@ class SportConfig
     {
         return $this->nrOfGamePlaces;
     }
+
+    public function toArray(): array {
+        return ["nrOfFields" => $this->getNrOfFields(), "nrOfGamePlaces" => $this->getNrOfGamePlaces() ];
+    }
 }
