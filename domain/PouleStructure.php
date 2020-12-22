@@ -1,8 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SportsHelpers;
 
-class PouleStructure
+use Stringable;
+
+class PouleStructure implements Stringable
 {
     /**
      * @var array| int[] $poules
@@ -66,7 +70,7 @@ class PouleStructure
     public function getNrOfPoulesByNrOfPlaces(): array
     {
         $nrOfPoulesByNrOfPlaces = [];
-        foreach ($this->toArray() as $pouleNrOfPlaces) {
+        foreach ($this->poules as $pouleNrOfPlaces) {
             if (array_key_exists($pouleNrOfPlaces, $nrOfPoulesByNrOfPlaces) === false) {
                 $nrOfPoulesByNrOfPlaces[$pouleNrOfPlaces] = 0;
             }
@@ -76,13 +80,45 @@ class PouleStructure
     }
 
     /**
+     * @param int $gameMode
+     * @param array|SportConfig[] $sportConfigs
+     * @return int
+     */
+    public function getNrOfGames(int $gameMode, array $sportConfigs ): int
+    {
+        $nrOfGames = 0;
+        foreach ($this->poules as $nrOfPlaces ) {
+            foreach( $sportConfigs as $sportConfig ) {
+                $nrOfGames += $sportConfig->getNrOfGames( $gameMode, $nrOfPlaces );
+            }
+        }
+        return $nrOfGames;
+    }
+
+//    /**
+//     * @param array|SportConfig[] $sportConfigs
+//     * @param int $gameMode
+//     * @return int
+//     */
+//    public function getNrOfGameRounds(array $sportConfigs, int $gameMode ): int
+//    {
+//        $nrOfGames = 0;
+//        foreach ($this->poules as $nrOfPlaces ) {
+//            foreach( $sportConfigs as $sportConfig ) {
+//                $nrOfGames += $sportConfig->getNrOfGameRounds( $nrOfPlaces, $gameMode );
+//            }
+//        }
+//        return $nrOfGames;
+//    }
+
+    /**
      * @return array| int[]
      */
     public function toArray(): array {
         return $this->poules;
     }
 
-    public function toString(): string {
+    public function __toString(): string {
         return implode(',', $this->toArray());
     }
 }

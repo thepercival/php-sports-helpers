@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SportsHelpers\PouleStructure;
 
 use SportsHelpers\PouleStructure;
 
-class Balanced extends PouleStructure{
+class Balanced extends PouleStructure {
 
     public function __construct(int $nrOfPlaces, int $nrOfPoules)
     {
@@ -18,7 +20,7 @@ class Balanced extends PouleStructure{
         parent::__construct(array_values($poules));
     }
 
-    public function getNrOfPlacesPerPoule(bool $floor): int {
+    public function getRoundedNrOfPlacesPerPoule(bool $floor): int {
         return $this->getNrOfPlacesPerPouleHelper($this->getNrOfPlaces(), $this->getNrOfPoules(), $floor);
     }
 

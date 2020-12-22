@@ -1,13 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace SportsHelpers\PouleStructure\Balanced;
+namespace SportsHelpers\PouleStructure;
 
+use Exception;
+use Iterator;
 use SportsHelpers\Place\Range as PlaceRange;
 use SportsHelpers\Range;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 
-class Iterator implements \Iterator {
+class BalancedIterator implements Iterator {
 
     /**
      * @var PlaceRange
@@ -38,7 +40,7 @@ class Iterator implements \Iterator {
     }
 
     public function key () : string {
-        return $this->current->toString();
+        return (string) $this->current;
     }
 
     public function next() {
@@ -69,7 +71,7 @@ class Iterator implements \Iterator {
     }
 
     protected function validateNrOfPlacesPerPouleAfterNext() {
-        $placesPerPoule = $this->current->getNrOfPlacesPerPoule(true);
+        $placesPerPoule = $this->current->getRoundedNrOfPlacesPerPoule(true);
 
         $placesPerPouleRange = $this->placeRange->getPlacesPerPouleRange();
         if( $placesPerPoule < $placesPerPouleRange->min ) {
@@ -83,7 +85,7 @@ class Iterator implements \Iterator {
     }
 
     public function rewind() {
-        throw new \Exception("rewind is not implemented", E_ERROR );
+        throw new Exception("rewind is not implemented", E_ERROR );
     }
 
     public function valid () : bool {

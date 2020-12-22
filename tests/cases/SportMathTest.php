@@ -2,13 +2,13 @@
 
 namespace SportsHelpers\Tests;
 
-use SportsHelpers\Math;
+use SportsHelpers\SportMath;
 
-class MathTest extends \PHPUnit\Framework\TestCase
+class SportMathTest extends \PHPUnit\Framework\TestCase
 {
     public function testFaculty()
     {
-        $math = new Math();
+        $math = new SportMath();
 
         self::assertSame($math->faculty(0), 1.0);
         self::assertSame($math->faculty(1), 1.0);
@@ -20,7 +20,7 @@ class MathTest extends \PHPUnit\Framework\TestCase
 
     public function testAbove()
     {
-        $math = new Math();
+        $math = new SportMath();
 
         // bijv. aantal wedstrijden per poule(dit is zonder volgorde)
         self::assertSame($math->above(1, 2), 0);
@@ -39,7 +39,7 @@ class MathTest extends \PHPUnit\Framework\TestCase
 
     public function testGetDivisors()
     {
-        $math = new Math();
+        $math = new SportMath();
 
         self::assertSame($math->getDivisors(1), [1]);
         self::assertSame($math->getDivisors(2), [1,2]);
@@ -54,7 +54,7 @@ class MathTest extends \PHPUnit\Framework\TestCase
 
     public function testGetCommonDivisors()
     {
-        $math = new Math();
+        $math = new SportMath();
 
         self::assertSame($math->getCommonDivisors(1, 1), [1]);
         // bijv 2 poules met dezelfde aantal deelnemers, 2 scheidsrecchters
@@ -66,7 +66,7 @@ class MathTest extends \PHPUnit\Framework\TestCase
 
     public function testGetGreatestCommonDivisor()
     {
-        $math = new Math();
+        $math = new SportMath();
 
         self::assertSame($math->getGreatestCommonDivisor([]), 0);
         self::assertSame($math->getGreatestCommonDivisor([1]), 1);

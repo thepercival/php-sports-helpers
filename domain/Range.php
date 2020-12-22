@@ -13,8 +13,9 @@ class Range
 //        if( $min > $max ) {
 //            throw new \Exception("in range minimum should be greater than maximum", E_ERROR );
 //        }
-        $this->min = $min;
-        $this->max = $max;
+        $abs = $min <= $max;
+        $this->min = $abs ? $min : $max;
+        $this->max = $abs ? $max : $min;
     }
 
     public function difference(): int
