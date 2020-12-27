@@ -36,7 +36,7 @@ class ServiceTest extends TestCase
 
     public function testNrGamesPerPlace()
     {
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $nrOfPlaces = 5;
         $totalNrOfGames = 0;
 

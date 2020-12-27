@@ -13,7 +13,7 @@ class SportConfig
     const ALLPLACES_ARE_GAMEPLACES = 0;
 
     const GAMEMODE_TOGETHER = 1;
-    const GAMEMODE_AGAINSTEACHOTHER = 2;
+    const GAMEMODE_AGAINST = 2;
 
     public function __construct(SportBase $sportBase, int $nrOfFields, int $gameAmount)
     {

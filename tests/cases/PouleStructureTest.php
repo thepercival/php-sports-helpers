@@ -76,7 +76,7 @@ class PouleStructureTest extends \PHPUnit\Framework\TestCase
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         $pouleStructure = new PouleStructure([3,2,2]);

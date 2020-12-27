@@ -37,21 +37,21 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
         self::assertSame(["nrOfFields" => 2, "nrOfGamePlaces" => 2, "gameAmount" => 1 ], $sportConfig->toArray() );
     }
 
-    public function testGetNrOfAgainstEachOtherGames3Teams()
+    public function testGetNrOfAgainstGames3Teams()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(3, $sportConfig->getNrOfGames($gameMode, 3) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames3TeamsGameAmount2()
+    public function testGetNrOfAgainstGames3TeamsGameAmount2()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 2;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(6, $sportConfig->getNrOfGames($gameMode, 3) );
@@ -60,7 +60,7 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
     /**
      * 1,2 3,4 5,1 2,3 4,5 1,2 3,4 5,1 2,3 4,5 1,2 3,4 5
      */
-    public function testGetNrOfNotAgainstEachOtherGames()
+    public function testGetNrOfNotAgainstGames()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
@@ -70,51 +70,51 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
         self::assertSame(13, $sportConfig->getNrOfGames($gameMode, 5) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames5TeamsGameAmount2()
+    public function testGetNrOfAgainstGames5TeamsGameAmount2()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 2;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(20, $sportConfig->getNrOfGames($gameMode, 5) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames5TeamsGamePlaces4()
+    public function testGetNrOfAgainstGames5TeamsGamePlaces4()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 4 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(15, $sportConfig->getNrOfGames($gameMode, 5) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames6TeamsGamePlaces4()
+    public function testGetNrOfAgainstGames6TeamsGamePlaces4()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 4 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(45, $sportConfig->getNrOfGames($gameMode, 6) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames7TeamsGamePlaces4()
+    public function testGetNrOfAgainstGames7TeamsGamePlaces4()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 4 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(105, $sportConfig->getNrOfGames($gameMode, 7) );
     }
 
-    public function testGetNrOfAgainstEachOtherGames8TeamsGamePlaces4()
+    public function testGetNrOfAgainstGames8TeamsGamePlaces4()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 4 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(210, $sportConfig->getNrOfGames($gameMode, 8) );
@@ -123,17 +123,17 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
     /**
      * ( (8 boven 3) * (5 boven 3)) / 2 = (56 * 10 ) / 2 = 280
      */
-    public function testGetNrOfAgainstEachOtherGames8TeamsGamePlaces6()
+    public function testGetNrOfAgainstGames8TeamsGamePlaces6()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 6 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(280, $sportConfig->getNrOfGames($gameMode, 8) );
     }
 
-    public function testGetNrOfNotAgainstEachOtherGameRounds()
+    public function testGetNrOfNotAgainstGameRounds()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
@@ -143,31 +143,31 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
         self::assertSame(5, $sportConfig->getNrOfGameRounds($gameMode, 3) );
     }
 
-    public function testGetNrOfAgainstEachOtherGameRoundsEvenPlaces()
+    public function testGetNrOfAgainstGameRoundsEvenPlaces()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 5;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(15, $sportConfig->getNrOfGameRounds($gameMode, 4) );
     }
 
-    public function testGetNrOfAgainstEachOtherGameRoundsOddPlaces()
+    public function testGetNrOfAgainstGameRoundsOddPlaces()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 5;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(25, $sportConfig->getNrOfGameRounds($gameMode, 5) );
     }
 
-    public function testGetNrOfAgainstEachOtherGameRoundsOddPlaces4GamePlaces()
+    public function testGetNrOfAgainstGameRoundsOddPlaces4GamePlaces()
     {
         $nrOfFields = 2;
         $sport = new SportBase( 4 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(15, $sportConfig->getNrOfGameRounds($gameMode, 5) );
@@ -177,7 +177,7 @@ class SportConfigTest extends \PHPUnit\Framework\TestCase
     {
         $nrOfFields = 2;
         $sport = new SportBase( 2 );
-        $gameMode = SportConfig::GAMEMODE_AGAINSTEACHOTHER;
+        $gameMode = SportConfig::GAMEMODE_AGAINST;
         $gameAmount = 1;
         $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
         self::assertSame(4, $sportConfig->getNrOfGamesPerPlace($gameMode, 5) );
