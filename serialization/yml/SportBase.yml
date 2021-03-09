@@ -1,0 +1,7 @@
+SportsHelpers\SportBase:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    nrOfGamePlaces:
+      type: integer
+      groups: [noReference]

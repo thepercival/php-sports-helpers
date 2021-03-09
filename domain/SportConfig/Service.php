@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace SportsHelpers\SportConfig;
 
@@ -32,10 +33,16 @@ class Service
         return $selfReferee ? $nrOfGamePlaces + 1 : $nrOfGamePlaces;
     }
 
-    public function getNrOfGamesPerPlace(int $gameMode, int $nrOfPlaces, array $sportConfigs ): int {
+    /**
+     * @param int $nrOfPlaces
+     * @param array|SportConfig[] $sportConfigs
+     * @return int
+     */
+    public function getNrOfGamesPerPlace(int $nrOfPlaces, array $sportConfigs): int
+    {
         $nrOfGamesPerPlace = 0;
         foreach ($sportConfigs as $sportConfig) {
-            $nrOfGamesPerPlace += $sportConfig->getNrOfGamesPerPlace($gameMode, $nrOfPlaces);
+            $nrOfGamesPerPlace += $sportConfig->getNrOfGamesPerPlace($nrOfPlaces);
         }
         return $nrOfGamesPerPlace;
     }

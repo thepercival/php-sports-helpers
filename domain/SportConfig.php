@@ -10,11 +10,6 @@ class SportConfig
     protected SportBase $sportBase;
     protected int $gameAmount;
 
-    const ALLPLACES_ARE_GAMEPLACES = 0;
-
-    const GAMEMODE_TOGETHER = 1;
-    const GAMEMODE_AGAINST = 2;
-
     public function __construct(SportBase $sportBase, int $nrOfFields, int $gameAmount)
     {
         $this->nrOfFields = $nrOfFields;
@@ -32,6 +27,11 @@ class SportConfig
         return $this->nrOfFields;
     }
 
+    public function getGameMode(): int
+    {
+        return $this->sportBase->getGameMode();
+    }
+
     public function getNrOfGamePlaces(): int
     {
         return $this->sportBase->getNrOfGamePlaces();
@@ -42,9 +42,9 @@ class SportConfig
         return $this->gameAmount;
     }
 
-    public function getNrOfGames(int $gameMode, int $nrOfPlaces): int
+    public function getNrOfGames(int $nrOfPlaces): int
     {
-        if( $gameMode === self::GAMEMODE_TOGETHER ) {
+        if ($this->getGameMode() === GameMode::TOGETHER) {
             $nrOfTotalGamePlaces = $this->getGameAmount() * $nrOfPlaces;
             $nrOfTotalGamePlaces += ($this->getNrOfGamePlaces() - ($nrOfTotalGamePlaces % $this->getNrOfGamePlaces()));
             return $nrOfTotalGamePlaces / $this->getNrOfGamePlaces();
@@ -52,20 +52,20 @@ class SportConfig
         $nrOfHomePlaces = (int)ceil($this->getNrOfGamePlaces() / 2);
         $nrOfAwayPlaces = $this->getNrOfGamePlaces() - $nrOfHomePlaces;
 
-        $nrOfHomeCombinations = (new SportMath())->above($nrOfPlaces, $nrOfHomePlaces );
-        $nrOfAwayCombinations = (new SportMath())->above($nrOfPlaces - $nrOfHomePlaces, $nrOfAwayPlaces );
+        $nrOfHomeCombinations = (new SportMath())->above($nrOfPlaces, $nrOfHomePlaces);
+        $nrOfAwayCombinations = (new SportMath())->above($nrOfPlaces - $nrOfHomePlaces, $nrOfAwayPlaces);
 
         $nrOfGames = (int)(($nrOfHomeCombinations * $nrOfAwayCombinations) / 2);
         return $nrOfGames * $this->getGameAmount();
     }
 
-    public function getNrOfGameRounds(int $gameMode, int $nrOfPlaces): int
+    public function getNrOfGameRounds(int $nrOfPlaces): int
     {
-        if( $gameMode === self::GAMEMODE_TOGETHER ) {
+        if ($this->getGameMode() === GameMode::TOGETHER) {
             return $this->gameAmount;
         }
-        $nrOfGames = $this->getNrOfGames($gameMode, $nrOfPlaces);
-        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces() );
+        $nrOfGames = $this->getNrOfGames($nrOfPlaces);
+        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
         return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
     }
 
@@ -75,18 +75,20 @@ class SportConfig
 //        return ($this->getNrOfGamePlaces() + $delta) * $this->getNrOfFields();
 //    }
 
-    public function getNrOfGamesPerPlace(int $gameMode, int $nrOfPlaces): int
+    public function getNrOfGamesPerPlace(int $nrOfPlaces): int
     {
-        if( $gameMode === self::GAMEMODE_TOGETHER ) {
+        if ($this->getGameMode() === GameMode::TOGETHER) {
             return $this->getGameAmount();
         }
-        $nrOfHomeGames = $this->getNrOfGames($gameMode, $nrOfPlaces);
-        $nrOfHomeGamesOneLess = $this->getNrOfGames($gameMode, $nrOfPlaces-1);
+        $nrOfHomeGames = $this->getNrOfGames($nrOfPlaces);
+        $nrOfHomeGamesOneLess = $this->getNrOfGames($nrOfPlaces-1);
         return ($nrOfHomeGames - $nrOfHomeGamesOneLess) * $this->getGameAmount();
     }
 
-    public function toArray(): array {
+    public function toArray(): array
+    {
         return [
+            "gameMode" => $this->getGameMode(),
             "nrOfFields" => $this->getNrOfFields(),
             "nrOfGamePlaces" => $this->getNrOfGamePlaces(),
             "gameAmount" => $this->getGameAmount()];

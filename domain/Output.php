@@ -3,20 +3,16 @@
 
 namespace SportsHelpers;
 
+use JetBrains\PhpStorm\Pure;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
 abstract class Output
 {
-    /**
-     * @var LoggerInterface
-     */
-    protected $logger;
-
-    public function __construct(LoggerInterface $logger = null)
+    public function __construct(protected ?LoggerInterface $logger)
     {
-        if( $logger === null ) {
+        if ($logger === null) {
             $logger = new Logger('sports-logger');
             $handler = new StreamHandler('php://stdout', Logger::INFO);
             $logger->pushHandler($handler);
@@ -26,7 +22,7 @@ abstract class Output
 
     protected function useColors(): bool
     {
-        if( $this->logger instanceof Logger) {
+        if ($this->logger instanceof Logger) {
             foreach ($this->logger->getHandlers() as $handler) {
                 if (!($handler instanceof \Monolog\Handler\StreamHandler)
                     || $handler->getUrl() !== "php://stdout") {
@@ -79,11 +75,11 @@ abstract class Output
     public function outputString($value, int $minLength = null): void
     {
         $str = '' . $value;
-        if( $minLength > 0 ) {
+        if ($minLength > 0) {
             while (strlen($str) < $minLength) {
                 $str = ' ' . $str;
             }
         }
-        $this->logger->info( $str );
+        $this->logger->info($str);
     }
 }

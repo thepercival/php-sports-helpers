@@ -4,24 +4,14 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 class Identifiable {
-    /**
-     * @var int|string
-     */
-    protected $id;
+    protected int|string $id;
 
-    /**
-     * @return int|string
-     */
-    public function getId()
+    public function getId(): int|string
     {
         return $this->id;
     }
 
-    /**
-     * @param int|string $id
-     * @return void
-     */
-    public function setId($id)
+    public function setId(int|string $id)
     {
         $this->id = $id;
     }

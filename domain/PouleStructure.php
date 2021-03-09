@@ -46,12 +46,12 @@ class PouleStructure implements Stringable
 
     public function getBiggestPoule(): int
     {
-        return reset($this->poules );
+        return reset($this->poules);
     }
 
     public function getSmallestPoule(): int
     {
-        return end($this->poules );
+        return end($this->poules);
     }
 
     public function isAlmostBalanced(): bool
@@ -80,16 +80,15 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param int $gameMode
      * @param array|SportConfig[] $sportConfigs
      * @return int
      */
-    public function getNrOfGames(int $gameMode, array $sportConfigs ): int
+    public function getNrOfGames(array $sportConfigs): int
     {
         $nrOfGames = 0;
-        foreach ($this->poules as $nrOfPlaces ) {
-            foreach( $sportConfigs as $sportConfig ) {
-                $nrOfGames += $sportConfig->getNrOfGames( $gameMode, $nrOfPlaces );
+        foreach ($this->poules as $nrOfPlaces) {
+            foreach ($sportConfigs as $sportConfig) {
+                $nrOfGames += $sportConfig->getNrOfGames($nrOfPlaces);
             }
         }
         return $nrOfGames;
@@ -114,11 +113,13 @@ class PouleStructure implements Stringable
     /**
      * @return array| int[]
      */
-    public function toArray(): array {
+    public function toArray(): array
+    {
         return $this->poules;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return implode(',', $this->toArray());
     }
 }
