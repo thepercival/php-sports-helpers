@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 class Identifiable {
-    protected int|string $id;
+    protected int|string $id = 0;
 
     public function getId(): int|string
     {
