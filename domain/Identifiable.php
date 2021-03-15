@@ -11,7 +11,7 @@ class Identifiable {
         return $this->id;
     }
 
-    public function setId(int|string $id)
+    public function setId(int|string $id): void
     {
         $this->id = $id;
     }

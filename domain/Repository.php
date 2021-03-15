@@ -5,6 +5,7 @@ namespace SportsHelpers;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
+use Exception;
 
 class Repository extends EntityRepository
 {
@@ -13,25 +14,24 @@ class Repository extends EntityRepository
         parent::__construct($em, $class);
     }
 
-    public function save($object)
+    public function save(mixed $object): mixed
     {
         try {
             $this->_em->persist($object);
             $this->_em->flush();
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage(), E_ERROR);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), E_ERROR);
         }
-
         return $object;
     }
 
-    public function remove($object)
+    public function remove(mixed $object): void
     {
         $this->_em->remove($object);
         $this->_em->flush();
     }
 
-    public function getEM()
+    public function getEM(): EntityManagerInterface
     {
         return $this->getEntityManager();
     }

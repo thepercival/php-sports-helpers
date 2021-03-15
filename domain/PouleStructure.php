@@ -9,16 +9,13 @@ use Stringable;
 class PouleStructure implements Stringable
 {
     /**
-     * @var array| int[] $poules
+     * @var array<int> $poules
      */
     protected $poules;
-    /**
-     * @var int|null
-     */
-    protected $nrOfGamePlaces;
+    protected int|null $nrOfGamePlaces = null;
 
     /**
-     * @param array| int[] $poules
+     * @param array<int> $poules
      */
     public function __construct(array $poules)
     {
@@ -111,7 +108,7 @@ class PouleStructure implements Stringable
 //    }
 
     /**
-     * @return array| int[]
+     * @return array<int>
      */
     public function toArray(): array
     {

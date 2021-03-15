@@ -37,6 +37,11 @@ class SportConfig
         return $this->sportBase->getNrOfGamePlaces();
     }
 
+    public function allPlacesAreGamePlaces(): bool
+    {
+        return $this->sportBase->getNrOfGamePlaces() === 0;
+    }
+
     public function getGameAmount(): int
     {
         return $this->gameAmount;
@@ -47,7 +52,7 @@ class SportConfig
         if ($this->getGameMode() === GameMode::TOGETHER) {
             $nrOfTotalGamePlaces = $this->getGameAmount() * $nrOfPlaces;
             $nrOfTotalGamePlaces += ($this->getNrOfGamePlaces() - ($nrOfTotalGamePlaces % $this->getNrOfGamePlaces()));
-            return $nrOfTotalGamePlaces / $this->getNrOfGamePlaces();
+            return (int)($nrOfTotalGamePlaces / $this->getNrOfGamePlaces());
         }
         $nrOfHomePlaces = (int)ceil($this->getNrOfGamePlaces() / 2);
         $nrOfAwayPlaces = $this->getNrOfGamePlaces() - $nrOfHomePlaces;

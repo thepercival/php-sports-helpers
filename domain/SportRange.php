@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class Range
+class SportRange
 {
-    public $min;
-    public $max;
+    protected int $min;
+    protected int $max;
 
     public function __construct(int $min, int $max)
     {
@@ -16,6 +16,16 @@ class Range
         $abs = $min <= $max;
         $this->min = $abs ? $min : $max;
         $this->max = $abs ? $max : $min;
+    }
+
+    public function getMin(): int
+    {
+        return $this->min;
+    }
+
+    public function getMax(): int
+    {
+        return $this->max;
     }
 
     public function difference(): int

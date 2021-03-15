@@ -10,7 +10,9 @@ use Psr\Log\LoggerInterface;
 
 abstract class Output
 {
-    public function __construct(protected ?LoggerInterface $logger)
+    protected LoggerInterface $logger;
+
+    public function __construct(?LoggerInterface $logger)
     {
         if ($logger === null) {
             $logger = new Logger('sports-logger');
@@ -72,7 +74,7 @@ abstract class Output
         return $coloredString . $content . "\033[0m";
     }
 
-    public function outputString($value, int $minLength = null): void
+    public function outputString(string|int $value, int $minLength = null): void
     {
         $str = '' . $value;
         if ($minLength > 0) {

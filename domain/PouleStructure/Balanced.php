@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructure;
 
-use JetBrains\PhpStorm\Pure;
 use SportsHelpers\PouleStructure;
 
 class Balanced extends PouleStructure
@@ -30,7 +29,7 @@ class Balanced extends PouleStructure
     {
         $nrOfPlaceLeft = ($nrOfPlaces % $nrOfPoules);
         if ($nrOfPlaceLeft === 0) {
-            return $nrOfPlaces / $nrOfPoules;
+            return (int)($nrOfPlaces / $nrOfPoules);
         }
         if ($floor) {
             return (int)floor((($nrOfPlaces - $nrOfPlaceLeft) / $nrOfPoules));

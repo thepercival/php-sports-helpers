@@ -6,21 +6,23 @@ namespace SportsHelpers\PouleStructure;
 use Exception;
 use Iterator;
 use SportsHelpers\Place\Range as PlaceRange;
-use SportsHelpers\Range;
+use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 
 class BalancedIterator implements Iterator
 {
+    private SportRange $pouleRange;
     private BalancedPouleStructure|null $current;
 
     public function __construct(
         private PlaceRange $placeRange,
-        private ?Range $pouleRange = null
+        SportRange $pouleRange = null
     ) {
-        if ($this->pouleRange === null) {
-            $this->pouleRange = new Range(1, $placeRange->max);
+        if ($pouleRange === null) {
+            $pouleRange = new SportRange(1, $placeRange->getMax());
         }
-        $this->current = new BalancedPouleStructure($this->placeRange->min, $this->pouleRange->min);
+        $this->pouleRange = $pouleRange;
+        $this->current = new BalancedPouleStructure($this->placeRange->getMin(), $this->pouleRange->getMin());
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
@@ -42,9 +44,12 @@ class BalancedIterator implements Iterator
         $this->nextNrOfPoules();
     }
 
-    protected function nextNrOfPoules()
+    protected function nextNrOfPoules(): void
     {
-        if ($this->current->getNrOfPoules() === $this->pouleRange->max) {
+        if ($this->current === null) {
+            return;
+        }
+        if ($this->current->getNrOfPoules() === $this->pouleRange->getMax()) {
             $this->nextNrOfPlaces();
             return;
         }
@@ -53,27 +58,33 @@ class BalancedIterator implements Iterator
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
-    protected function nextNrOfPlaces()
+    protected function nextNrOfPlaces(): void
     {
-        if ($this->current->getNrOfPlaces() === $this->placeRange->max) {
+        if ($this->current === null) {
+            return;
+        }
+        if ($this->current->getNrOfPlaces() === $this->placeRange->getMax()) {
             $this->current = null;
             return;
         }
-        $this->current = new BalancedPouleStructure($this->current->getNrOfPlaces() + 1, $this->pouleRange->min);
+        $this->current = new BalancedPouleStructure($this->current->getNrOfPlaces() + 1, $this->pouleRange->getMin());
 
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
-    protected function validateNrOfPlacesPerPouleAfterNext()
+    protected function validateNrOfPlacesPerPouleAfterNext(): void
     {
+        if ($this->current === null) {
+            return;
+        }
         $placesPerPoule = $this->current->getRoundedNrOfPlacesPerPoule(true);
 
         $placesPerPouleRange = $this->placeRange->getPlacesPerPouleRange();
-        if ($placesPerPoule < $placesPerPouleRange->min) {
+        if ($placesPerPoule < $placesPerPouleRange->getMin()) {
             $this->nextNrOfPlaces();
             return;
         }
-        if ($placesPerPoule > $placesPerPouleRange->max) {
+        if ($placesPerPoule > $placesPerPouleRange->getMax()) {
             $this->nextNrOfPoules();
             return;
         }
