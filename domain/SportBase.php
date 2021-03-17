@@ -18,5 +18,4 @@ class SportBase extends Identifiable
     {
         return $this->nrOfGamePlaces;
     }
-
 }
