@@ -12,7 +12,7 @@ class Service
     }
 
     /**
-     * @param array|SportConfig[] $sportConfigs
+     * @param list<SportConfig> $sportConfigs
      * @param bool $selfReferee
      * @return int
      */
@@ -35,7 +35,7 @@ class Service
 
     /**
      * @param int $nrOfPlaces
-     * @param array|SportConfig[] $sportConfigs
+     * @param list<SportConfig> $sportConfigs
      * @return int
      */
     public function getNrOfGamesPerPlace(int $nrOfPlaces, array $sportConfigs): int

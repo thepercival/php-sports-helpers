@@ -8,47 +8,50 @@ class SportMath
 
 
     /**
-     * @param array $array
+     * @param list<int> $numbers
      * @param int|null $gcd
      * @return int
      */
-    public function getGreatestCommonDivisor(array $array, int $gcd = null): int
+    public function getGreatestCommonDivisor(array $numbers, int $gcd = null): int
     {
         if ($gcd === null) {
-            if (count($array) === 0) {
-                return 0;
-            }
-            $gcd = array_pop($array);
+            $gcd = array_pop($numbers);
         }
-        $number = array_pop($array);
+        if ($gcd === null) {
+            return 0;
+        }
+        $number = array_pop($numbers);
         if ($number === null) {
             return $gcd;
         }
         $commonDivsors = $this->getCommonDivisors($gcd, $number);
         $newGcd = array_shift($commonDivsors);
-        return $this->getGreatestCommonDivisor($array, $newGcd);
+        return $this->getGreatestCommonDivisor($numbers, $newGcd);
     }
 
     /**
      * @param int $a
      * @param int $b
-     * @return array|int[]
+     * @return list<int>
      */
     public function getCommonDivisors(int $a, int $b): array
     {
-        $gcd = function (int $x, int $y) use (&$gcd): int {
-            if ($y === 0) {
-                return $x;
-            }
-            return $gcd($y, $x % $y);
-        };
-        return array_reverse($this->getDivisors($gcd($a, $b)));
+        $gcd = $this->getCommonDivisorsHelper($a, $b);
+        return array_reverse($this->getDivisors($gcd));
+    }
+
+    private function getCommonDivisorsHelper(int $x, int $y): int
+    {
+        if ($y === 0) {
+            return $x;
+        }
+        return $this->getCommonDivisorsHelper($y, $x % $y);
     }
 
 
     /**
      * @param int $number
-     * @return array|int[]
+     * @return list<int>
      */
     public function getDivisors(int $number): array
     {

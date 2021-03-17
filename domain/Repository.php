@@ -14,18 +14,7 @@ class Repository extends EntityRepository
         parent::__construct($em, $class);
     }
 
-    public function save(mixed $object): mixed
-    {
-        try {
-            $this->_em->persist($object);
-            $this->_em->flush();
-        } catch (Exception $e) {
-            throw new Exception($e->getMessage(), E_ERROR);
-        }
-        return $object;
-    }
-
-    public function remove(mixed $object): void
+    public function remove(object $object): void
     {
         $this->_em->remove($object);
         $this->_em->flush();
