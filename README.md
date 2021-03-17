@@ -1,5 +1,6 @@
 # php-sports-helpers
 
-[![GitHub Super-Linter](https://github.com/thepercival/pgp-sports-helpers/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/thepercival/php-sports-helpers/workflows/linter.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![Build Status](https://github.com/thepercival/php-sports-helpers/workflows/php.yml/badge.svg)](https://github.com/thepercival/php-sports-helpers/actions)
 
 helper classes for sports libraries
