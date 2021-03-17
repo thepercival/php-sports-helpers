@@ -1,70 +1,72 @@
 <?php
+declare(strict_types=1);
 
 namespace SportsHelpers\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\PouleStructure;
 use SportsHelpers\SportBase;
 use SportsHelpers\SportConfig;
 
-class PouleStructureTest extends \PHPUnit\Framework\TestCase
+class PouleStructureTest extends TestCase
 {
-    public function testNrOfPoules()
+    public function testNrOfPoules(): void
     {
         $pouleStructure = new PouleStructure([3,2]);
         self::assertSame(2, $pouleStructure->getNrOfPoules());
     }
 
-    public function testSort()
+    public function testSort(): void
     {
         $pouleStructure = new PouleStructure([2,3]);
         self::assertSame(3, $pouleStructure->toArray()[0]);
         self::assertSame(2, $pouleStructure->toArray()[1]);
     }
 
-    public function testNrOfPlaces()
+    public function testNrOfPlaces(): void
     {
         $pouleStructure = new PouleStructure([3,2]);
         self::assertSame(5, $pouleStructure->getNrOfPlaces());
     }
 
-    public function testBiggestPoule()
+    public function testBiggestPoule(): void
     {
         $pouleStructure = new PouleStructure([3,3,2]);
         self::assertSame(3, $pouleStructure->getBiggestPoule());
     }
 
-    public function testSmallestPoule()
+    public function testSmallestPoule(): void
     {
         $pouleStructure = new PouleStructure([3,3,2]);
         self::assertSame(2, $pouleStructure->getSmallestPoule());
     }
 
-    public function testAlmostBalanced()
+    public function testAlmostBalanced(): void
     {
         $pouleStructure = new PouleStructure([3,2]);
         self::assertTrue($pouleStructure->isAlmostBalanced());
     }
 
-    public function testNotAlmostBalanced()
+    public function testNotAlmostBalanced(): void
     {
         $pouleStructure = new PouleStructure([4,2]);
         self::assertFalse($pouleStructure->isAlmostBalanced());
     }
 
-    public function testBalanced()
+    public function testBalanced(): void
     {
         $pouleStructure = new PouleStructure([2,2]);
         self::assertTrue($pouleStructure->isBalanced());
     }
 
-    public function testNotBalanced()
+    public function testNotBalanced(): void
     {
         $pouleStructure = new PouleStructure([3,2]);
         self::assertFalse($pouleStructure->isBalanced());
     }
 
-    public function testNrOfPoulesByNrOfPlaces()
+    public function testNrOfPoulesByNrOfPlaces(): void
     {
         $pouleStructure = new PouleStructure([3,2,2]);
         $nrOfPoulesByNrOfPlaces = $pouleStructure->getNrOfPoulesByNrOfPlaces();
@@ -72,7 +74,7 @@ class PouleStructureTest extends \PHPUnit\Framework\TestCase
         self::assertSame(2, $nrOfPoulesByNrOfPlaces[2]);
     }
 
-    public function testNrOfGames()
+    public function testNrOfGames(): void
     {
         $nrOfFields = 2;
         $sport = new SportBase(GameMode::AGAINST, 2);
@@ -82,7 +84,7 @@ class PouleStructureTest extends \PHPUnit\Framework\TestCase
         self::assertSame(5, $pouleStructure->getNrOfGames([$sportConfig]));
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $pouleStructure = new PouleStructure([3,2,2]);
         self::assertSame("3,2,2", (string)$pouleStructure);

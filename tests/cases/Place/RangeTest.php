@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\Place\Range as PlaceRange;
 use SportsHelpers\SportRange;
 
-class RangeTest extends TestCase
+final class RangeTest extends TestCase
 {
-    public function testBaiscs()
+    public function testBaiscs(): void
     {
         $range = new SportRange(3, 5);
         $placeRange = new PlaceRange(3, 5, $range);

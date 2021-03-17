@@ -2,11 +2,12 @@
 
 namespace SportsHelpers\Tests;
 
+use PHPUnit\Framework\TestCase;
 use SportsHelpers\SportMath;
 
-class SportMathTest extends \PHPUnit\Framework\TestCase
+final class SportMathTest extends TestCase
 {
-    public function testFaculty()
+    public function testFaculty(): void
     {
         $math = new SportMath();
 
@@ -18,7 +19,7 @@ class SportMathTest extends \PHPUnit\Framework\TestCase
         self::assertSame($math->faculty(5), 120.0);
     }
 
-    public function testAbove()
+    public function testAbove(): void
     {
         $math = new SportMath();
 
@@ -37,7 +38,7 @@ class SportMathTest extends \PHPUnit\Framework\TestCase
         self::assertSame($math->above(7, 3), 35);
     }
 
-    public function testGetDivisors()
+    public function testGetDivisors(): void
     {
         $math = new SportMath();
 
@@ -52,7 +53,7 @@ class SportMathTest extends \PHPUnit\Framework\TestCase
         self::assertSame($math->getDivisors(9), [1,3,9]);
     }
 
-    public function testGetCommonDivisors()
+    public function testGetCommonDivisors(): void
     {
         $math = new SportMath();
 
@@ -64,7 +65,7 @@ class SportMathTest extends \PHPUnit\Framework\TestCase
         self::assertSame($math->getCommonDivisors(8, 4), [4,2,1]);
     }
 
-    public function testGetGreatestCommonDivisor()
+    public function testGetGreatestCommonDivisor(): void
     {
         $math = new SportMath();
 

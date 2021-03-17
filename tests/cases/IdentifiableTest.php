@@ -5,9 +5,9 @@ namespace SportsHelpers\Tests;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\Identifiable;
 
-class IdentifiableTest extends TestCase
+final class IdentifiableTest extends TestCase
 {
-    public function testBaiscs()
+    public function testBaiscs(): void
     {
         $identifiable = new Identifiable();
         $identifiable->setId(1);

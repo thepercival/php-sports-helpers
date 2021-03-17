@@ -5,9 +5,9 @@ namespace SportsHelpers\Tests;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\SportRange;
 
-class SportRangeTest extends TestCase
+final class SportRangeTest extends TestCase
 {
-    public function testBaiscs()
+    public function testBaiscs(): void
     {
         $range = new SportRange(3, 5);
         self::assertSame(3, $range->getMin());

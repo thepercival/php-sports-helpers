@@ -5,13 +5,12 @@ namespace SportsHelpers\Tests\PouleStructure\Balanced;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\Place\Range as PlaceRange;
-use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\BalancedIterator as BalancedPouleStructureIterator;
 
-class IteratorTest extends TestCase
+final class IteratorTest extends TestCase
 {
-    public function testRewind()
+    public function testRewind(): void
     {
         $placesPerPouleRange = new SportRange(4, 4);
         $placesRange = new PlaceRange(10, 20, $placesPerPouleRange);
@@ -21,36 +20,50 @@ class IteratorTest extends TestCase
         $iterator->rewind();
     }
 
-    public function testNormalCase()
+    public function testNormalCase(): void
     {
         $placesPerPouleRange = new SportRange(4, 5);
         $placesRange = new PlaceRange(10, 20, $placesPerPouleRange);
         $pouleRange = new SportRange(4, 5);
         $iterator = new BalancedPouleStructureIterator($placesRange, $pouleRange);
-        self::assertSame([4,4,4,4], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([4,4,4,4], $balancedPouleStructure->toArray());
         $iterator->next();
-        self::assertSame([5,4,4,4], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([5,4,4,4], $balancedPouleStructure->toArray());
         $iterator->next();
-        self::assertSame([5,5,4,4], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([5,5,4,4], $balancedPouleStructure->toArray());
         $iterator->next();
-        self::assertSame([5,5,5,4], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([5,5,5,4], $balancedPouleStructure->toArray());
         $iterator->next();
-        self::assertSame([5,5,5,5], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([5,5,5,5], $balancedPouleStructure->toArray());
         $iterator->next();
-        self::assertSame([4,4,4,4,4], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([4,4,4,4,4], $balancedPouleStructure->toArray());
         $iterator->next();
         self::assertNull($iterator->current());
     }
 
-    public function testNoPouleRange()
+    public function testNoPouleRange(): void
     {
         $placesPerPouleRange = new SportRange(4, 5);
         $placesRange = new PlaceRange(5, 10, $placesPerPouleRange);
         $iterator = new BalancedPouleStructureIterator($placesRange);
-        self::assertSame([5], $iterator->current()->toArray());
+        $balancedPouleStructure = $iterator->current();
+        self::assertNotNull($balancedPouleStructure);
+        self::assertSame([5], $balancedPouleStructure->toArray());
     }
 
-    public function testKey()
+    public function testKey(): void
     {
         $placesPerPouleRange = new SportRange(5, 5);
         $placesRange = new PlaceRange(10, 10, $placesPerPouleRange);
@@ -59,7 +72,7 @@ class IteratorTest extends TestCase
         self::assertSame("5,5", $iterator->key());
     }
 
-    public function testValid()
+    public function testValid(): void
     {
         $placesPerPouleRange = new SportRange(5, 5);
         $placesRange = new PlaceRange(10, 10, $placesPerPouleRange);
@@ -70,7 +83,7 @@ class IteratorTest extends TestCase
         self::assertFalse($iterator->valid());
     }
 
-    public function testNoPossibilities()
+    public function testNoPossibilities(): void
     {
         $placesPerPouleRange = new SportRange(4, 5);
         $placesRange = new PlaceRange(10, 15, $placesPerPouleRange);
@@ -79,7 +92,7 @@ class IteratorTest extends TestCase
         self::assertNull($iterator->current());
     }
 
-    public function testNextWithNoCurrent()
+    public function testNextWithNoCurrent(): void
     {
         $placesPerPouleRange = new SportRange(4, 5);
         $placesRange = new PlaceRange(10, 15, $placesPerPouleRange);
@@ -90,7 +103,7 @@ class IteratorTest extends TestCase
         self::assertNull($iterator->current());
     }
 
-    public function testValidateNrOfPlacesPerPouleAfterNext()
+    public function testValidateNrOfPlacesPerPouleAfterNext(): void
     {
         $placesPerPouleRange = new SportRange(3, 3);
         $placesRange = new PlaceRange(10, 10, $placesPerPouleRange);

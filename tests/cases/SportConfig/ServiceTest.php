@@ -8,9 +8,9 @@ use SportsHelpers\SportBase;
 use SportsHelpers\SportConfig;
 use SportsHelpers\SportConfig\Service as SportConfigService;
 
-class ServiceTest extends TestCase
+final class ServiceTest extends TestCase
 {
-    public function testNrOfGamePlaces()
+    public function testNrOfGamePlaces(): void
     {
         $sportConfigService = new SportConfigService();
 
@@ -18,7 +18,7 @@ class ServiceTest extends TestCase
         self::assertSame(2, $sportConfigService->getNrOfGamePlaces(2, false));
     }
 
-    public function testMaxNrOfGamePlaces()
+    public function testMaxNrOfGamePlaces(): void
     {
         $nrOfFields = 2;
         $sport = new SportBase(GameMode::AGAINST, 2);
@@ -35,7 +35,7 @@ class ServiceTest extends TestCase
         self::assertSame(4, $sportConfigService->getMaxNrOfGamePlaces([$sportConfig1,$sportConfig2], true));
     }
 
-    public function testNrGamesPerPlace()
+    public function testNrGamesPerPlace(): void
     {
         $nrOfPlaces = 5;
         $totalNrOfGames = 0;
