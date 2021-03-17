@@ -6,7 +6,6 @@ namespace SportsHelpers\Tests;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\PouleStructure;
-use SportsHelpers\SportBase;
 use SportsHelpers\SportConfig;
 
 class PouleStructureTest extends TestCase
@@ -76,10 +75,7 @@ class PouleStructureTest extends TestCase
 
     public function testNrOfGames(): void
     {
-        $nrOfFields = 2;
-        $sport = new SportBase(GameMode::AGAINST, 2);
-        $gameAmount = 1;
-        $sportConfig = new SportConfig($sport, $nrOfFields, $gameAmount);
+        $sportConfig = new SportConfig(GameMode::AGAINST, 2, 2, 1);
         $pouleStructure = new PouleStructure([3,2,2]);
         self::assertSame(5, $pouleStructure->getNrOfGames([$sportConfig]));
     }

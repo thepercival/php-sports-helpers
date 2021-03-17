@@ -10,17 +10,17 @@ trait HelperTrait
 {
     public function getGameMode(): int
     {
-        return $this->sportBase->getGameMode();
+        return $this->gameMode;
     }
 
     public function getNrOfGamePlaces(): int
     {
-        return $this->sportBase->getNrOfGamePlaces();
+        return $this->nrOfGamePlaces;
     }
 
     public function allPlacesAreGamePlaces(): bool
     {
-        return $this->sportBase->getNrOfGamePlaces() === 0;
+        return $this->getNrOfGamePlaces() === 0;
     }
 
     public function getGameAmount(): int

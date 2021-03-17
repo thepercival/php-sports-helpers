@@ -4,7 +4,6 @@ namespace SportsHelpers\Tests\SportConfig;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\SportBase;
 use SportsHelpers\SportConfig;
 use SportsHelpers\SportConfig\Service as SportConfigService;
 
@@ -20,16 +19,8 @@ final class ServiceTest extends TestCase
 
     public function testMaxNrOfGamePlaces(): void
     {
-        $nrOfFields = 2;
-        $sport = new SportBase(GameMode::AGAINST, 2);
-        $gameAmount = 1;
-
-        $sportConfig1 = new SportConfig($sport, $nrOfFields, $gameAmount);
-
-        $nrOfFields2 = 2;
-        $sport2 = new SportBase(GameMode::AGAINST, 3);
-        $gameAmount2 = 1;
-        $sportConfig2 = new SportConfig($sport2, $nrOfFields2, $gameAmount2);
+        $sportConfig1 = new SportConfig(GameMode::AGAINST, 2, 2, 1);
+        $sportConfig2 = new SportConfig(GameMode::AGAINST, 3, 2, 1);
 
         $sportConfigService = new SportConfigService();
         self::assertSame(4, $sportConfigService->getMaxNrOfGamePlaces([$sportConfig1,$sportConfig2], true));
@@ -40,17 +31,10 @@ final class ServiceTest extends TestCase
         $nrOfPlaces = 5;
         $totalNrOfGames = 0;
 
-        $nrOfFields = 2;
-        $sport = new SportBase(GameMode::AGAINST, 2);
-        $gameAmount = 1;
-
-        $sportConfig1 = new SportConfig($sport, $nrOfFields, $gameAmount);
+        $sportConfig1 = new SportConfig(GameMode::AGAINST, 2, 2, 1);
         $totalNrOfGames += $sportConfig1->getNrOfGamesPerPlace($nrOfPlaces);
 
-        $nrOfFields2 = 2;
-        $sport2 = new SportBase(GameMode::AGAINST, 3);
-        $gameAmount2 = 1;
-        $sportConfig2 = new SportConfig($sport2, $nrOfFields2, $gameAmount2);
+        $sportConfig2 = new SportConfig(GameMode::AGAINST, 3, 2, 1);
         $totalNrOfGames += $sportConfig2->getNrOfGamesPerPlace($nrOfPlaces);
 
         $sportConfigService = new SportConfigService();

@@ -6,20 +6,17 @@ namespace SportsHelpers;
 use SportsHelpers\Sport\HelperTrait;
 use SportsHelpers\Sport\Helper as SportHelper;
 
-class SportConfig implements SportHelper
+class SportConfig extends SportBase implements SportHelper
 {
     use HelperTrait;
 
     public function __construct(
-        protected SportBase $sportBase,
+        int $gameMode,
+        int $nrOfGamePlaces,
         protected int $nrOfFields,
         protected int $gameAmount
-    ){
-    }
-
-    public function getSport(): SportBase
-    {
-        return $this->sportBase;
+    ) {
+        parent::__construct($gameMode, $nrOfGamePlaces);
     }
 
     public function getNrOfFields(): int
