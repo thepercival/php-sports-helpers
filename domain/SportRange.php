@@ -32,4 +32,9 @@ class SportRange
     {
         return $this->max - $this->min;
     }
+
+    public function isWithIn(int $value): bool
+    {
+        return $value >= $this->min && $value <= $this->max;
+    }
 }
