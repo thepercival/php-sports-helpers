@@ -6,6 +6,7 @@ namespace SportsHelpers\Tests;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\PouleStructure;
+use SportsHelpers\SelfReferee;
 use SportsHelpers\SportConfig;
 
 class PouleStructureTest extends TestCase
@@ -78,6 +79,41 @@ class PouleStructureTest extends TestCase
         $sportConfig = new SportConfig(GameMode::AGAINST, 2, 2, 1);
         $pouleStructure = new PouleStructure([3,2,2]);
         self::assertSame(5, $pouleStructure->getNrOfGames([$sportConfig]));
+    }
+
+    public function testSelfRefereeBeAvailableSamePouleNo(): void
+    {
+        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $pouleStructure = new PouleStructure([5,4]);
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sportConfig]));
+    }
+
+    public function testSelfRefereeBeAvailableSamePouleYes(): void
+    {
+        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $pouleStructure = new PouleStructure([5]);
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sportConfig]));
+    }
+
+    public function testSelfRefereeBeAvailableOtherPouleNo(): void
+    {
+        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $pouleStructure = new PouleStructure([4]);
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sportConfig]));
+    }
+
+    public function testSelfRefereeBeAvailableOtherPouleYes(): void
+    {
+        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $pouleStructure = new PouleStructure([4,4]);
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sportConfig]));
+    }
+
+    public function testSelfRefereeBeAvailableDisabledNo(): void
+    {
+        $sportConfig = new SportConfig(GameMode::AGAINST, 2, 2, 1);
+        $pouleStructure = new PouleStructure([4]);
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::DISABLED, [$sportConfig]));
     }
 
     public function testToString(): void

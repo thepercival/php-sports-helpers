@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
+use SportsHelpers\SelfReferee;
+use SportsHelpers\SportBase as Sport;
 use Stringable;
 
 class PouleStructure implements Stringable
@@ -88,6 +90,41 @@ class PouleStructure implements Stringable
             }
         }
         return $nrOfGames;
+    }
+
+    /**
+     * @param int $selfReferee
+     * @param list<SportBase> $sports
+     * @return bool
+     */
+    public function isSelfRefereeBeAvailable(int $selfReferee, array $sports): bool
+    {
+        if ($selfReferee === SelfReferee::SAMEPOULE) {
+            return $this->isSelfRefereeSamePouleBeAvailable($sports);
+        } elseif ($selfReferee === SelfReferee::OTHERPOULES) {
+            return $this->isSelfRefereeOtherPoulesBeAvailable();
+        }
+        return false;
+    }
+
+    protected function isSelfRefereeOtherPoulesBeAvailable(): bool
+    {
+        return $this->getNrOfPoules() > 1;
+    }
+
+    /**
+     * @param list<Sport> $sports
+     * @return bool
+     */
+    protected function isSelfRefereeSamePouleBeAvailable(array $sports): bool
+    {
+        $smallestNrOfPlaces = $this->getSmallestPoule();
+        foreach ($sports as $sport) {
+            if ($smallestNrOfPlaces <= $sport->getNrOfGamePlaces()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 //    /**
