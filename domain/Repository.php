@@ -3,26 +3,35 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping\ClassMetadata;
 use Exception;
 
-class Repository extends EntityRepository
+/**
+ * @psalm-template T
+ */
+trait Repository
 {
-    public function __construct(EntityManagerInterface $em, ClassMetadata $class)
+    /**
+     * @psalm-var T
+     * @psalm-return T
+     */
+    public function save(object $object): object
     {
-        parent::__construct($em, $class);
+        try {
+            $this->_em->persist($object);
+            $this->_em->flush();
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), E_ERROR);
+        }
+
+        return $object;
     }
 
+    /**
+     * @psalm-var T
+     */
     public function remove(object $object): void
     {
         $this->_em->remove($object);
         $this->_em->flush();
-    }
-
-    public function getEM(): EntityManagerInterface
-    {
-        return $this->getEntityManager();
     }
 }

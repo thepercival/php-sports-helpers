@@ -4,36 +4,29 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructure;
 
+use Exception;
 use SportsHelpers\PouleStructure;
 
 class Balanced extends PouleStructure
 {
-    public function __construct(int $nrOfPlaces, int $nrOfPoules)
+    public function __construct(int ...$nrOfPlaces)
     {
-        $poules = [];
-        while ($nrOfPlaces > 0) {
-            $nrOfPlacesToAdd = $this->getNrOfPlacesPerPouleHelper($nrOfPlaces, $nrOfPoules, false);
-            $poules[] = $nrOfPlacesToAdd;
-            $nrOfPlaces -= $nrOfPlacesToAdd;
-            $nrOfPoules--;
+        parent::__construct(...$nrOfPlaces);
+        if ($this->getBiggestPoule() - $this->getSmallestPoule() > 1) {
+            throw new Exception('this poulestructure is not balanced', E_ERROR);
         }
-        parent::__construct(array_values($poules));
     }
 
-    public function getRoundedNrOfPlacesPerPoule(bool $floor): int
+    public function getLastGreaterNrOfPlacesPouleNr(): int
     {
-        return $this->getNrOfPlacesPerPouleHelper($this->getNrOfPlaces(), $this->getNrOfPoules(), $floor);
+        $greatestNrOfPlaces = $this->getBiggestPoule();
+
+        return ((count($this->poules)-1) - array_search($greatestNrOfPlaces, array_reverse($this->poules), true)) + 1;
     }
 
-    protected function getNrOfPlacesPerPouleHelper(int $nrOfPlaces, int $nrOfPoules, bool $floor): int
+    public function getFirstLesserNrOfPlacesPouleNr(): int
     {
-        $nrOfPlaceLeft = ($nrOfPlaces % $nrOfPoules);
-        if ($nrOfPlaceLeft === 0) {
-            return (int)($nrOfPlaces / $nrOfPoules);
-        }
-        if ($floor) {
-            return (int)floor((($nrOfPlaces - $nrOfPlaceLeft) / $nrOfPoules));
-        }
-        return (int)ceil((($nrOfPlaces + ($nrOfPoules - $nrOfPlaceLeft)) / $nrOfPoules));
+        $leastNrOfPlaces = $this->getSmallestPoule();
+        return array_search($leastNrOfPlaces, $this->poules, true) + 1;
     }
 }

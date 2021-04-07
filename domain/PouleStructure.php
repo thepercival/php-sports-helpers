@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\SelfReferee;
 use SportsHelpers\SportBase as Sport;
 use Stringable;
 
@@ -15,18 +14,19 @@ class PouleStructure implements Stringable
     protected $poules;
     protected int|null $nrOfGamePlaces = null;
 
-    /**
-     * @param list<int> $poules
-     */
-    public function __construct(array $poules)
+    public function __construct(int ...$nrOfPlaces)
     {
+        $this->poules = [];
+        foreach ($nrOfPlaces as $nrOfPlacesIt) {
+            array_push($this->poules, $nrOfPlacesIt);
+        }
         uasort(
-            $poules,
+            $this->poules,
             function (int $nrOfPlacesPouleA, int $nrOfPlacesPouleB): int {
                 return $nrOfPlacesPouleA > $nrOfPlacesPouleB ? -1 : 1;
             }
         );
-        $this->poules = array_values($poules);
+        $this->poules = array_values($this->poules);
     }
 
     public function getNrOfPoules(): int

@@ -13,16 +13,19 @@ class BalancedIterator implements Iterator
 {
     private SportRange $pouleRange;
     private BalancedPouleStructure|null $current;
+    private BalancedCreator $balancedCreator;
 
     public function __construct(
         private PlaceRange $placeRange,
         SportRange $pouleRange = null
     ) {
+        $this->balancedCreator = new BalancedCreator();
         if ($pouleRange === null) {
             $pouleRange = new SportRange(1, $placeRange->getMax());
         }
         $this->pouleRange = $pouleRange;
-        $this->current = new BalancedPouleStructure($this->placeRange->getMin(), $this->pouleRange->getMin());
+
+        $this->current = $this->balancedCreator->createBalanced($this->placeRange->getMin(), $this->pouleRange->getMin());
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
@@ -53,7 +56,7 @@ class BalancedIterator implements Iterator
             $this->nextNrOfPlaces();
             return;
         }
-        $this->current = new BalancedPouleStructure($this->current->getNrOfPlaces(), $this->current->getNrOfPoules() + 1);
+        $this->current = $this->balancedCreator->createBalanced($this->current->getNrOfPlaces(), $this->current->getNrOfPoules() + 1);
 
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
@@ -67,7 +70,7 @@ class BalancedIterator implements Iterator
             $this->current = null;
             return;
         }
-        $this->current = new BalancedPouleStructure($this->current->getNrOfPlaces() + 1, $this->pouleRange->getMin());
+        $this->current = $this->balancedCreator->createBalanced($this->current->getNrOfPlaces() + 1, $this->pouleRange->getMin());
 
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
@@ -77,14 +80,12 @@ class BalancedIterator implements Iterator
         if ($this->current === null) {
             return;
         }
-        $placesPerPoule = $this->current->getRoundedNrOfPlacesPerPoule(true);
-
         $placesPerPouleRange = $this->placeRange->getPlacesPerPouleRange();
-        if ($placesPerPoule < $placesPerPouleRange->getMin()) {
+        if ($this->current->getSmallestPoule() < $placesPerPouleRange->getMin()) {
             $this->nextNrOfPlaces();
             return;
         }
-        if ($placesPerPoule > $placesPerPouleRange->getMax()) {
+        if ($this->current->getBiggestPoule() > $placesPerPouleRange->getMax()) {
             $this->nextNrOfPoules();
             return;
         }

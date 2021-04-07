@@ -2,6 +2,9 @@ SportsHelpers\SportBase:
   exclusion_policy: ALL
   exclude: false
   properties:
+    gameMode:
+      type: integer
+      groups: [ noReference ]
     nrOfGamePlaces:
       type: integer
       groups: [noReference]
