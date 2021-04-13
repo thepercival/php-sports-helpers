@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\PouleStructure;
 use SportsHelpers\SelfReferee;
-use SportsHelpers\SportConfig;
+use SportsHelpers\Sport\GameAmountVariant as SportGameAmountVariant;
 
 class PouleStructureTest extends TestCase
 {
@@ -76,44 +76,44 @@ class PouleStructureTest extends TestCase
 
     public function testNrOfGames(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 2, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 2, 2, 1);
         $pouleStructure = new PouleStructure(3, 2, 2);
-        self::assertSame(5, $pouleStructure->getNrOfGames([$sportConfig]));
+        self::assertSame(5, $pouleStructure->getNrOfGames([$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleNo(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
         $pouleStructure = new PouleStructure(5, 4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sportConfig]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleYes(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
         $pouleStructure = new PouleStructure(5);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sportConfig]));
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleNo(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
         $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sportConfig]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleYes(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 4, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
         $pouleStructure = new PouleStructure(4, 4);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sportConfig]));
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableDisabledNo(): void
     {
-        $sportConfig = new SportConfig(GameMode::AGAINST, 2, 2, 1);
+        $sport = new SportGameAmountVariant(GameMode::AGAINST, 2, 2, 1);
         $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::DISABLED, [$sportConfig]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::DISABLED, [$sport]));
     }
 
     public function testToString(): void
@@ -126,20 +126,20 @@ class PouleStructureTest extends TestCase
 
 //    public function testMaxNrOfGamePlaces()
 //    {
-//        $sportConfigHelpers = [
+//        $sportHelpers = [
 //            new SportConfig( 1, 2, false ),
 //            new SportConfig( 1, 3, false ),
 //        ];
 //        $gameCalculator = new GameCalculator();
-//        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportConfigHelpers, false);
+//        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportHelpers, false);
 //        self::assertSame(3, $maxNrOfGamePlaces);
 //
-//        $sportConfigHelpers = [
+//        $sportHelpers = [
 //            new SportConfig( 1, 2, true ),
 //            new SportConfig( 1, 3, true ),
 //        ];
 //        $gameCalculator = new GameCalculator();
-//        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportConfigHelpers, false);
+//        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportHelpers, false);
 //        self::assertSame(4, $maxNrOfGamePlaces);
 //    }
 }

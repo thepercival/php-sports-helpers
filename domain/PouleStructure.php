@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\SportBase as Sport;
+use SportsHelpers\Sport\GameAmountVariant as SportGameAmountVariant;
+use SportsHelpers\Sport\Variant as SportVariant;
 use Stringable;
 
 class PouleStructure implements Stringable
@@ -16,16 +17,16 @@ class PouleStructure implements Stringable
 
     public function __construct(int ...$nrOfPlaces)
     {
-        $this->poules = [];
-        foreach ($nrOfPlaces as $nrOfPlacesIt) {
-            array_push($this->poules, $nrOfPlacesIt);
-        }
         uasort(
-            $this->poules,
+            $nrOfPlaces,
             function (int $nrOfPlacesPouleA, int $nrOfPlacesPouleB): int {
                 return $nrOfPlacesPouleA > $nrOfPlacesPouleB ? -1 : 1;
             }
         );
+        $this->poules = [];
+        foreach ($nrOfPlaces as $nrOfPlacesIt) {
+            array_push($this->poules, $nrOfPlacesIt);
+        }
         $this->poules = array_values($this->poules);
     }
 
@@ -78,15 +79,15 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<SportConfig> $sportConfigs
+     * @param list<SportGameAmountVariant> $sportGameAmountVariants
      * @return int
      */
-    public function getNrOfGames(array $sportConfigs): int
+    public function getNrOfGames(array $sportGameAmountVariants): int
     {
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
-            foreach ($sportConfigs as $sportConfig) {
-                $nrOfGames += $sportConfig->getNrOfGames($nrOfPlaces);
+            foreach ($sportGameAmountVariants as $sportGameAmountVariant) {
+                $nrOfGames += $sportGameAmountVariant->getNrOfGames($nrOfPlaces);
             }
         }
         return $nrOfGames;
@@ -94,7 +95,7 @@ class PouleStructure implements Stringable
 
     /**
      * @param int $selfReferee
-     * @param list<SportBase> $sports
+     * @param list<SportVariant> $sports
      * @return bool
      */
     public function isSelfRefereeBeAvailable(int $selfReferee, array $sports): bool
@@ -113,7 +114,7 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<Sport> $sports
+     * @param list<SportVariant> $sports
      * @return bool
      */
     protected function isSelfRefereeSamePouleBeAvailable(array $sports): bool

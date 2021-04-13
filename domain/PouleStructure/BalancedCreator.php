@@ -12,9 +12,9 @@ class BalancedCreator
         $calculateNrOfPlacesPerPoule = function (int $nrOfPlaces, int $nrOfPoules): int {
             $nrOfPlaceLeft = ($nrOfPlaces % $nrOfPoules);
             if ($nrOfPlaceLeft === 0) {
-                return $nrOfPlaces / $nrOfPoules;
+                return (int)($nrOfPlaces / $nrOfPoules);
             }
-            return (($nrOfPlaces - $nrOfPlaceLeft) / $nrOfPoules);
+            return (int)(($nrOfPlaces - $nrOfPlaceLeft) / $nrOfPoules);
         };
 
         $innerData = [];

@@ -1,26 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace SportsHelpers\SportConfig;
+namespace SportsHelpers\Sport;
 
-use SportsHelpers\SportConfig;
+class GamePlaceCalculator {
 
-class Service
-{
     public function __construct()
     {
     }
 
     /**
-     * @param list<SportConfig> $sportConfigs
+     * @param list<Variant> $sportVariants
      * @param bool $selfReferee
      * @return int
      */
-    public function getMaxNrOfGamePlaces(array $sportConfigs, bool $selfReferee): int
+    public function getMaxNrOfGamePlaces(array $sportVariants, bool $selfReferee): int
     {
         $maxNrOfGamePlaces = 0;
-        foreach ($sportConfigs as $sportConfig) {
-            $nrOfGamePlaces = $this->getNrOfGamePlaces($sportConfig->getNrOfGamePlaces(), $selfReferee);
+        foreach ($sportVariants as $sportVariant) {
+            $nrOfGamePlaces = $this->getNrOfGamePlaces($sportVariant->getNrOfGamePlaces(), $selfReferee);
             if ($nrOfGamePlaces > $maxNrOfGamePlaces) {
                 $maxNrOfGamePlaces = $nrOfGamePlaces;
             }
@@ -35,14 +33,14 @@ class Service
 
     /**
      * @param int $nrOfPlaces
-     * @param list<SportConfig> $sportConfigs
+     * @param list<GameAmountVariant> $sportGameAmountVariants
      * @return int
      */
-    public function getNrOfGamesPerPlace(int $nrOfPlaces, array $sportConfigs): int
+    public function getNrOfGamesPerPlace(int $nrOfPlaces, array $sportGameAmountVariants): int
     {
         $nrOfGamesPerPlace = 0;
-        foreach ($sportConfigs as $sportConfig) {
-            $nrOfGamesPerPlace += $sportConfig->getNrOfGamesPerPlace($nrOfPlaces);
+        foreach ($sportGameAmountVariants as $sportGameAmountVariant) {
+            $nrOfGamesPerPlace += $sportGameAmountVariant->getNrOfGamesPerPlace($nrOfPlaces);
         }
         return $nrOfGamesPerPlace;
     }

@@ -4,10 +4,24 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport;
 
 use SportsHelpers\GameMode;
+use SportsHelpers\Identifiable;
 use SportsHelpers\SportMath;
 
-trait HelperTrait
+class GameAmountVariant extends Identifiable implements Variant, \Stringable
 {
+    public function __construct(
+        protected int $gameMode,
+        protected int $nrOfGamePlaces,
+        protected int $nrOfFields,
+        protected int $gameAmount
+    ) {
+    }
+
+    public function getNrOfFields(): int
+    {
+        return $this->nrOfFields;
+    }
+
     public function getGameMode(): int
     {
         return $this->gameMode;
@@ -18,14 +32,14 @@ trait HelperTrait
         return $this->nrOfGamePlaces;
     }
 
-    public function allPlacesAreGamePlaces(): bool
-    {
-        return $this->getNrOfGamePlaces() === 0;
-    }
-
     public function getGameAmount(): int
     {
         return $this->gameAmount;
+    }
+
+    public function allPlacesAreGamePlaces(): bool
+    {
+        return $this->getNrOfGamePlaces() === 0;
     }
 
     public function getNrOfGames(int $nrOfPlaces): int
@@ -69,5 +83,25 @@ trait HelperTrait
         $nrOfHomeGames = $this->getNrOfGames($nrOfPlaces);
         $nrOfHomeGamesOneLess = $this->getNrOfGames($nrOfPlaces-1);
         return ($nrOfHomeGames - $nrOfHomeGamesOneLess) * $this->getGameAmount();
+    }
+
+    /**
+     * @return array<string,int>
+     */
+    public function toArray(): array
+    {
+        return [
+            "gameMode" => $this->getGameMode(),
+            "nrOfFields" => $this->getNrOfFields(),
+            "nrOfGamePlaces" => $this->getNrOfGamePlaces(),
+            "gameAmount" => $this->getGameAmount()];
+    }
+
+    public function __toString()
+    {
+        return ($this->getGameMode() === GameMode::AGAINST ? 'A' : 'T') . '-' .
+            $this->getNrOfFields() . '-' .
+            $this->getNrOfGamePlaces() . '-' .
+            $this->getGameAmount();
     }
 }

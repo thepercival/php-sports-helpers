@@ -21,12 +21,20 @@ class Balanced extends PouleStructure
     {
         $greatestNrOfPlaces = $this->getBiggestPoule();
 
-        return ((count($this->poules)-1) - array_search($greatestNrOfPlaces, array_reverse($this->poules), true)) + 1;
+        $idx = array_search($greatestNrOfPlaces, array_reverse($this->poules), true);
+        if ($idx === false) {
+            throw new Exception('no poules available', E_ERROR);
+        }
+        return ((count($this->poules)-1) - $idx) + 1;
     }
 
     public function getFirstLesserNrOfPlacesPouleNr(): int
     {
         $leastNrOfPlaces = $this->getSmallestPoule();
-        return array_search($leastNrOfPlaces, $this->poules, true) + 1;
+        $idx = array_search($leastNrOfPlaces, $this->poules, true);
+        if ($idx === false) {
+            throw new Exception('no poules available', E_ERROR);
+        }
+        return $idx + 1;
     }
 }
