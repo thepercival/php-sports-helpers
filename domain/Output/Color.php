@@ -7,7 +7,6 @@ trait Color
 {
     protected function outputColor(int $number, string $content): string
     {
-        $sColor = null;
         if ($number === 1) {
             $sColor = '0;31'; // red
         } elseif ($number === 2) {

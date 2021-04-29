@@ -5,7 +5,14 @@ namespace SportsHelpers;
 
 class SportMath
 {
-
+    public function getSmallestCommonDividend(int $number1, int $number2): int
+    {
+        $multiplier = 1;
+        while (($multiplier * $number1) % $number2 !== 0) {
+            $multiplier++;
+        }
+        return $multiplier * $number1;
+    }
 
     /**
      * @param list<int> $numbers

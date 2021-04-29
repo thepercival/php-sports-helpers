@@ -3,8 +3,11 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
-interface Variant
+interface Variant extends \Stringable
 {
     public function getGameMode(): int;
-    public function getNrOfGamePlaces(): int;
+    public function getTotalNrOfGames(int $nrOfPlaces): int;
+    public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int;
+    public function allPlacesParticipate(int $nrOfPlaces): bool;
+    public function createPersistVariant(): PersistVariant;
 }

@@ -5,8 +5,6 @@ namespace SportsHelpers;
 
 class GameCreationStrategy
 {
-    public const StaticPouleSize = 1;
-    public const StaticManual = 2;
-    public const IncrementalRandom = 3;
-    public const IncrementalRanking = 4;
+    public const Static = 1;
+    public const Incremental = 2;
 }

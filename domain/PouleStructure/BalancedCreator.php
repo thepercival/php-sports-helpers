@@ -16,7 +16,9 @@ class BalancedCreator
             }
             return (int)(($nrOfPlaces - $nrOfPlaceLeft) / $nrOfPoules);
         };
-
+        if ($nrOfPoules < 1) {
+            throw new \Exception('er moet minimaal 1 poule aanwezig zijn', E_ERROR);
+        }
         $innerData = [];
         while ($nrOfPlaces > 0) {
             $nrOfPlacesPerPoule = $calculateNrOfPlacesPerPoule($nrOfPlaces, $nrOfPoules--);

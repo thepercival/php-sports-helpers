@@ -5,6 +5,7 @@ namespace SportsHelpers;
 
 class GameMode
 {
-    public const TOGETHER = 1;
+    public const SINGLE = 1;
     public const AGAINST = 2;
+    public const ALL_IN_ONE_GAME = 3;
 }

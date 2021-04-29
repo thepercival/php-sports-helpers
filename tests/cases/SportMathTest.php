@@ -7,6 +7,16 @@ use SportsHelpers\SportMath;
 
 final class SportMathTest extends TestCase
 {
+    public function testSmallCommonDividend(): void
+    {
+        $math = new SportMath();
+
+        self::assertSame(28, $math->getSmallestCommonDividend(7, 4));
+        self::assertSame(3, $math->getSmallestCommonDividend(3, 3));
+        self::assertSame(3, $math->getSmallestCommonDividend(3, 1));
+        self::assertSame(3, $math->getSmallestCommonDividend(1, 3));
+    }
+
     public function testFaculty(): void
     {
         $math = new SportMath();

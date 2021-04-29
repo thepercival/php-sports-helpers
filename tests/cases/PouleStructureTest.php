@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace SportsHelpers\Tests;
 
 use PHPUnit\Framework\TestCase;
-use SportsHelpers\GameMode;
 use SportsHelpers\PouleStructure;
 use SportsHelpers\SelfReferee;
-use SportsHelpers\Sport\GameAmountVariant as SportGameAmountVariant;
+use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 
 class PouleStructureTest extends TestCase
 {
@@ -74,44 +73,44 @@ class PouleStructureTest extends TestCase
         self::assertSame(2, $nrOfPoulesByNrOfPlaces[2]);
     }
 
-    public function testNrOfGames(): void
+    public function testTotalNrOfGames(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 2, 2, 1);
+        $sport = new AgainstSportVariant(1, 1, 1, 0);
         $pouleStructure = new PouleStructure(3, 2, 2);
-        self::assertSame(5, $pouleStructure->getNrOfGames([$sport]));
+        self::assertSame(5, $pouleStructure->getTotalNrOfGames([$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleNo(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
+        $sport = new AgainstSportVariant(2, 2, 1, 0);
         $pouleStructure = new PouleStructure(5, 4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleYes(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
+        $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(5);
         self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleNo(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
+        $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleYes(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 4, 2, 1);
+        $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4, 4);
         self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableDisabledNo(): void
     {
-        $sport = new SportGameAmountVariant(GameMode::AGAINST, 2, 2, 1);
+        $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::DISABLED, [$sport]));
     }

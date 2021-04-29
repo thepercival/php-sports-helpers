@@ -5,7 +5,6 @@ namespace SportsHelpers\PouleStructure;
 
 use Exception;
 use Iterator;
-use SportsHelpers\Place\Range as PlaceRange;
 use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 
@@ -16,7 +15,8 @@ class BalancedIterator implements Iterator
     private BalancedCreator $balancedCreator;
 
     public function __construct(
-        private PlaceRange $placeRange,
+        private SportRange $placeRange,
+        private SportRange $placesPerPouleRange,
         SportRange $pouleRange = null
     ) {
         $this->balancedCreator = new BalancedCreator();
@@ -80,12 +80,11 @@ class BalancedIterator implements Iterator
         if ($this->current === null) {
             return;
         }
-        $placesPerPouleRange = $this->placeRange->getPlacesPerPouleRange();
-        if ($this->current->getSmallestPoule() < $placesPerPouleRange->getMin()) {
+        if ($this->current->getSmallestPoule() < $this->placesPerPouleRange->getMin()) {
             $this->nextNrOfPlaces();
             return;
         }
-        if ($this->current->getBiggestPoule() > $placesPerPouleRange->getMax()) {
+        if ($this->current->getBiggestPoule() > $this->placesPerPouleRange->getMax()) {
             $this->nextNrOfPoules();
             return;
         }

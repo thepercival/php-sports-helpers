@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\Sport\GameAmountVariant as SportGameAmountVariant;
 use SportsHelpers\Sport\Variant as SportVariant;
 use Stringable;
 
@@ -79,15 +78,15 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<SportGameAmountVariant> $sportGameAmountVariants
+     * @param list<SportVariant> $sportVariants
      * @return int
      */
-    public function getNrOfGames(array $sportGameAmountVariants): int
+    public function getTotalNrOfGames(array $sportVariants): int
     {
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
-            foreach ($sportGameAmountVariants as $sportGameAmountVariant) {
-                $nrOfGames += $sportGameAmountVariant->getNrOfGames($nrOfPlaces);
+            foreach ($sportVariants as $sportVariant) {
+                $nrOfGames += $sportVariant->getTotalNrOfGames($nrOfPlaces);
             }
         }
         return $nrOfGames;
@@ -114,14 +113,14 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<SportVariant> $sports
+     * @param list<SportVariant> $sportVariants
      * @return bool
      */
-    protected function isSelfRefereeSamePouleBeAvailable(array $sports): bool
+    protected function isSelfRefereeSamePouleBeAvailable(array $sportVariants): bool
     {
         $smallestNrOfPlaces = $this->getSmallestPoule();
-        foreach ($sports as $sport) {
-            if ($smallestNrOfPlaces <= $sport->getNrOfGamePlaces()) {
+        foreach ($sportVariants as $sportVariant) {
+            if ($sportVariant->allPlacesParticipate($smallestNrOfPlaces)) {
                 return false;
             }
         }
