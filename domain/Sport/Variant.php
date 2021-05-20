@@ -8,6 +8,6 @@ interface Variant extends \Stringable
     public function getGameMode(): int;
     public function getTotalNrOfGames(int $nrOfPlaces): int;
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int;
-    public function allPlacesParticipate(int $nrOfPlaces): bool;
-    public function createPersistVariant(): PersistVariant;
+    public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool;
+    public function toPersistVariant(): PersistVariant;
 }

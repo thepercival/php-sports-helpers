@@ -14,8 +14,8 @@ class PlaceRanges
     private SportRange $placesPerPouleSmall;
     private SportRange $placesPerRoundSmall;
     private int $nrOfPlacesSmallLargeBorder;
-    private SportRange|null $placesPerPouleLarge;
-    private SportRange|null $placesPerRoundLarge;
+    private SportRange|null $placesPerPouleLarge = null;
+    private SportRange|null $placesPerRoundLarge = null;
     // private minNrOfPlacesPerPoule: number;
     // private minNrOfPlacesPerRound: number;
 

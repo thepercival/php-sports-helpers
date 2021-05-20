@@ -4,22 +4,14 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport\Variant;
 
 use SportsHelpers\GameMode;
-use SportsHelpers\Identifiable;
 use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
 
-class Single extends Identifiable implements Variant
+class Single extends Base implements Variant
 {
-    protected int $gameMode;
-
-    public function __construct(protected int $nrOfGamePlaces, protected int $nrOfGamesPerPlace)
+    public function __construct(protected int $nrOfGamePlaces, int $nrOfGamesPerPlace)
     {
-        $this->gameMode = GameMode::SINGLE;
-    }
-
-    public function getGameMode(): int
-    {
-        return $this->gameMode;
+        parent::__construct(GameMode::SINGLE, $nrOfGamesPerPlace);
     }
 
     public function getNrOfGamePlaces(): int
@@ -27,48 +19,55 @@ class Single extends Identifiable implements Variant
         return $this->nrOfGamePlaces;
     }
 
-    public function getNrOfGamesPerPlace(): int
-    {
-        return $this->nrOfGamesPerPlace;
-    }
-
     public function getTotalNrOfGames(int $nrOfPlaces): int
     {
-        $totalNrOfGamePlaces = $nrOfPlaces * $this->getNrOfGamesPerPlace();
-        return (int)ceil($totalNrOfGamePlaces / $this->getNrOfGamePlaces());
+        $totalNrOfPlaces = $nrOfPlaces * $this->getNrOfGamesPerPlace();
+        return (int)ceil($totalNrOfPlaces / $this->getNrOfGamePlaces());
     }
 
-    public function getMaxNrOfGameRounds(int $nrOfPlaces): int
-    {
-        $totalNrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
-        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
-        return (int)ceil($totalNrOfGames / $nrOfGamesPerGameRound);
-    }
+//    public function getMaxNrOfGameRounds(int $nrOfPlaces): int
+//    {
+//        $totalNrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
+//        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
+//        return (int)ceil($totalNrOfGames / $nrOfGamesPerGameRound);
+//    }
 
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
     {
         return $this->getNrOfGamesPerPlace();
     }
 
-    public function allPlacesParticipate(int $nrOfPlaces): bool
+//    public function getNrOfGamesPerPlace(int $nrOfPlaces): int
+//    {
+    //$this->getNrOfGameRounds()
+//        return $this->nrOfGameRounds * ;
+//    }
+
+    protected function getNrOfPlacesPerGameRound(int $nrOfPlaces): int
     {
-        return $this->getNrOfGamePlaces() >= $nrOfPlaces;
+        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
     }
 
-    public function createPersistVariant(): PersistVariant {
+
+    public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool
+    {
+        return $nrOfPlaces === $this->getNrOfPlacesPerGameRound($nrOfPlaces);
+    }
+
+    public function toPersistVariant(): PersistVariant
+    {
         return new PersistVariant(
             $this->getGameMode(),
             0,
             0,
-            0,
-            0,
             $this->getNrOfGamePlaces(),
+            0,
             $this->getNrOfGamesPerPlace(),
         );
     }
 
     public function __toString()
     {
-        return 'SINGLE: ' . $this->getNrOfGamePlaces() . ' x ' . $this->getNrOfGamesPerPlace();
+        return 'single: ' . $this->getNrOfGamePlaces() . ' x ' . $this->getNrOfGamesPerPlace();
     }
 }

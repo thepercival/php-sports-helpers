@@ -89,4 +89,18 @@ class SportMath
         }
         return 1;
     }
+
+    public function getUniqueNrOfHomeAways(int $nrOfPoulePlaces, int $nrOfHomePlaces, int $nrOfAwayPlaces): int
+    {
+        $nrOfGamePlaces = $nrOfHomePlaces + $nrOfAwayPlaces;
+        if ($nrOfPoulePlaces < $nrOfGamePlaces) {
+            throw new \Exception('aantal plekken moet minimaal aantal wedstrijdplekken zijn', E_ERROR);
+        }
+        $nrOfHomeAways = $this->above($nrOfPoulePlaces, $nrOfHomePlaces)
+            * $this->above($nrOfPoulePlaces - $nrOfHomePlaces, $nrOfAwayPlaces);
+        if ($nrOfHomePlaces === $nrOfAwayPlaces) {
+            return (int)($nrOfHomeAways / 2);
+        }
+        return $nrOfHomeAways;
+    }
 }

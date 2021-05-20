@@ -5,7 +5,8 @@
         <field name="nrOfHomePlaces" column="nrOfHomePlaces" type="smallint"  nullable="false" unique="false"/>
         <field name="nrOfAwayPlaces" column="nrOfAwayPlaces" type="smallint"  nullable="false" unique="false"/>
         <field name="nrOfH2H" column="nrOfH2H" type="smallint"  nullable="false" unique="false"/>
+        <field name="nrOfPartials" column="nrOfPartials" type="smallint"  nullable="false" unique="false"/>
         <field name="nrOfGamePlaces" column="nrOfGamePlaces" type="smallint"  nullable="false" unique="false"/>
-        <field name="nrOfGameRounds" column="nrOfGameRounds" type="smallint" nullable="false" unique="false"/>
+        <field name="nrOfGamesPerPlace" column="nrOfGamesPerPlace" type="smallint" nullable="false" unique="false"/>
     </mapped-superclass>
 </doctrine-mapping>

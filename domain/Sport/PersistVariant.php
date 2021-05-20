@@ -15,9 +15,8 @@ class PersistVariant extends Identifiable
         protected int $gameMode,
         protected int $nrOfHomePlaces,
         protected int $nrOfAwayPlaces,
-        protected int $nrOfH2H,
-        protected int $nrOfPartials,
         protected int $nrOfGamePlaces,
+        protected int $nrOfH2H,
         protected int $nrOfGamesPerPlace
     ) {
     }
@@ -41,11 +40,6 @@ class PersistVariant extends Identifiable
         return $this->nrOfH2H;
     }
 
-    public function getNrOfPartials(): int
-    {
-        return $this->nrOfPartials;
-    }
-
     public function getNrOfGamePlaces(): int
     {
         return $this->nrOfGamePlaces;
@@ -64,9 +58,6 @@ class PersistVariant extends Identifiable
         if ($this->gameMode === GameMode::ALL_IN_ONE_GAME) {
             return new AllInOneGameSportVariant($this->nrOfGamesPerPlace);
         }
-        if ($this->nrOfHomePlaces + $this->nrOfAwayPlaces > 2) {
-            return new AgainstSportVariant($this->nrOfHomePlaces, $this->nrOfAwayPlaces, 0, $this->nrOfPartials);
-        }
-        return new AgainstSportVariant($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2H, 0);
+        return new AgainstSportVariant($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2H, $this->nrOfGamesPerPlace);
     }
 }

@@ -79,13 +79,36 @@ final class SportMathTest extends TestCase
     {
         $math = new SportMath();
 
-        self::assertSame($math->getGreatestCommonDivisor([]), 0);
-        self::assertSame($math->getGreatestCommonDivisor([1]), 1);
-        self::assertSame($math->getGreatestCommonDivisor([2]), 2);
-        self::assertSame($math->getGreatestCommonDivisor([8,4]), 4);
-        self::assertSame($math->getGreatestCommonDivisor([2, 8,4]), 2);
-        self::assertSame($math->getGreatestCommonDivisor([2, 8,1]), 1);
+        self::assertSame(0, $math->getGreatestCommonDivisor([]));
+        self::assertSame(1, $math->getGreatestCommonDivisor([1]));
+        self::assertSame(2, $math->getGreatestCommonDivisor([2]));
+        self::assertSame(4, $math->getGreatestCommonDivisor([8,4]));
+        self::assertSame(2, $math->getGreatestCommonDivisor([2, 8,4]));
+        self::assertSame(1, $math->getGreatestCommonDivisor([2, 8,1]));
 
-        self::assertSame($math->getGreatestCommonDivisor([15, 18]), 3);
+        self::assertSame(3, $math->getGreatestCommonDivisor([15, 18]));
+    }
+
+    public function testGetUniqueNrOfHomeAways(): void
+    {
+        $math = new SportMath();
+
+        self::assertSame(1, $math->getUniqueNrOfHomeAways(2, 1, 1));
+        self::assertSame(3, $math->getUniqueNrOfHomeAways(3, 1, 1));
+        self::assertSame(6, $math->getUniqueNrOfHomeAways(4, 1, 1));
+        self::assertSame(10, $math->getUniqueNrOfHomeAways(5, 1, 1));
+        self::assertSame(15, $math->getUniqueNrOfHomeAways(6, 1, 1));
+        self::assertSame(21, $math->getUniqueNrOfHomeAways(7, 1, 1));
+        self::assertSame(28, $math->getUniqueNrOfHomeAways(8, 1, 1));
+
+        self::assertSame(3, $math->getUniqueNrOfHomeAways(3, 1, 2));
+        self::assertSame(12, $math->getUniqueNrOfHomeAways(4, 1, 2));
+        self::assertSame(30, $math->getUniqueNrOfHomeAways(5, 1, 2));
+
+        self::assertSame(3, $math->getUniqueNrOfHomeAways(4, 2, 2));
+        self::assertSame(15, $math->getUniqueNrOfHomeAways(5, 2, 2));
+        self::assertSame(45, $math->getUniqueNrOfHomeAways(6, 2, 2));
+        self::assertSame(105, $math->getUniqueNrOfHomeAways(7, 2, 2));
+        self::assertSame(210, $math->getUniqueNrOfHomeAways(8, 2, 2));
     }
 }

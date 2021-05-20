@@ -82,7 +82,7 @@ class PouleStructureTest extends TestCase
 
     public function testSelfRefereeBeAvailableSamePouleNo(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 1, 0);
+        $sport = new AgainstSportVariant(2, 2, 0, 3);
         $pouleStructure = new PouleStructure(5, 4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
     }
@@ -141,4 +141,5 @@ class PouleStructureTest extends TestCase
 //        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportHelpers, false);
 //        self::assertSame(4, $maxNrOfGamePlaces);
 //    }
+
 }

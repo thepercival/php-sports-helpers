@@ -120,7 +120,7 @@ class PouleStructure implements Stringable
     {
         $smallestNrOfPlaces = $this->getSmallestPoule();
         foreach ($sportVariants as $sportVariant) {
-            if ($sportVariant->allPlacesParticipate($smallestNrOfPlaces)) {
+            if ($sportVariant->allPlacesParticipateInGameRound($smallestNrOfPlaces)) {
                 return false;
             }
         }

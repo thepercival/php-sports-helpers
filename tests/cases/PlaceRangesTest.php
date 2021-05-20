@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Tests;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
 use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
-use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
@@ -54,7 +54,7 @@ final class PlaceRangesTest extends TestCase
         );
 
         $structure = new BalancedPouleStructure(2);
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
 
@@ -99,7 +99,7 @@ final class PlaceRangesTest extends TestCase
         );
 
         $structure = new BalancedPouleStructure(3);
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
 
@@ -161,7 +161,7 @@ final class PlaceRangesTest extends TestCase
             null
         );
         $structure = new BalancedPouleStructure(1);
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
 
@@ -204,7 +204,7 @@ final class PlaceRangesTest extends TestCase
         );
 
         $structure = new BalancedPouleStructure(6, 6, 6);
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
 
@@ -226,7 +226,7 @@ final class PlaceRangesTest extends TestCase
         );
 
         $structure = new BalancedPouleStructure(5, 5, 5, 5, 5);
-        self::expectException(\Exception::class);
+        self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
 }

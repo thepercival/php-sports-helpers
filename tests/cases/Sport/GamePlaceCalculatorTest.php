@@ -37,7 +37,7 @@ final class GamePlaceCalculatorTest extends TestCase
         $totalNrOfGames += $sport2->getTotalNrOfGamesPerPlace($nrOfPlaces);
 
         $calculator = new GamePlaceCalculator();
-        self::assertSame($totalNrOfGames, $calculator->getNrOfGamesPerPlace(
+        self::assertSame($totalNrOfGames, $calculator->getMaxNrOfGamesPerPlace(
             $nrOfPlaces,
             [$sport1,$sport2]
         ));

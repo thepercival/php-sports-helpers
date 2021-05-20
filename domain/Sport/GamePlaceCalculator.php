@@ -38,7 +38,7 @@ class GamePlaceCalculator {
      * @param list<SportVariant> $sportVariants
      * @return int
      */
-    public function getNrOfGamesPerPlace(int $nrOfPlaces, array $sportVariants): int
+    public function getMaxNrOfGamesPerPlace(int $nrOfPlaces, array $sportVariants): int
     {
         $nrOfGamesPerPlace = 0;
         foreach ($sportVariants as $sportVariant) {
