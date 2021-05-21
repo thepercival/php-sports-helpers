@@ -203,173 +203,71 @@ class AgainstTest extends TestCase
         self::assertSame(30, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(6));
         self::assertSame(60, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(7));
         self::assertSame(105, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(8));
-
     }
-//
-//    public function testNrOfGamesPerPartial6GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 0, 1);
-//        self::assertSame(1, $sportVariant->getNrOfGamesOnePartial(2));
-//        self::assertSame(3, $sportVariant->getNrOfGamesOnePartial(3));
-//        self::assertSame(3, $sportVariant->getNrOfGamesOnePartial(4));
-//        self::assertSame(5, $sportVariant->getNrOfGamesOnePartial(5));
-//        self::assertSame(5, $sportVariant->getNrOfGamesOnePartial(6));
-//        self::assertSame(7, $sportVariant->getNrOfGamesOnePartial(7));
-//        self::assertSame(7, $sportVariant->getNrOfGamesOnePartial(8));
-//    }
 
-//    public function testNrOfPartialsOneH2H(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 0, 0);
-//        self::assertSame(1, $sportVariant->getNrOfPartialsOneH2H(2));
-//
-//        $sportVariant = new AgainstSportVariant(1, 1, 0, 0);
-//        self::assertSame(1, $sportVariant->getNrOfPartialsOneH2H(3));
-//
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 0);
-//        self::assertSame(1, $sportVariant->getNrOfPartialsOneH2H(3));
-//
-//        $sportVariant = new AgainstSportVariant(1, 1, 0, 0);
-//        self::assertSame(2, $sportVariant->getNrOfPartialsOneH2H(4));
-//
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 0);
-//        self::assertSame(3, $sportVariant->getNrOfPartialsOneH2H(4));
-//
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 0);
-//        self::assertSame(3, $sportVariant->getNrOfPartialsOneH2H(4));
-//
-//        $sportVariant = new AgainstSportVariant(1, 1, 0, 0);
-//        self::assertSame(2, $sportVariant->getNrOfPartialsOneH2H(5));
-//
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 0);
-//        self::assertSame(6, $sportVariant->getNrOfPartialsOneH2H(5));
-//
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 0);
-//        self::assertSame(3, $sportVariant->getNrOfPartialsOneH2H(5));
-//
-//        $sportVariant = new AgainstSportVariant(2, 3, 0, 0);
-//        self::assertSame(2, $sportVariant->getNrOfPartialsOneH2H(5));
-//
-//        $sportVariant = new AgainstSportVariant(3, 3, 0, 0);
-//        self::assertSame(10, $sportVariant->getNrOfPartialsOneH2H(6));
-//
-//        $sportVariant = new AgainstSportVariant(3, 3, 0, 0);
-//        self::assertSame(10, $sportVariant->getNrOfPartialsOneH2H(7));
-//    }
-//
-//    public function testUnkownNrOfHomePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 0);
-//        self::assertTrue($sportVariant->unkownNrOfHomePlaces(4));
-//
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 0);
-//        self::assertFalse($sportVariant->unkownNrOfHomePlaces(5));
-//
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 0);
-//        self::assertTrue($sportVariant->unkownNrOfHomePlaces(6));
-//
-//        $sportVariant = new AgainstSportVariant(3, 3, 0, 0);
-//        self::assertTrue($sportVariant->unkownNrOfHomePlaces(6));
-//    }
+    public function testMustBeEquallyAssigned(): void
+    {
+        $sportVariant1VS1 = new AgainstSportVariant(1, 1, 1, 0);
+        self::assertTrue($sportVariant1VS1->mustBeEquallyAssigned(3));
 
+        $sportVariant2VS2GPP3 = new AgainstSportVariant(2, 2, 0, 3);
+        self::assertFalse($sportVariant2VS2GPP3->mustBeEquallyAssigned(5));
+        self::assertFalse($sportVariant2VS2GPP3->mustBeEquallyAssigned(6));
+        self::assertFalse($sportVariant2VS2GPP3->mustBeEquallyAssigned(7));
+        self::assertTrue($sportVariant2VS2GPP3->mustBeEquallyAssigned(8));
 
-//    public function testgetTotalNrOfGames(): void
-//    {
-//        $nrOfPlaces = 3;
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 2);
-//        self::assertSame(3, $sportVariant->getTotalNrOfGames($nrOfPlaces));
-//    }
-//
-//    public function testGetNrOfAgainstGames5TeamsGameAmount2(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 2, 0);
-//        self::assertSame(20, $sportVariant->getTotalNrOfGames(5));
-//    }
-//
-//    public function testGetNrOfAgainstGames5TeamsGamePlaces4(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 2);
-//        self::assertSame(10, $sportVariant->getTotalNrOfGames(5));
-//    }
-//
-//    public function testGetNrOfAgainstGames6TeamsGamePlaces4(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 15);
-//        self::assertSame(45, $sportVariant->getTotalNrOfGames(6));
-//    }
-//
-//    public function testGetNrOfAgainstGames7TeamsGamePlaces4(): void
-//    {
-//        $nrOfGamesPerPartial = 7;
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 105 / $nrOfGamesPerPartial);
-//        self::assertSame(105, $sportVariant->getTotalNrOfGames(7));
-//    }
-//
-//    public function testGetNrOfAgainstGames8TeamsGamePlaces4(): void
-//    {
-//        $nrOfGamesPerPartial = 2;
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 210 / $nrOfGamesPerPartial);
-//        self::assertSame(210, $sportVariant->getTotalNrOfGames(8));
-//    }
-//
-//    // ( (8 boven 3) * (5 boven 3)) / 2 = (56 * 10 ) / 2 = 280
-//    public function testGetNrOfAgainstGames8TeamsGamePlaces6(): void
-//    {
-//        $nrOfGamesPerPartial = 4;
-//        $sportVariant = new AgainstSportVariant(3, 3, 0, 280 / $nrOfGamesPerPartial);
-//        self::assertSame(280, $sportVariant->getTotalNrOfGames(8));
-//    }
-//
-//    public function testGetNrOfAgainstGameRoundsEvenPlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 5, 0);
-//        self::assertSame(15, $sportVariant->getNrOfGameRounds(4));
-//    }
-//
-//    public function testGetNrOfAgainstGameRoundsOddPlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 5, 0);
-//        self::assertSame(25, $sportVariant->getNrOfGameRounds(5));
-//    }
-//
-//    public function testGetNrOfAgainstGameRoundsOddPlaces4GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 3);
-//        self::assertSame(15, $sportVariant->getNrOfGameRounds(5));
-//    }
-//
-//    public function testNrOfGamesPerPlace(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 1, 0);
-//        self::assertSame(4, $sportVariant->getTotalNrOfGamesPerPlace(5));
-//    }
-//
-//    public function testNrOfGamesPerPlace2(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 3);
-//        self::assertSame(9, $sportVariant->getTotalNrOfGamesPerPlace(4));
-//    }
-//
-//    public function testNrOfGamesPerPlace3(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 6);
-//        self::assertSame(18, $sportVariant->getTotalNrOfGamesPerPlace(4));
-//    }
+        $sportVariant2VS2GPP4 = new AgainstSportVariant(2, 2, 0, 4);
+        self::assertTrue($sportVariant2VS2GPP4->mustBeEquallyAssigned(5));
+        self::assertTrue($sportVariant2VS2GPP4->mustBeEquallyAssigned(6));
+        self::assertTrue($sportVariant2VS2GPP4->mustBeEquallyAssigned(7));
+        self::assertTrue($sportVariant2VS2GPP4->mustBeEquallyAssigned(8));
+    }
 
+    public function testHomeAwayMustBeEquallyAssigned(): void
+    {
+        $sportVariant1VS1 = new AgainstSportVariant(1, 1, 1, 0);
+        self::assertTrue($sportVariant1VS1->homeAwayMustBeQuallyAssigned());
 
+        $sportVariant1VS2 = new AgainstSportVariant(1, 2, 0, 1);
+        self::assertFalse($sportVariant1VS2->homeAwayMustBeQuallyAssigned());
 
+        $sportVariant2VS2 = new AgainstSportVariant(2, 2, 0, 1);
+        self::assertFalse($sportVariant2VS2->homeAwayMustBeQuallyAssigned());
+    }
+
+    public function testWithAgainstMustBeEquallyAssigned(): void
+    {
+        $sportVariant1VS1 = new AgainstSportVariant(1, 1, 1, 0);
+        self::assertTrue($sportVariant1VS1->withAgainstMustBeEquallyAssigned(3));
+        self::assertTrue($sportVariant1VS1->withAgainstMustBeEquallyAssigned(4));
+        self::assertTrue($sportVariant1VS1->withAgainstMustBeEquallyAssigned(5));
+
+        $sportVariant1VS2HGPP2 = new AgainstSportVariant(1, 2, 0, 2);
+        self::assertFalse($sportVariant1VS2HGPP2->withAgainstMustBeEquallyAssigned(3));
+        self::assertFalse($sportVariant1VS2HGPP2->withAgainstMustBeEquallyAssigned(4));
+        self::assertFalse($sportVariant1VS2HGPP2->withAgainstMustBeEquallyAssigned(5));
+
+        $sportVariant1VS2HGPP3 = new AgainstSportVariant(1, 2, 0, 3);
+        self::assertTrue($sportVariant1VS2HGPP3->withAgainstMustBeEquallyAssigned(3));
+        self::assertFalse($sportVariant1VS2HGPP3->withAgainstMustBeEquallyAssigned(4));
+        self::assertFalse($sportVariant1VS2HGPP3->withAgainstMustBeEquallyAssigned(5));
+        self::assertFalse($sportVariant1VS2HGPP3->withAgainstMustBeEquallyAssigned(6));
+        self::assertFalse($sportVariant1VS2HGPP3->withAgainstMustBeEquallyAssigned(7));
+
+        $sportVariant1VS2HGPP4 = new AgainstSportVariant(1, 2, 0, 9);
+        self::assertTrue($sportVariant1VS2HGPP4->withAgainstMustBeEquallyAssigned(3));
+        self::assertTrue($sportVariant1VS2HGPP4->withAgainstMustBeEquallyAssigned(4));
+        self::assertFalse($sportVariant1VS2HGPP4->withAgainstMustBeEquallyAssigned(5));
+
+        $sportVariant2VS2GPP4 = new AgainstSportVariant(2, 2, 0, 12);
+        self::assertTrue($sportVariant2VS2GPP4->withAgainstMustBeEquallyAssigned(4));
+        self::assertTrue($sportVariant2VS2GPP4->withAgainstMustBeEquallyAssigned(5));
+        self::assertFalse($sportVariant2VS2GPP4->withAgainstMustBeEquallyAssigned(6));
+    }
 
     public function testToString(): void
     {
         $sportVariant = new AgainstSportVariant(1, 2, 0, 3);
         self::assertGreaterThan(0, strlen((string)$sportVariant));
     }
-
-//    protected function getNrOfGameRoundsOneH2H(int $nrOfPlaces, int $nrOfHomePlaces, int $nrOfAwayPlaces): int
-//    {
-//        $sportVariant = new AgainstSportVariant($nrOfHomePlaces, $nrOfAwayPlaces, 1);
-//        $nrOfGamesOneH2H = $sportVariant->getNrOfGamesOneH2H($nrOfPlaces);
-//        $nrOfGamesOneGameRound = $sportVariant->getNrOfGamesOneGameRound($nrOfPlaces);
-//        return (int)($nrOfGamesOneH2H / $nrOfGamesOneGameRound);
-//    }
 }

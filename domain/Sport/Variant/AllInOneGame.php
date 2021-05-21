@@ -34,6 +34,10 @@ class AllInOneGame extends Base implements Variant
         return true;
     }
 
+    public function mustBeEquallyAssigned(int $nrOfPlaces): bool {
+        return true;
+    }
+
     public function toPersistVariant(): PersistVariant {
         return new PersistVariant(
             $this->getGameMode(),

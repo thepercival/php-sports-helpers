@@ -54,6 +54,10 @@ class Single extends Base implements Variant
         return $nrOfPlaces === $this->getNrOfPlacesPerGameRound($nrOfPlaces);
     }
 
+    public function mustBeEquallyAssigned(int $nrOfPlaces): bool {
+        return true;
+    }
+
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(

@@ -8,12 +8,10 @@ namespace SportsHelpers;
  */
 class Counter implements \Countable
 {
-    protected int $count = 0;
-
     /**
      * @param T $countedObject
      */
-    public function __construct(protected mixed $countedObject)
+    public function __construct(protected mixed $countedObject, protected int $count = 0)
     {
     }
 

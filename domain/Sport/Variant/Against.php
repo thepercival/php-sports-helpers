@@ -68,11 +68,11 @@ class Against extends Base implements Variant
         return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
     }
 
-//    public function getNrOfGamesOneGameRound(int $nrOfPlaces): int
-//    {
-//        $nrOfPlacesPerGameRound = $this->getNrOfPlacesOneGameRound($nrOfPlaces);
-//        return (int)ceil($nrOfPlacesPerGameRound/ $this->getNrOfGamePlaces());
-//    }
+    public function getNrOfGamesOneGameRound(int $nrOfPlaces): int
+    {
+        $nrOfPlacesPerGameRound = $this->getNrOfPlacesOneGameRound($nrOfPlaces);
+        return (int)($nrOfPlacesPerGameRound / $this->getNrOfGamePlaces());
+    }
 
 //    public function getNrOfGamesPerPlaceOnePartial(int $nrOfPlaces): int
 //    {
@@ -147,13 +147,25 @@ class Against extends Base implements Variant
     ////        return $nrOfGames % $nrOfGamesOneH2H === 0;
 //    }
 //
-//    public function equalWithAgainst(int $nrOfPlaces): bool
-//    {
-//        if ($this->getNrOfH2H() > 0) {
-//            return true;
-//        }
-//        return $this->getNrOfPartials() % $this->getNrOfPartialsOneSerie($nrOfPlaces) === 0;
-//    }
+    public function withAgainstMustBeEquallyAssigned(int $nrOfPlaces): bool
+    {
+        return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) === 0;
+    }
+
+    public function homeAwayMustBeQuallyAssigned(): bool
+    {
+        return !$this->isMixed();
+    }
+
+    public function mustBeEquallyAssigned(int $nrOfPlaces): bool
+    {
+        if ($this->getNrOfH2H() > 0) {
+            return true;
+        }
+        $totalNrOfGamePlaces = $nrOfPlaces * $this->getNrOfGamesPerPlace();
+        return $totalNrOfGamePlaces % $this->getNrOfGamePlaces() === 0;
+    }
+
 //
 //    /*public function getNrOfGameRounds(int $nrOfPlaces): int
 //    {
