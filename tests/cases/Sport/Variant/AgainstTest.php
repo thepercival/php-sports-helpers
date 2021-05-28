@@ -131,53 +131,6 @@ class AgainstTest extends TestCase
         self::assertSame(2, $sportVariant2VS2->getTotalNrOfGamesPerPlace(5));
     }
 
-//    public function testNrOfGamesPerPartial2GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 1, 0);
-//        self::assertSame(1, $sportVariant->getNrOfGamesOnePartial(2));
-//        self::assertSame(3, $sportVariant->getNrOfGamesOnePartial(3));
-//        self::assertSame(4, $sportVariant->getNrOfGamesOnePartial(4));
-//        self::assertSame(5, $sportVariant->getNrOfGamesOnePartial(5));
-//        self::assertSame(6, $sportVariant->getNrOfGamesOnePartial(6));
-//        self::assertSame(7, $sportVariant->getNrOfGamesOnePartial(7));
-//        self::assertSame(8, $sportVariant->getNrOfGamesOnePartial(8));
-//    }
-//
-//    public function testNrOfGamesPerPartial3GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 2, 0, 1);
-//        self::assertSame(3, $sportVariant->getNrOfGamesOnePartial(3));
-//        self::assertSame(4, $sportVariant->getNrOfGamesOnePartial(4));
-//    }
-//
-//    public function testNrOfGamesPerPartial4GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(2, 2, 0, 1);
-//        self::assertSame(1, $sportVariant->getNrOfGamesOnePartial(4));
-//        self::assertSame(5, $sportVariant->getNrOfGamesOnePartial(5));
-//    }
-//
-//    public function testNrOfGamesPerPartial6GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(3, 3, 0, 1);
-//        self::assertSame(1, $sportVariant->getNrOfGamesOnePartial(6));
-//        self::assertSame(7, $sportVariant->getNrOfGamesOnePartial(7));
-//    }
-
-//    public function testNrOfOfGameRounds2GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 1, 1, 0);
-//        self::assertSame(3, $sportVariant->getNrOfGameRounds(4));
-//    }
-//
-//    public function testNrOfOfGameRounds3GamePlaces(): void
-//    {
-//        $sportVariant = new AgainstSportVariant(1, 2, 1, 0);
-//        self::assertSame(30, $sportVariant->getNrOfGameRounds(5));
-//
-//        $sportVariant = new AgainstSportVariant(1, 2, 1, 0);
-//        self::assertSame(30, $sportVariant->getNrOfGameRounds(6));
-//    }
 
     public function testToPersistVariant(): void
     {

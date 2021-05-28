@@ -74,22 +74,6 @@ class Against extends Base implements Variant
         return (int)($nrOfPlacesPerGameRound / $this->getNrOfGamePlaces());
     }
 
-//    public function getNrOfGamesPerPlaceOnePartial(int $nrOfPlaces): int
-//    {
-//        if ($this->getNrOfHomePlaces() === $this->getNrOfAwayPlaces() && $nrOfPlaces === $this->getNrOfGamePlaces()) {
-//            return 1;
-//        }
-//        return $this->getNrOfGamePlaces();
-//    }
-//
-//    public function getNrOfGamesOnePartial(int $nrOfPlaces): int
-//    {
-//        if ($this->getNrOfHomePlaces() === $this->getNrOfAwayPlaces() && $nrOfPlaces === $this->getNrOfGamePlaces()) {
-//            return 1;
-//        }
-//        return $nrOfPlaces;
-//    }
-
     public function getTotalNrOfGames(int $nrOfPlaces): int
     {
         if ($this->isMixed()) {
@@ -128,25 +112,6 @@ class Against extends Base implements Variant
         return (int)($nrOfFormations / $nrOfSides); // remove symetric
     }
 
-//    public function equalNrOfHomeAwaysOnePartial(int $nrOfPlaces): bool
-//    {
-//        return $this->getNrOfHomePlaces() !== $this->getNrOfAwayPlaces()
-//            || $this->getNrOfGamePlaces() !== $nrOfPlaces;
-    ////        $nrOfGames = $this->getNrOfGamesPerPlaceOnePartial($nrOfPlaces) * $this->getNrOfPartials();
-    ////        $nrOfGamesOneH2H = $this->getNrOfGamesOneH2H($nrOfPlaces);
-    ////        return $nrOfGames % $nrOfGamesOneH2H === 0;
-//    }
-//
-//    public function equalNrOfHomeAwaysOneSerie(int $nrOfPlaces): bool
-//    {
-//        return !($this->getNrOfHomePlaces() === $this->getNrOfAwayPlaces()
-//            && $this->getNrOfGamePlaces() === $nrOfPlaces
-//            && ($this->getNrOfPartials() % $this->getNrOfPartialsOneSerie($nrOfPlaces)) !== 0);
-    ////        $nrOfGames = $this->getNrOfGamesPerPlaceOnePartial($nrOfPlaces) * $this->getNrOfPartials();
-    ////        $nrOfGamesOneH2H = $this->getNrOfGamesOneH2H($nrOfPlaces);
-    ////        return $nrOfGames % $nrOfGamesOneH2H === 0;
-//    }
-//
     public function withAgainstMustBeEquallyAssigned(int $nrOfPlaces): bool
     {
         return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) === 0;
@@ -173,14 +138,7 @@ class Against extends Base implements Variant
 //        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
 //        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
 //    }*/
-//
-//    public function getNrOfPartialsOneSerie(int $nrOfPlaces): int
-//    {
-//        $nrOfGamesOneSerie = $this->getNrOfGamesOneSerie($nrOfPlaces);
-//        $nrOfGamesOnePartial = $this->getNrOfGamesOnePartial($nrOfPlaces);
-//        return (int) ($nrOfGamesOneSerie / $nrOfGamesOnePartial);
-//    }
-//
+
 
     // 1vs1: 2=>1, 3=>2, 4=>3, 5=>4
     // 1vs2: 3=>3, 4=>9(12-3), 5=>21(30-9)
@@ -207,15 +165,6 @@ class Against extends Base implements Variant
 //        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
 //    }
 
-//    public function getMaxTotalNrOfGamesPerPlace(int $nrOfPlaces): int
-//    {
-//        $nrOfPartials = $this->getNrOfPartials();
-//        if ($nrOfPartials > 0) {
-//            return $this->getNrOfGamesPerPlaceOnePartial($nrOfPlaces) * $nrOfPartials;
-//        }
-//        $nrOfGamesPerPlaceOneH2H = $this->getNrOfGamesPerPlaceOneSerie($nrOfPlaces) / 2;
-//        return $this->getNrOfH2H() * $nrOfGamesPerPlaceOneH2H;
-//    }
 
     public function toPersistVariant(): PersistVariant
     {
