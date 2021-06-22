@@ -56,8 +56,12 @@ class PlaceRanges
     public function validate(int $nrOfPlaces, int $nrOfPoules): bool
     {
         $placesPerRound = $this->getValidPlacesPerRound($nrOfPlaces);
-        if ($placesPerRound === null || $nrOfPlaces < $placesPerRound->getMin() || $nrOfPlaces > $placesPerRound->getMax()) {
-            throw new Exception('het aantal deelnemers per ronde is kleiner dan het minimum of groter dan het maximum', E_ERROR);
+        if ($placesPerRound === null || $nrOfPlaces < $placesPerRound->getMin()) {
+            $suffix = $placesPerRound !== null ? '('.$placesPerRound->getMin().')' : '';
+            throw new Exception('het aantal deelnemers per ronde('.$nrOfPlaces.') is kleiner dan het minimum' . $suffix, E_ERROR);
+        }
+        if ($nrOfPlaces > $placesPerRound->getMax()) {
+            throw new Exception('het aantal deelnemers per ronde('.$nrOfPlaces.') is groter dan het maximum('.$placesPerRound->getMax().')', E_ERROR);
         }
 
         $creator = new BalancedPouleStructureCreator();
@@ -66,11 +70,16 @@ class PlaceRanges
         $biggest = $pouleStructure->getBiggestPoule();
 
         $placesPerPoule = $this->getValidPlacesPerPoule($nrOfPlaces);
-        if ($placesPerPoule === null || $smallest < $placesPerPoule->getMin() || $biggest > $placesPerPoule->getMax()) {
-            throw new Exception('het aantal deelnemers per poule is kleiner dan het minimum of groter dan het maximum', E_ERROR);
+        if ($placesPerPoule === null || $smallest < $placesPerPoule->getMin()) {
+            $suffix = $placesPerPoule !== null ? '('.$placesPerPoule->getMin().')' : '';
+            throw new Exception('het aantal deelnemers per poule('.$smallest.') is kleiner dan het minimum'.$suffix, E_ERROR);
+        }
+        if ($biggest > $placesPerPoule->getMax()) {
+            throw new Exception('het aantal deelnemers per poule('.$biggest.') is groter dan het maximum('.$placesPerPoule->getMax().')', E_ERROR);
         }
         return true;
     }
+
 
     protected function getValidPlacesPerRound(int $nrOfPlaces): SportRange | null
     {
