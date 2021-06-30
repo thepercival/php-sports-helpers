@@ -183,7 +183,7 @@ class Against extends Base implements Variant
 
     public function __toString()
     {
-        $base = 'against : ' . $this->getNrOfHomePlaces() . 'vs' . $this->getNrOfAwayPlaces();
-        return $base . ' : h2h-nrofgamesperplace => ' . $this->getNrOfH2H() . '-' . $this->getNrOfGamesPerPlace();
+        $base = 'against(' . $this->getNrOfHomePlaces() . 'vs' . $this->getNrOfAwayPlaces() . ')';
+        return $base . ' h2h:gpp=>' . $this->getNrOfH2H() . ':' . $this->getNrOfGamesPerPlace();
     }
 }

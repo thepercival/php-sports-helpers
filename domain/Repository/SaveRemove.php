@@ -8,12 +8,12 @@ namespace SportsHelpers\Repository;
 interface SaveRemove
 {
     /**
-     * @var T
+     * @param T $object
      * @return T
      */
     public function save(mixed $object): mixed;
     /**
-     * @var T
+     * @param T $object
      */
     public function remove(mixed $object): void;
 }

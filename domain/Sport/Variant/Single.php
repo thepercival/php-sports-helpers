@@ -72,6 +72,6 @@ class Single extends Base implements Variant
 
     public function __toString()
     {
-        return 'single: ' . $this->getNrOfGamePlaces() . 'gp x ' . $this->getNrOfGamesPerPlace() . 'gpp';
+        return 'single(' . $this->getNrOfGamePlaces() . ') gpp=>' . $this->getNrOfGamesPerPlace();
     }
 }

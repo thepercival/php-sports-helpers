@@ -52,6 +52,6 @@ class AllInOneGame extends Base implements Variant
 
     public function __toString()
     {
-        return 'allinone: ' . $this->getNrOfGamesPerPlace();
+        return 'allinone gpp=>' . $this->getNrOfGamesPerPlace();
     }
 }
