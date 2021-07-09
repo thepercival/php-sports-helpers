@@ -15,14 +15,16 @@ class Counter implements \Countable
     {
     }
 
-    public function decrement(): void
+    public function decrement(): int
     {
         $this->count--;
+        return $this->count;
     }
 
-    public function increment(): void
+    public function increment(): int
     {
         $this->count++;
+        return $this->count;
     }
 
     public function count(): int
