@@ -19,6 +19,10 @@ class Against extends Base implements Variant
         int $nrOfGamesPerPlace
     ) {
         parent::__construct(GameMode::AGAINST, $nrOfGamesPerPlace);
+
+        if ($this->nrOfHomePlaces < 1 || $this->nrOfAwayPlaces < 1) {
+            throw new \Exception('nrOfHomePlaces and nrOfAwayPlaces should be at least 1', E_ERROR);
+        }
         if ($this->nrOfHomePlaces > $this->nrOfAwayPlaces) {
             throw new \Exception('nrOfHomePlaces should be smaller than nrOfAwayPlaces', E_ERROR);
         }
