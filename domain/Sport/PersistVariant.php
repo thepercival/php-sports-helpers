@@ -21,7 +21,8 @@ class PersistVariant extends Identifiable
     ) {
     }
 
-    public function getGameMode(): int {
+    public function getGameMode(): int
+    {
         return $this->gameMode;
     }
 

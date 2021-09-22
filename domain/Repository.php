@@ -4,13 +4,17 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 use Exception;
-use SportsHelpers\Repository\SaveRemove;
 
 /**
- * @template-implements SaveRemove<T>
+ * @template T
  */
 trait Repository
 {
+    /**
+     * @param T $object
+     * @return T
+     * @throws Exception
+     */
     public function save(mixed $object): mixed
     {
         try {
@@ -23,6 +27,9 @@ trait Repository
         return $object;
     }
 
+    /**
+     * @param T $object
+     */
     public function remove(mixed $object): void
     {
         $this->_em->remove($object);
