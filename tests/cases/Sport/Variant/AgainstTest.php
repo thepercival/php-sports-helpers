@@ -218,6 +218,13 @@ class AgainstTest extends TestCase
         self::assertFalse($sportVariant2VS2GPP4->withAgainstMustBeEquallyAssigned(6));
     }
 
+    public function testNrOfGameRounds(): void
+    {
+        $sportVariant1VS1 = new AgainstSportVariant(1, 1, 1, 0);
+        self::assertEquals(3, $sportVariant1VS1->getNrOfGameRounds(4));
+        self::assertEquals(5, $sportVariant1VS1->getNrOfGameRounds(6));
+    }
+
     public function testToString(): void
     {
         $sportVariant = new AgainstSportVariant(1, 2, 0, 3);

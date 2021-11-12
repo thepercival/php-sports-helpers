@@ -32,6 +32,11 @@ class Single extends Base implements Variant
 //        return (int)ceil($totalNrOfGames / $nrOfGamesPerGameRound);
 //    }
 
+    public function getNrOfGameRounds(int $nrOfPlaces): int
+    {
+        return $this->getNrOfGamesPerPlace();
+    }
+
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
     {
         return $this->getNrOfGamesPerPlace();

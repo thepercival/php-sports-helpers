@@ -14,6 +14,8 @@ abstract class Output
 
     use Color;
 
+    public const COLOR_GRAY = 6; // light_gray
+
     public function __construct(LoggerInterface|null $logger)
     {
         if ($logger === null) {
@@ -26,18 +28,18 @@ abstract class Output
 
     protected function useColors(): bool
     {
-        if ($this->logger instanceof Logger) {
-            foreach ($this->logger->getHandlers() as $handler) {
-                if (!($handler instanceof \Monolog\Handler\StreamHandler)
-                    || $handler->getUrl() !== "php://stdout") {
-                    return false;
-                }
+        if (!($this->logger instanceof Logger)) {
+            return false;
+        }
+        foreach ($this->logger->getHandlers() as $handler) {
+            if ($handler instanceof \Monolog\Handler\StreamHandler && $handler->getUrl() === "php://stdout") {
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    public function outputString(string|int $value, int $minLength = null): void
+    public function outputString(string|int $value, int $minLength = null, int $colorNr = -1): void
     {
         $str = '' . $value;
         if ($minLength > 0) {
@@ -45,6 +47,6 @@ abstract class Output
                 $str = ' ' . $str;
             }
         }
-        $this->logger->info($str);
+        $this->logger->info($this->getColored($colorNr, $str));
     }
 }

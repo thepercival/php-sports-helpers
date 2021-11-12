@@ -7,6 +7,7 @@ interface Variant extends \Stringable
 {
     public function getGameMode(): int;
     public function getTotalNrOfGames(int $nrOfPlaces): int;
+    public function getNrOfGameRounds(int $nrOfPlaces): int;
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int;
     public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool;
     public function mustBeEquallyAssigned(int $nrOfPlaces): bool;

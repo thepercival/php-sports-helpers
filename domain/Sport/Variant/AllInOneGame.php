@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
@@ -24,6 +25,11 @@ class AllInOneGame extends Base implements Variant
 //        return $this->nrOfGameRounds;
 //    }
 //
+    public function getNrOfGameRounds(int $nrOfPlaces): int
+    {
+        return $this->getTotalNrOfGamesPerPlace($nrOfPlaces);
+    }
+
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
     {
         return $this->nrOfGamesPerPlace;
@@ -34,11 +40,13 @@ class AllInOneGame extends Base implements Variant
         return true;
     }
 
-    public function mustBeEquallyAssigned(int $nrOfPlaces): bool {
+    public function mustBeEquallyAssigned(int $nrOfPlaces): bool
+    {
         return true;
     }
 
-    public function toPersistVariant(): PersistVariant {
+    public function toPersistVariant(): PersistVariant
+    {
         return new PersistVariant(
             $this->getGameMode(),
             0,

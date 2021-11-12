@@ -138,13 +138,13 @@ class Against extends Base implements Variant
         return $totalNrOfGamePlaces % $this->getNrOfGamePlaces() === 0;
     }
 
-//
-//    /*public function getNrOfGameRounds(int $nrOfPlaces): int
-//    {
-//        $nrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
-//        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
-//        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
-//    }*/
+
+    public function getNrOfGameRounds(int $nrOfPlaces): int
+    {
+        $nrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
+        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
+        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
+    }
 
 
     // 1vs1: 2=>1, 3=>2, 4=>3, 5=>4

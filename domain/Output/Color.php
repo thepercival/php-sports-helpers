@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Output;
 
+use SportsHelpers\Output;
+
 trait Color
 {
-    protected function outputColor(int $number, string $content): string
+    protected function getColored(int $number, string $content): string
     {
         if ($number === 1) {
             $sColor = '0;31'; // red
@@ -17,7 +19,7 @@ trait Color
             $sColor = '1;33'; // yellow
         } elseif ($number === 5) {
             $sColor = '0;35'; // purple
-        } elseif ($number === 6) {
+        } elseif ($number === Output::COLOR_GRAY) {
             $sColor = '0;37'; // light_gray
         } elseif ($number === 7) {
             $sColor = '0;36'; // cyan
