@@ -12,7 +12,7 @@ class AgainstTest extends TestCase
     public function testCreation(): void
     {
         $sportVariant = new AgainstSportVariant(1, 2, 0, 1);
-        self::assertSame(GameMode::AGAINST, $sportVariant->getGameMode());
+        self::assertSame(GameMode::Against, $sportVariant->getGameMode());
         self::assertSame(1, $sportVariant->getNrOfHomePlaces());
         self::assertSame(2, $sportVariant->getNrOfAwayPlaces());
         self::assertSame(0, $sportVariant->getNrOfH2H());

@@ -5,8 +5,8 @@ namespace SportsHelpers\PouleStructure;
 
 use Exception;
 use Iterator;
-use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
+use SportsHelpers\SportRange;
 
 class BalancedIterator implements Iterator
 {
@@ -39,7 +39,7 @@ class BalancedIterator implements Iterator
         return (string) $this->current;
     }
 
-    public function next()
+    public function next(): void
     {
         if ($this->current === null) {
             return;
@@ -90,7 +90,7 @@ class BalancedIterator implements Iterator
         }
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         throw new Exception("rewind is not implemented", E_ERROR);
     }

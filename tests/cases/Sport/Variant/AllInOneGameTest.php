@@ -5,7 +5,6 @@ namespace SportsHelpers\Tests\Sport\Variant;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
 
 class AllInOneGameTest extends TestCase
@@ -13,7 +12,7 @@ class AllInOneGameTest extends TestCase
     public function testCreation(): void
     {
         $sportVariant = new AllInOneGameSportVariant(1);
-        self::assertSame(GameMode::ALL_IN_ONE_GAME, $sportVariant->getGameMode());
+        self::assertSame(GameMode::AllInOneGame, $sportVariant->getGameMode());
         self::assertSame(1, $sportVariant->getNrOfGamesPerPlace());
     }
 

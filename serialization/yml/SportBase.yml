@@ -3,7 +3,7 @@ SportsHelpers\SportBase:
   exclude: false
   properties:
     gameMode:
-      type: integer
+      type: SportsHelpers\GameMode
       groups: [ noReference ]
     nrOfGamePlaces:
       type: integer

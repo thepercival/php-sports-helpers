@@ -5,7 +5,7 @@ namespace SportsHelpers;
 
 enum GameMode: int
 {
-    case SINGLE = 1;
-    case AGAINST = 2;
-    case ALL_IN_ONE_GAME = 3;
+    case Single = 1;
+    case Against = 2;
+    case AllInOneGame = 3;
 }

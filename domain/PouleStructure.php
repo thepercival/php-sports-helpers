@@ -99,9 +99,9 @@ class PouleStructure implements Stringable
      */
     public function isSelfRefereeBeAvailable(SelfReferee $selfReferee, array $sports): bool
     {
-        if ($selfReferee === SelfReferee::SAMEPOULE) {
+        if ($selfReferee === SelfReferee::SamePoule) {
             return $this->isSelfRefereeSamePouleBeAvailable($sports);
-        } elseif ($selfReferee === SelfReferee::OTHERPOULES) {
+        } elseif ($selfReferee === SelfReferee::OtherPoules) {
             return $this->isSelfRefereeOtherPoulesBeAvailable();
         }
         return false;

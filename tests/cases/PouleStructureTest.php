@@ -84,35 +84,35 @@ class PouleStructureTest extends TestCase
     {
         $sport = new AgainstSportVariant(2, 2, 0, 3);
         $pouleStructure = new PouleStructure(5, 4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleYes(): void
     {
         $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(5);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SAMEPOULE, [$sport]));
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleNo(): void
     {
         $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleYes(): void
     {
         $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4, 4);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OTHERPOULES, [$sport]));
+        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableDisabledNo(): void
     {
         $sport = new AgainstSportVariant(2, 2, 0, 1);
         $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::DISABLED, [$sport]));
+        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::Disabled, [$sport]));
     }
 
     public function testToString(): void

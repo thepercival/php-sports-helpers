@@ -5,7 +5,7 @@ namespace SportsHelpers\Against;
 
 enum Result: int
 {
-    case WIN = 1;
-    case DRAW = 2;
-    case LOSS = 3;
+    case Win = 1;
+    case Draw = 2;
+    case Loss = 3;
 }

@@ -12,7 +12,7 @@ class SingleTest extends TestCase
     public function testCreation(): void
     {
         $sportVariant = new SingleSportVariant(3, 2);
-        self::assertSame(GameMode::SINGLE, $sportVariant->getGameMode());
+        self::assertSame(GameMode::Single, $sportVariant->getGameMode());
         self::assertSame(3, $sportVariant->getNrOfGamePlaces());
         self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
     }

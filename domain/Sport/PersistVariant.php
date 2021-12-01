@@ -53,10 +53,10 @@ class PersistVariant extends Identifiable
 
     public function createVariant(): SingleSportVariant|AgainstSportVariant|AllInOneGameSportVariant
     {
-        if ($this->gameMode === GameMode::SINGLE) {
+        if ($this->gameMode === GameMode::Single) {
             return new SingleSportVariant($this->nrOfGamePlaces, $this->nrOfGamesPerPlace);
         }
-        if ($this->gameMode === GameMode::ALL_IN_ONE_GAME) {
+        if ($this->gameMode === GameMode::AllInOneGame) {
             return new AllInOneGameSportVariant($this->nrOfGamesPerPlace);
         }
         return new AgainstSportVariant($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2H, $this->nrOfGamesPerPlace);

@@ -5,7 +5,7 @@ namespace SportsHelpers;
 
 enum SelfReferee: int
 {
-    case DISABLED = 0;
-    case OTHERPOULES = 1;
-    case SAMEPOULE = 2;
+    case Disabled = 0;
+    case OtherPoules = 1;
+    case SamePoule = 2;
 }

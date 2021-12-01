@@ -12,7 +12,7 @@ class AllInOneGame extends Base implements Variant
 {
     public function __construct(int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::ALL_IN_ONE_GAME, $nrOfGamesPerPlace);
+        parent::__construct(GameMode::AllInOneGame, $nrOfGamesPerPlace);
     }
 
     public function getTotalNrOfGames(int $nrOfPlaces): int

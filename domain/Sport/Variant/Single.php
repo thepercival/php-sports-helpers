@@ -11,7 +11,7 @@ class Single extends Base implements Variant
 {
     public function __construct(protected int $nrOfGamePlaces, int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::SINGLE, $nrOfGamesPerPlace);
+        parent::__construct(GameMode::Single, $nrOfGamesPerPlace);
     }
 
     public function getNrOfGamePlaces(): int
