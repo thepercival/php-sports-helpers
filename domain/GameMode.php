@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class GameMode
+enum GameMode: int
 {
-    public const SINGLE = 1;
-    public const AGAINST = 2;
-    public const ALL_IN_ONE_GAME = 3;
+    case SINGLE = 1;
+    case AGAINST = 2;
+    case ALL_IN_ONE_GAME = 3;
 }

@@ -1,11 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 namespace SportsHelpers\Against;
 
-class Side
+enum Side: int
 {
-    public const HOME = 1;
-    public const AWAY = 2;
+    case HOME = 1;
+    case AWAY = 2;
 }

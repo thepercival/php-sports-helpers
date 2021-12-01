@@ -5,14 +5,14 @@ namespace SportsHelpers\Sport;
 
 use SportsHelpers\GameMode;
 use SportsHelpers\Identifiable;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
+use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 
 class PersistVariant extends Identifiable
 {
     public function __construct(
-        protected int $gameMode,
+        protected GameMode $gameMode,
         protected int $nrOfHomePlaces,
         protected int $nrOfAwayPlaces,
         protected int $nrOfGamePlaces,
@@ -21,7 +21,7 @@ class PersistVariant extends Identifiable
     ) {
     }
 
-    public function getGameMode(): int
+    public function getGameMode(): GameMode
     {
         return $this->gameMode;
     }

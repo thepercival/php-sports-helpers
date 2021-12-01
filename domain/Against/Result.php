@@ -1,12 +1,11 @@
 <?php
-
 declare(strict_types=1);
 
 namespace SportsHelpers\Against;
 
-class Result
+enum Result: int
 {
-    public const WIN = 1;
-    public const DRAW = 2;
-    public const LOSS = 3;
+    case WIN = 1;
+    case DRAW = 2;
+    case LOSS = 3;
 }

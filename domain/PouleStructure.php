@@ -93,11 +93,11 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param int $selfReferee
+     * @param SelfReferee $selfReferee
      * @param list<SportVariant> $sports
      * @return bool
      */
-    public function isSelfRefereeBeAvailable(int $selfReferee, array $sports): bool
+    public function isSelfRefereeBeAvailable(SelfReferee $selfReferee, array $sports): bool
     {
         if ($selfReferee === SelfReferee::SAMEPOULE) {
             return $this->isSelfRefereeSamePouleBeAvailable($sports);

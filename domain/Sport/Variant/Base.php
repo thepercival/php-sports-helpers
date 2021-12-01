@@ -8,11 +8,11 @@ use SportsHelpers\Identifiable;
 
 class Base extends Identifiable
 {
-    public function __construct(protected int $gameMode, protected int $nrOfGamesPerPlace)
+    public function __construct(protected GameMode $gameMode, protected int $nrOfGamesPerPlace)
     {
     }
 
-    public function getGameMode(): int
+    public function getGameMode(): GameMode
     {
         return $this->gameMode;
     }
