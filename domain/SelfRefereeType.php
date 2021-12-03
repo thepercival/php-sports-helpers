@@ -8,7 +8,7 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 class SelfRefereeType extends EnumDbType
 {
-    static public function getNameHelper(): string
+    public static function getNameHelper(): string
     {
         return 'enum_SelfReferee';
     }

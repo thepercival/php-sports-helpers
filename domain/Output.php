@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers;
@@ -10,9 +11,9 @@ use SportsHelpers\Output\Color;
 
 abstract class Output
 {
-    protected LoggerInterface $logger;
-
     use Color;
+
+    protected LoggerInterface $logger;
 
     public const COLOR_GRAY = 6; // light_gray
 

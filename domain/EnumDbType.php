@@ -14,7 +14,7 @@ abstract class EnumDbType extends Type
         return static::getNameHelper();
     }
 
-    abstract static public function getNameHelper(): string;
+    abstract public static function getNameHelper(): string;
 
     /**
      * @psalm-suppress MixedPropertyFetch

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Tests;
@@ -141,5 +142,4 @@ class PouleStructureTest extends TestCase
 //        $maxNrOfGamePlaces = $gameCalculator->getMaxNrOfGamePlaces( $sportHelpers, false);
 //        self::assertSame(4, $maxNrOfGamePlaces);
 //    }
-
 }

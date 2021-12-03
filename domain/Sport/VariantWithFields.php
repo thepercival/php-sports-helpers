@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
-use SportsHelpers\Sport\Variant as SportVariant;
 use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
@@ -26,7 +26,8 @@ class VariantWithFields implements \Stringable
         return $this->nrOfFields;
     }
 
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return $this->getSportVariant() . ' f(' . $this->nrOfFields . ')';
     }
 }

@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class Identifiable {
+class Identifiable
+{
     protected int|string|null $id = null;
 
     public function getId(): int|string|null

@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
 
 use SportsHelpers\PlaceRanges;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
+use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 
 class MinNrOfPlacesCalculator
 {

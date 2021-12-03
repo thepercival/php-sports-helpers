@@ -4,9 +4,8 @@ namespace SportsHelpers\Tests\PouleStructure\Balanced;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use SportsHelpers\Place\Range as PlaceRange;
-use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\BalancedIterator as BalancedPouleStructureIterator;
+use SportsHelpers\SportRange;
 
 final class IteratorTest extends TestCase
 {
@@ -57,7 +56,7 @@ final class IteratorTest extends TestCase
     {
         $placesRange = new SportRange(5, 10);
         $placesPerPouleRange = new SportRange(4, 5);
-        $iterator = new BalancedPouleStructureIterator($placesRange,$placesPerPouleRange);
+        $iterator = new BalancedPouleStructureIterator($placesRange, $placesPerPouleRange);
         $balancedPouleStructure = $iterator->current();
         self::assertNotNull($balancedPouleStructure);
         self::assertSame([5], $balancedPouleStructure->toArray());

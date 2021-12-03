@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Tests;
@@ -6,11 +7,11 @@ namespace SportsHelpers\Tests;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
-use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
+use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
+use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 
 final class PlaceRangesTest extends TestCase
 {

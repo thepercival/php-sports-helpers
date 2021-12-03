@@ -11,6 +11,6 @@ final class IdentifiableTest extends TestCase
     {
         $identifiable = new Identifiable();
         $identifiable->setId(1);
-        self::assertSame(1, $identifiable->getId() );
+        self::assertSame(1, $identifiable->getId());
     }
 }

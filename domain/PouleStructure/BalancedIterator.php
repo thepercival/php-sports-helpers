@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructure;
@@ -29,14 +30,14 @@ class BalancedIterator implements Iterator
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
-    public function current() : ?BalancedPouleStructure
+    public function current(): ?BalancedPouleStructure
     {
         return $this->current;
     }
 
-    public function key() : string
+    public function key(): string
     {
-        return (string) $this->current;
+        return (string)$this->current;
     }
 
     public function next(): void
@@ -95,7 +96,7 @@ class BalancedIterator implements Iterator
         throw new Exception("rewind is not implemented", E_ERROR);
     }
 
-    public function valid() : bool
+    public function valid(): bool
     {
         return $this->current !== null;
     }

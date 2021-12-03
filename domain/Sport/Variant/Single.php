@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
@@ -59,7 +60,8 @@ class Single extends Base implements Variant
         return $nrOfPlaces === $this->getNrOfPlacesPerGameRound($nrOfPlaces);
     }
 
-    public function mustBeEquallyAssigned(int $nrOfPlaces): bool {
+    public function mustBeEquallyAssigned(int $nrOfPlaces): bool
+    {
         return true;
     }
 

@@ -9,7 +9,7 @@ use SportsHelpers\EnumDbType;
 
 class SideType extends EnumDbType
 {
-    static public function getNameHelper(): string
+    public static function getNameHelper(): string
     {
         return 'enum_AgainstSide';
     }

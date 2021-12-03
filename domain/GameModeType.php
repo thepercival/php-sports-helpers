@@ -10,7 +10,7 @@ class GameModeType extends EnumDbType
 {
     // const NAME = 'enum_GameMode'; // modify to match your type name
 
-    static public function getNameHelper(): string
+    public static function getNameHelper(): string
     {
         return 'enum_GameMode';
     }

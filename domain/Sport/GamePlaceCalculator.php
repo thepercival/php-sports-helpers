@@ -1,12 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
 use SportsHelpers\Sport\Variant as SportVariant;
 
-class GamePlaceCalculator {
-
+class GamePlaceCalculator
+{
     public function __construct()
     {
     }

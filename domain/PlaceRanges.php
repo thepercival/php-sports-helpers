@@ -1,10 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 namespace SportsHelpers;
 
 use Exception;
-use SportsHelpers\SportRange;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 use SportsHelpers\PouleStructure\BalancedCreator as BalancedPouleStructureCreator;
 
