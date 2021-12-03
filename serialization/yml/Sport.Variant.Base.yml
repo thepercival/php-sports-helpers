@@ -1,0 +1,14 @@
+SportsHelpers\Sport\Variant\Base:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    gameMode:
+      type: int
+      access_type: public_method
+      accessor:
+        getter: getGameModeNative
+        setter: setGameModeNative
+      groups: [ noReference ]
+    nrOfGamePlaces:
+      type: integer
+      groups: [ noReference ]

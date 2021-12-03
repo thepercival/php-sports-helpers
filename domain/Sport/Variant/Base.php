@@ -21,4 +21,15 @@ class Base extends Identifiable
     {
         return $this->nrOfGamesPerPlace;
     }
+
+    public function getGameModeNative(): int
+    {
+        return $this->gameMode->value;
+    }
+
+    public function setGameModeNative(int $gameMode): void
+    {
+        /** @psalm-suppress MixedAssignment, UndefinedMethod */
+        $this->gameMode = GameMode::from($gameMode);
+    }
 }

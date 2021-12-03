@@ -1,0 +1,4 @@
+SportsHelpers\Sport\Variant:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
