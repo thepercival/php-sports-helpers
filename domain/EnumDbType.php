@@ -9,11 +9,6 @@ use Doctrine\DBAL\Types\Type;
 
 abstract class EnumDbType extends Type
 {
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform)
-    {
-        return static::getNameHelper();
-    }
-
     abstract public static function getNameHelper(): string;
 
     /**
