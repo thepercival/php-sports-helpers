@@ -9,6 +9,6 @@ SportsHelpers\Sport\Variant\Base:
         getter: getGameModeNative
         setter: setGameModeNative
       groups: [ noReference ]
-    nrOfGamePlaces:
+    nrOfGamesPerPlace:
       type: integer
       groups: [ noReference ]
