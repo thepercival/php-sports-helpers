@@ -12,7 +12,7 @@ class PouleStructure implements Stringable
     /**
      * @var list<int> $poules
      */
-    protected $poules;
+    protected array $poules;
     protected int|null $nrOfGamePlaces = null;
 
     public function __construct(int ...$nrOfPlaces)
@@ -27,7 +27,6 @@ class PouleStructure implements Stringable
         foreach ($nrOfPlaces as $nrOfPlacesIt) {
             array_push($this->poules, $nrOfPlacesIt);
         }
-        $this->poules = array_values($this->poules);
     }
 
     public function getNrOfPoules(): int
