@@ -38,4 +38,16 @@ class SportRange
     {
         return $value >= $this->min && $value <= $this->max;
     }
+
+    /**
+     * @return list<int>
+     */
+    public function toArray(): array
+    {
+        $array = [];
+        for ($value = $this->getMin(); $value <= $this->getMax(); $value++) {
+            $array[] = $value;
+        }
+        return $array;
+    }
 }

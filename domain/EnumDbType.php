@@ -23,4 +23,12 @@ abstract class EnumDbType extends Type
     {
         return static::getNameHelper();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

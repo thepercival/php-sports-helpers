@@ -49,7 +49,7 @@
     ],
     "stan": "XDEBUG_MODE=coverage vendor/bin/phpstan analyse --level=5 domain tests/cases/",
     "psalm": "XDEBUG_MODE=off vendor/bin/psalm --output-format=phpstorm --show-info=true --no-diff",
-    "cs-fix": " PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix .",
+    "cs-fix": "php-cs-fixer fix .",
     "copy-fct": [
       "rm -rf ../fctoernooi-api/vendor/thepercival/php-sports-helpers",
       "mkdir ../fctoernooi-api/vendor/thepercival/php-sports-helpers",
