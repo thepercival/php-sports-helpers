@@ -16,7 +16,7 @@ abstract class EnumDbType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value->value;
+        return $value?->value;
     }
 
     public function getName()
