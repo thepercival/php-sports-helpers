@@ -72,6 +72,40 @@ class SportMath
         return $divisors;
     }
 
+    /**
+     * @param list<int> $numbers
+     * @return int
+     * @throws \Exception
+     */
+    public function getLeastCommonMultiple(array $numbers): int
+    {
+        $lcm = array_shift($numbers);
+        if ($lcm === null) {
+            throw new \Exception('impossible to calculate lcm', E_ERROR);
+        }
+        while ($nextNumber = array_shift($numbers)) {
+            $lcm = $this->getLeastCommonMultipleHelper($lcm, $nextNumber);
+        }
+        return $lcm;
+    }
+
+    public function getLeastCommonMultipleHelper(int $number1, int $number2): int
+    {
+        if ($number1 < 1 || $number2 < 1) {
+            throw new \Exception('numbers should be at least 1 to calculate lcm', E_ERROR);
+        }
+        $tmp1 = $number1;
+        $tmp2 = $number2;
+        while ($tmp1 != $tmp2) {
+            if ($tmp1 > $tmp2) {
+                $tmp1 = $tmp1 - $tmp2;
+            } else {
+                $tmp2 = $tmp2 - $tmp1;
+            }
+        }
+        return (int)(($number1 * $number2) / $tmp1);
+    }
+
     public function above(int $top, int $bottom): int
     {
         // if (bottom > top) {

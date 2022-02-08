@@ -89,6 +89,16 @@ final class SportMathTest extends TestCase
         self::assertSame(3, $math->getGreatestCommonDivisor([15, 18]));
     }
 
+    public function testGetLeastCommonMultiple(): void
+    {
+        $math = new SportMath();
+
+        self::assertSame(2, $math->getLeastCommonMultiple([2]));
+        self::assertSame(15, $math->getLeastCommonMultiple([3,15]));
+        self::assertSame(6, $math->getLeastCommonMultiple([3,3,2]));
+        self::assertSame(300, $math->getLeastCommonMultiple([12,15,75]));
+    }
+
     public function testGetUniqueNrOfHomeAways(): void
     {
         $math = new SportMath();
