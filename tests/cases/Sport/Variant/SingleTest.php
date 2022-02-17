@@ -7,6 +7,7 @@ namespace SportsHelpers\Tests\Sport\Variant;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
+use SportsHelpers\Sport\VariantWithPoule;
 
 class SingleTest extends TestCase
 {
@@ -21,23 +22,25 @@ class SingleTest extends TestCase
     public function testTotalNrOfGames(): void
     {
         $sportVariant = new SingleSportVariant(3, 2);
-        self::assertSame(6, $sportVariant->getTotalNrOfGames(9));
-        self::assertSame(7, $sportVariant->getTotalNrOfGames(10));
+        $variantWithPoule = new VariantWithPoule($sportVariant, 9);
+        self::assertSame(6, $variantWithPoule->getTotalNrOfGames());
+        $variantWithPoule = new VariantWithPoule($sportVariant, 10);
+        self::assertSame(7, $variantWithPoule->getTotalNrOfGames());
     }
 
-    public function testTotalNrOfGamesPerPlace(): void
-    {
-        $sportVariant = new SingleSportVariant(3, 2);
-        self::assertSame(2, $sportVariant->getTotalNrOfGamesPerPlace(9));
-        self::assertSame(2, $sportVariant->getTotalNrOfGamesPerPlace(10));
-    }
-
-    public function testAllPlacesParticipateInGameRound(): void
-    {
-        $sportVariant = new SingleSportVariant(3, 2);
-        self::assertFalse($sportVariant->allPlacesParticipateInGameRound(5));
-        self::assertTrue($sportVariant->allPlacesParticipateInGameRound(6));
-    }
+//    public function testTotalNrOfGamesPerPlace(): void
+//    {
+//        $sportVariant = new SingleSportVariant(3, 2);
+//        self::assertSame(2, $sportVariant->getTotalNrOfGamesPerPlace(9));
+//        self::assertSame(2, $sportVariant->getTotalNrOfGamesPerPlace(10));
+//    }
+//
+//    public function testAllPlacesParticipateInGameRound(): void
+//    {
+//        $sportVariant = new SingleSportVariant(3, 2);
+//        self::assertFalse($sportVariant->allPlacesParticipateInGameRound(5));
+//        self::assertTrue($sportVariant->allPlacesParticipateInGameRound(6));
+//    }
 
     public function testToPersistVariant(): void
     {
@@ -47,7 +50,6 @@ class SingleTest extends TestCase
         self::assertSame(0, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(3, $persistVariant->getNrOfGamePlaces());
         self::assertSame(0, $persistVariant->getNrOfH2H());
-        self::assertSame(2, $persistVariant->getNrOfGamesPerPlace());
     }
 
     public function testToString(): void

@@ -5,6 +5,10 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport;
 
 use SportsHelpers\Sport\Variant as SportVariant;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
+use SportsHelpers\Sport\Variant\AllInOneGame;
+use SportsHelpers\Sport\Variant\Single;
 
 class GamePlaceCalculator
 {
@@ -36,14 +40,15 @@ class GamePlaceCalculator
 
     /**
      * @param int $nrOfPlaces
-     * @param list<SportVariant> $sportVariants
+     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
      * @return int
      */
     public function getMaxNrOfGamesPerPlace(int $nrOfPlaces, array $sportVariants): int
     {
         $nrOfGamesPerPlace = 0;
         foreach ($sportVariants as $sportVariant) {
-            $nrOfGamesPerPlace += $sportVariant->getTotalNrOfGamesPerPlace($nrOfPlaces);
+            $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
+            $nrOfGamesPerPlace += $sportVariantWithPoule->getTotalNrOfGamesPerPlace();
         }
         return $nrOfGamesPerPlace;
     }

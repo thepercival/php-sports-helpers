@@ -4,7 +4,8 @@ namespace SportsHelpers\Tests\Sport;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sport\GamePlaceCalculator;
-use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
 
 final class GamePlaceCalculatorTest extends TestCase
 {
@@ -30,16 +31,19 @@ final class GamePlaceCalculatorTest extends TestCase
         $nrOfPlaces = 5;
         $totalNrOfGames = 0;
 
-        $sport1 = new AgainstSportVariant(1, 1, 1, 0);
+        $sport1 = new AgainstH2hSportVariant(1, 1, 1);
         $totalNrOfGames += $sport1->getTotalNrOfGamesPerPlace($nrOfPlaces);
 
-        $sport2 = new AgainstSportVariant(1, 2, 0, 1);
-        $totalNrOfGames += $sport2->getTotalNrOfGamesPerPlace($nrOfPlaces);
+        $sport2 = new AgainstGppSportVariant(1, 2, 1);
+        $totalNrOfGames += $sport2->getNrOfGamesPerPlace();
 
         $calculator = new GamePlaceCalculator();
-        self::assertSame($totalNrOfGames, $calculator->getMaxNrOfGamesPerPlace(
-            $nrOfPlaces,
-            [$sport1,$sport2]
-        ));
+        self::assertSame(
+            $totalNrOfGames,
+            $calculator->getMaxNrOfGamesPerPlace(
+                $nrOfPlaces,
+                [$sport1, $sport2]
+            )
+        );
     }
 }

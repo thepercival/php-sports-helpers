@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
-use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
-use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
+use SportsHelpers\Sport\Variant\AllInOneGame;
+use SportsHelpers\Sport\Variant\Single;
 
 class VariantWithFields implements \Stringable
 {
     public function __construct(
-        protected AgainstSportVariant|SingleSportVariant|AllInOneGameSportVariant $sportVariant,
+        protected AgainstH2h|AgainstGpp|Single|AllInOneGame $sportVariant,
         protected int $nrOfFields
     ) {
     }
 
-    public function getSportVariant(): AgainstSportVariant|SingleSportVariant|AllInOneGameSportVariant
+    public function getSportVariant(): AgainstH2h|AgainstGpp|Single|AllInOneGame
     {
         return $this->sportVariant;
     }

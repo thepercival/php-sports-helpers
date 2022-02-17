@@ -7,7 +7,8 @@ namespace SportsHelpers\Tests;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PouleStructure;
 use SportsHelpers\SelfReferee;
-use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
 
 class PouleStructureTest extends TestCase
 {
@@ -76,42 +77,42 @@ class PouleStructureTest extends TestCase
 
     public function testTotalNrOfGames(): void
     {
-        $sport = new AgainstSportVariant(1, 1, 1, 0);
+        $sport = new AgainstH2hSportVariant(1, 1, 1);
         $pouleStructure = new PouleStructure(3, 2, 2);
         self::assertSame(5, $pouleStructure->getTotalNrOfGames([$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleNo(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 0, 3);
+        $sport = new AgainstGppSportVariant(2, 2, 3);
         $pouleStructure = new PouleStructure(5, 4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableSamePouleYes(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 0, 1);
+        $sport = new AgainstGppSportVariant(2, 2, 1);
         $pouleStructure = new PouleStructure(5);
         self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleNo(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 0, 1);
+        $sport = new AgainstGppSportVariant(2, 2, 1);
         $pouleStructure = new PouleStructure(4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableOtherPouleYes(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 0, 1);
+        $sport = new AgainstGppSportVariant(2, 2, 1);
         $pouleStructure = new PouleStructure(4, 4);
         self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
     }
 
     public function testSelfRefereeBeAvailableDisabledNo(): void
     {
-        $sport = new AgainstSportVariant(2, 2, 0, 1);
+        $sport = new AgainstGppSportVariant(2, 2, 1);
         $pouleStructure = new PouleStructure(4);
         self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::Disabled, [$sport]));
     }

@@ -10,37 +10,28 @@ use SportsHelpers\Sport\Variant;
 
 class AllInOneGame extends Base implements Variant
 {
-    public function __construct(int $nrOfGamesPerPlace)
+    public function __construct(protected int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::AllInOneGame, $nrOfGamesPerPlace);
+        parent::__construct(GameMode::AllInOneGame);
     }
 
-    public function getTotalNrOfGames(int $nrOfPlaces): int
+    public function getNrOfGamesPerPlace(): int
     {
         return $this->nrOfGamesPerPlace;
     }
+
+//    public function getTotalNrOfGames(int $nrOfPlaces): int
+//    {
+//        return $this->nrOfGamesPerPlace;
+//    }
 
 //    public function getNrOfGamesPerPlace(int $nrOfPlaces): int
 //    {
 //        return $this->nrOfGameRounds;
 //    }
 //
-    public function getNrOfGameRounds(int $nrOfPlaces): int
-    {
-        return $this->getTotalNrOfGamesPerPlace($nrOfPlaces);
-    }
-
-    public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
-    {
-        return $this->nrOfGamesPerPlace;
-    }
 
     public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool
-    {
-        return true;
-    }
-
-    public function mustBeEquallyAssigned(int $nrOfPlaces): bool
     {
         return true;
     }

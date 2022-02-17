@@ -17,19 +17,19 @@ class AllInOneGameTest extends TestCase
         self::assertSame(1, $sportVariant->getNrOfGamesPerPlace());
     }
 
-    public function testTotalNrOfGames(): void
-    {
-        $sportVariant = new AllInOneGameSportVariant(3);
-        self::assertSame(3, $sportVariant->getTotalNrOfGames(5));
-        self::assertSame(3, $sportVariant->getTotalNrOfGames(6));
-    }
-
-    public function testTotalNrOfGamesPerPlace(): void
-    {
-        $sportVariant = new AllInOneGameSportVariant(3);
-        self::assertSame(3, $sportVariant->getTotalNrOfGamesPerPlace(5));
-        self::assertSame(3, $sportVariant->getTotalNrOfGamesPerPlace(6));
-    }
+//    public function testTotalNrOfGames(): void
+//    {
+//        $sportVariant = new AllInOneGameSportVariant(3);
+//        self::assertSame(3, $sportVariant->getTotalNrOfGames(5));
+//        self::assertSame(3, $sportVariant->getTotalNrOfGames(6));
+//    }
+//
+//    public function testTotalNrOfGamesPerPlace(): void
+//    {
+//        $sportVariant = new AllInOneGameSportVariant(3);
+//        self::assertSame(3, $sportVariant->getTotalNrOfGamesPerPlace(5));
+//        self::assertSame(3, $sportVariant->getTotalNrOfGamesPerPlace(6));
+//    }
 
     public function testAllPlacesParticipateInGameRound(): void
     {
@@ -46,7 +46,7 @@ class AllInOneGameTest extends TestCase
         self::assertSame(0, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(0, $persistVariant->getNrOfGamePlaces());
         self::assertSame(0, $persistVariant->getNrOfH2H());
-        self::assertSame(1, $persistVariant->getNrOfGamesPerPlace());
+        // self::assertSame(1, $persistVariant->getNrOfGamesPerPlace());
     }
 
     public function testToString(): void

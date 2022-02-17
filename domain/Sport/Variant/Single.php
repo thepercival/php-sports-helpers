@@ -10,9 +10,14 @@ use SportsHelpers\Sport\Variant;
 
 class Single extends Base implements Variant
 {
-    public function __construct(protected int $nrOfGamePlaces, int $nrOfGamesPerPlace)
+    public function __construct(protected int $nrOfGamePlaces, protected int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::Single, $nrOfGamesPerPlace);
+        parent::__construct(GameMode::Single);
+    }
+
+    public function getNrOfGamesPerPlace(): int
+    {
+        return $this->nrOfGamesPerPlace;
     }
 
     public function getNrOfGamePlaces(): int
@@ -20,28 +25,19 @@ class Single extends Base implements Variant
         return $this->nrOfGamePlaces;
     }
 
-    public function getTotalNrOfGames(int $nrOfPlaces): int
-    {
-        $totalNrOfPlaces = $nrOfPlaces * $this->getNrOfGamesPerPlace();
-        return (int)ceil($totalNrOfPlaces / $this->getNrOfGamePlaces());
-    }
-
-//    public function getMaxNrOfGameRounds(int $nrOfPlaces): int
+//    public function getNrOfGameGroups(int $nrOfPlaces): int
 //    {
-//        $totalNrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
+//
+//        // iedereen 3x, 2 gameplaces, bij [3]=>
+//        $this->getTotalNrOfGamePlaces($nrOfPlaces)
+//
+//        return (int)ceil($this->getTotalNrOfGamePlaces($nrOfPlaces) / $this->getNrOfGamePlaces());
+//
+//        $totalNrOfGamePlaces = $this->getTotalNrOfGamePlaces($nrOfPlaces);
 //        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
 //        return (int)ceil($totalNrOfGames / $nrOfGamesPerGameRound);
 //    }
 
-    public function getNrOfGameRounds(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesPerPlace();
-    }
-
-    public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesPerPlace();
-    }
 
 //    public function getNrOfGamesPerPlace(int $nrOfPlaces): int
 //    {
@@ -49,21 +45,6 @@ class Single extends Base implements Variant
 //        return $this->nrOfGameRounds * ;
 //    }
 
-    protected function getNrOfPlacesPerGameRound(int $nrOfPlaces): int
-    {
-        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
-    }
-
-
-    public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool
-    {
-        return $nrOfPlaces === $this->getNrOfPlacesPerGameRound($nrOfPlaces);
-    }
-
-    public function mustBeEquallyAssigned(int $nrOfPlaces): bool
-    {
-        return true;
-    }
 
     public function toPersistVariant(): PersistVariant
     {

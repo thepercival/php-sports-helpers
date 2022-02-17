@@ -1,4 +1,4 @@
-SportsHelpers\Sport\Variant\Base:
+SportsHelpers\Sport\PersistVariant:
   exclusion_policy: ALL
   exclude: false
   properties:

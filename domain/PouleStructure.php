@@ -5,6 +5,12 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 use SportsHelpers\Sport\Variant as SportVariant;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
+use SportsHelpers\Sport\Variant\AllInOneGame;
+use SportsHelpers\Sport\Variant\Single;
+use SportsHelpers\Sport\VariantWithFields;
+use SportsHelpers\Sport\VariantWithPoule;
 use Stringable;
 
 class PouleStructure implements Stringable
@@ -78,7 +84,7 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<SportVariant> $sportVariants
+     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
      * @return int
      */
     public function getTotalNrOfGames(array $sportVariants): int
@@ -86,7 +92,8 @@ class PouleStructure implements Stringable
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
             foreach ($sportVariants as $sportVariant) {
-                $nrOfGames += $sportVariant->getTotalNrOfGames($nrOfPlaces);
+                $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
+                $nrOfGames += $sportVariantWithPoule->getTotalNrOfGames();
             }
         }
         return $nrOfGames;
@@ -94,7 +101,7 @@ class PouleStructure implements Stringable
 
     /**
      * @param SelfReferee $selfReferee
-     * @param list<SportVariant> $sports
+     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sports
      * @return bool
      */
     public function isSelfRefereeBeAvailable(SelfReferee $selfReferee, array $sports): bool
@@ -113,15 +120,17 @@ class PouleStructure implements Stringable
     }
 
     /**
-     * @param list<SportVariant> $sportVariants
+     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
      * @return bool
      */
     protected function isSelfRefereeSamePouleBeAvailable(array $sportVariants): bool
     {
-        $smallestNrOfPlaces = $this->getSmallestPoule();
-        foreach ($sportVariants as $sportVariant) {
-            if ($sportVariant->allPlacesParticipateInGameRound($smallestNrOfPlaces)) {
-                return false;
+        foreach ($this->poules as $nrOfPlaces) {
+            foreach ($sportVariants as $sportVariant) {
+                $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
+                if ($sportVariantWithPoule->canAllPlacesPlaySimultaneously()) {
+                    return false;
+                };
             }
         }
         return true;
