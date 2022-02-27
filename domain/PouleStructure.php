@@ -16,7 +16,7 @@ use Stringable;
 class PouleStructure implements Stringable
 {
     /**
-     * @var list<int> $poules
+     * @var non-empty-list<int> $poules
      */
     protected array $poules;
     protected int|null $nrOfGamePlaces = null;
@@ -29,10 +29,10 @@ class PouleStructure implements Stringable
                 return $nrOfPlacesPouleA > $nrOfPlacesPouleB ? -1 : 1;
             }
         );
-        $this->poules = [];
-        foreach ($nrOfPlaces as $nrOfPlacesIt) {
-            array_push($this->poules, $nrOfPlacesIt);
+        if (count($nrOfPlaces) === 0) {
+            throw new \Exception('nrOfPlaces-list can not be empty', E_ERROR);
         }
+        $this->poules = array_values($nrOfPlaces);
     }
 
     public function getNrOfPoules(): int
@@ -153,7 +153,7 @@ class PouleStructure implements Stringable
 //    }
 
     /**
-     * @return list<int>
+     * @return non-empty-list<int>
      */
     public function toArray(): array
     {

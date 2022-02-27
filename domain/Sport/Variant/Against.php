@@ -40,10 +40,10 @@ abstract class Against extends Base implements Variant
         return $this->nrOfHomePlaces + $this->nrOfAwayPlaces;
     }
 
-//    public function isMixed(): bool
-//    {
-//        return $this->getNrOfGamePlaces() > 2;
-//    }
+    public function hasMultipleSidePlaces(): bool
+    {
+        return $this->getNrOfGamePlaces() > 2;
+    }
 
 //    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
 //    {

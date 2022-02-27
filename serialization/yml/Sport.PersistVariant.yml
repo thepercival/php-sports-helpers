@@ -9,6 +9,18 @@ SportsHelpers\Sport\PersistVariant:
         getter: getGameModeNative
         setter: setGameModeNative
       groups: [ noReference ]
+    nrOfHomePlaces:
+      type: integer
+      groups: [ noReference ]
+    nrOfAwayPlaces:
+      type: integer
+      groups: [ noReference ]
+    nrOfGamePlaces:
+      type: integer
+      groups: [ noReference ]
+    nrOfH2H:
+      type: integer
+      groups: [ noReference ]
     nrOfGamesPerPlace:
       type: integer
       groups: [ noReference ]

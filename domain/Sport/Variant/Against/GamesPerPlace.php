@@ -27,12 +27,6 @@ class GamesPerPlace extends Against implements \Stringable
         return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneSerie($nrOfPlaces) === 0;
     }
 
-
-//    public function isMixed(): bool
-//    {
-//        return $this->getNrOfGamePlaces() > 2;
-//    }
-//
     ////    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
     ////    {
     ////        return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces();

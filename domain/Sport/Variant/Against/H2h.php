@@ -24,12 +24,6 @@ class H2h extends Against implements \Stringable
         return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces() * $this->getNrOfH2H();
     }
 
-////    public function isMixed(): bool
-////    {
-////        return $this->getNrOfGamePlaces() > 2;
-////    }
-//
-
     public function getNrOfH2H(): int
     {
         return $this->nrOfH2H;
