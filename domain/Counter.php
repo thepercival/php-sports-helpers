@@ -16,6 +16,11 @@ class Counter implements \Countable
     {
     }
 
+    public function reset(): void
+    {
+        $this->count = 0;
+    }
+
     public function decrement(): int
     {
         $this->count--;
@@ -26,6 +31,11 @@ class Counter implements \Countable
     {
         $this->count++;
         return $this->count;
+    }
+
+    public function increase(int $count): void
+    {
+        $this->count += $count;
     }
 
     public function count(): int

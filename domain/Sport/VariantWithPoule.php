@@ -35,7 +35,11 @@ class VariantWithPoule
         if ($this->sportVariant instanceof AgainstH2h) {
             return $this->sportVariant->getTotalNrOfGames($this->nrOfPlaces);
         }
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->sportVariant->getNrOfGamePlaces());
+        $totalNrOfGames = $this->getTotalNrOfGamePlaces() / $this->sportVariant->getNrOfGamePlaces();
+        if ($this->sportVariant instanceof AgainstGpp) { // against not splittable
+            return (int)floor($totalNrOfGames);
+        }
+        return (int)ceil($totalNrOfGames);
     }
 
     public function getTotalNrOfGamePlaces(): int

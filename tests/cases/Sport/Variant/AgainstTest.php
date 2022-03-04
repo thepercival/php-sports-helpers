@@ -43,19 +43,19 @@ class AgainstTest extends TestCase
         $variantWithPoule = new VariantWithPoule($sportVariant1VS2, 3);
         self::assertSame(1, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant1VS2, 4);
-        self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
+        self::assertSame(1, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant1VS2, 5);
-        self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
+        self::assertSame(1, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant1VS2, 6);
         self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant1VS2, 7);
-        self::assertSame(3, $variantWithPoule->getTotalNrOfGames());
+        self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
 
         $sportVariant2VS2GPP2 = new AgainstSportGppVariant(2, 2, 2);
         $variantWithPoule = new VariantWithPoule($sportVariant2VS2GPP2, 4);
         self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant2VS2GPP2, 5);
-        self::assertSame(3, $variantWithPoule->getTotalNrOfGames());
+        self::assertSame(2, $variantWithPoule->getTotalNrOfGames());
         $variantWithPoule = new VariantWithPoule($sportVariant2VS2GPP2, 6);
         self::assertSame(3, $variantWithPoule->getTotalNrOfGames());
     }
@@ -211,5 +211,11 @@ class AgainstTest extends TestCase
 
         $sportVariant = new AgainstSportGppVariant(1, 1, 1);
         self::assertFalse($sportVariant->allPlacesPlaySameNrOfGames(5));
+
+        $sportVariant = new AgainstSportGppVariant(1, 1, 1);
+        self::assertFalse($sportVariant->allPlacesPlaySameNrOfGames(11));
+
+        $sportVariant = new AgainstSportGppVariant(1, 1, 2);
+        self::assertTrue($sportVariant->allPlacesPlaySameNrOfGames(11));
     }
 }
