@@ -10,7 +10,6 @@ use SportsHelpers\PouleStructure\BalancedCreator as BalancedPouleStructureCreato
 
 class PlaceRanges
 {
-    public const MinNrOfPlacesPerPoule = 2;
     private SportRange $placesPerPouleSmall;
     private SportRange $placesPerRoundSmall;
     private int $nrOfPlacesSmallLargeBorder;

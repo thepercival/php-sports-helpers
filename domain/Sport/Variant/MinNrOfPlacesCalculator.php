@@ -4,40 +4,40 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
 
-use SportsHelpers\PlaceRanges;
-use SportsHelpers\Sport\Variant\Against as AgainstSportVariant;
-use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
-
 class MinNrOfPlacesCalculator
 {
+    public const MinNrOfPlacesPerPoule = 2;
+
     public function __construct()
     {
     }
 
     /**
-     * @param list<SingleSportVariant | AgainstSportVariant | AllInOneGameSportVariant> $sportVariants
+     * @param list<Single | Against | AllInOneGame> $sportVariants
      * @return int
      */
     public function getMinNrOfPlacesPerPoule(array $sportVariants): int
     {
-        $max = 0;
-        foreach ($sportVariants as $sportVariant) {
-            $minNrOfPlacesPerPoule = $this->getMinNrOfPlacesPerPouleHelper($sportVariant);
-            if ($minNrOfPlacesPerPoule > $max) {
-                $max = $minNrOfPlacesPerPoule;
-            }
+        if (count($sportVariants) === 0) {
+            return self::MinNrOfPlacesPerPoule;
         }
-        return $max;
+        $minimum = min(
+            array_map(function (Single|Against|AllInOneGame $sportVariant) {
+                return $this->getMinNrOfPlacesPerPouleForSport($sportVariant);
+            }, $sportVariants)
+        );
+
+        if ($minimum < self::MinNrOfPlacesPerPoule) {
+            $minimum = self::MinNrOfPlacesPerPoule;
+        }
+        return $minimum;
     }
 
-    protected function getMinNrOfPlacesPerPouleHelper(SingleSportVariant | AgainstSportVariant | AllInOneGameSportVariant $sportVariant): int
+    protected function getMinNrOfPlacesPerPouleForSport(Single|Against|AllInOneGame $sportVariant): int
     {
-        if ($sportVariant instanceof AgainstSportVariant) {
-            return $sportVariant->getNrOfGamePlaces();
-        } elseif ($sportVariant instanceof SingleSportVariant) {
-            return $sportVariant->getNrOfGamePlaces();
+        if ($sportVariant instanceof AllInOneGame) {
+            return self::MinNrOfPlacesPerPoule;
         }
-        return PlaceRanges::MinNrOfPlacesPerPoule;
+        return $sportVariant->getNrOfGamePlaces();
     }
 }
