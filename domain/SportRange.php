@@ -39,6 +39,11 @@ class SportRange
         return $value >= $this->min && $value <= $this->max;
     }
 
+    public function equals(self $range): bool
+    {
+        return $range->getMin() === $this->min && $range->getMax() === $this->max;
+    }
+
     /**
      * @return list<int>
      */
