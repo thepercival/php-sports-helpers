@@ -10,8 +10,6 @@ jobs:
     name: Generate tag
     runs-on: ubuntu-latest
     steps:
-      #- name: work around permission issue
-      #run: /usr/bin/git config --global --add safe.directory /github/workspace
 
       - name: Check out code
         uses: actions/checkout@v2
