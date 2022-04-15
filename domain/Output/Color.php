@@ -58,7 +58,7 @@ enum Color: string
             case 8:
                 return Color::LightGreen; // '#00578A';
             case 9:
-                return Color::LightGreen; // '#00578A';
+                return Color::LightCyan; // '#00578A';
             case 0:
                 return Color::White;
         }
