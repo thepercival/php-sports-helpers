@@ -19,6 +19,7 @@ jobs:
           fetch-depth: '0'
 
       - name: Bump version and push tag
+        run: /usr/bin/git config --global --add safe.directory /github/workspace
         uses: ChloePlanet/github-tag-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
