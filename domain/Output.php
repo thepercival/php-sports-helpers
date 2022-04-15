@@ -11,11 +11,7 @@ use SportsHelpers\Output\Color;
 
 abstract class Output
 {
-    use Color;
-
     protected LoggerInterface $logger;
-
-    public const COLOR_GRAY = 6; // light_gray
 
     public function __construct(LoggerInterface|null $logger)
     {
@@ -40,7 +36,7 @@ abstract class Output
         return false;
     }
 
-    public function outputString(string|int $value, int $minLength = null, int $colorNr = -1): void
+    public function outputString(string|int $value, int $minLength = null, Color|null $color = null): void
     {
         $str = '' . $value;
         if ($minLength > 0) {
@@ -48,6 +44,6 @@ abstract class Output
                 $str = ' ' . $str;
             }
         }
-        $this->logger->info($this->getColored($colorNr, $str));
+        $this->logger->info(Color::getColored($color, $str));
     }
 }

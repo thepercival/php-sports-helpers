@@ -6,44 +6,63 @@ namespace SportsHelpers\Output;
 
 use SportsHelpers\Output;
 
-trait Color
+enum Color: string
 {
-    protected function getColored(int $number, string $content): string
+    case Red = '0;31';
+    case Green = '0;32';
+    case Blue = '0;34';
+    case Yellow = '1;33';
+    case Purple = '0;35';
+    case LightGray = '0;37';
+    case Cyan = '0;36';
+    case LightGreen = '1;32';
+    case LightCyan = '1;36';
+    case White = '1;37';
+    //    'black'] = '0;30';
+    //    'dark_gray'] = '1;30';
+    //    'green'] = ;
+    //    'light_red'] = '1;31';
+    //    'purple'] = '0;35';
+    //    'light_purple'] = '1;35';
+    //    'brown'] = '0;33';
+
+    //  } elseif ($number === Output::COLOR_GRAY) {
+    //    $sColor = '0;37'; // light_gray
+
+    public static function getColored(Color|null $color, string $content): string
     {
-        if ($number === 1) {
-            $sColor = '0;31'; // red
-        } elseif ($number === 2) {
-            $sColor = '0;32'; // green
-        } elseif ($number === 3) {
-            $sColor = '0;34'; // blue;
-        } elseif ($number === 4) {
-            $sColor = '1;33'; // yellow
-        } elseif ($number === 5) {
-            $sColor = '0;35'; // purple
-        } elseif ($number === Output::COLOR_GRAY) {
-            $sColor = '0;37'; // light_gray
-        } elseif ($number === 7) {
-            $sColor = '0;36'; // cyan
-        } elseif ($number === 8) {
-            $sColor = '1;32'; // light green
-        } elseif ($number === 9) {
-            $sColor = '1;36'; // light cyan
-        } elseif ($number === -1) {
+        if( $color === null ) {
             return $content;
-        } else {
-            $sColor = '1;37'; // white
         }
-
-        //    'black'] = '0;30';
-        //    'dark_gray'] = '1;30';
-        //    'green'] = ;
-        //    'light_red'] = '1;31';
-        //    'purple'] = '0;35';
-        //    'light_purple'] = '1;35';
-        //    'brown'] = '0;33';
-
-        $coloredString = "\033[" . $sColor . "m";
+        $coloredString = "\033[" . $color->value . "m";
         return $coloredString . $content . "\033[0m";
+    }
+
+    public static function convertNumberToColor(int $number): Color
+    {
+        switch ($number) {
+            case 1:
+                return Color::Red; // '#298F00';
+            case 2:
+                return Color::Green; // '#84CF96';
+            case 3:
+                return Color::Blue; // '#0588BC';
+            case 4:
+                return Color::Yellow; // '#00578A';
+            case 5:
+                return Color::Purple; // '#298F00';
+            case 6:
+                return Color::LightGray; // '#84CF96';
+            case 7:
+                return Color::Cyan; // '#0588BC';
+            case 8:
+                return Color::LightGreen; // '#00578A';
+            case 9:
+                return Color::LightGreen; // '#00578A';
+            case 0:
+                return Color::White;
+        }
+        throw new \Exception('number must be 0-9', E_ERROR);
     }
 }
 
@@ -78,5 +97,4 @@ trait Color
 .q-l-1 {
   border-color: #FF0000 !important;
 }
- *
- */
+*/
