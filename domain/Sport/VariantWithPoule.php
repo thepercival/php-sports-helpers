@@ -53,7 +53,7 @@ class VariantWithPoule
     public function getTotalNrOfGamesPerPlace(): int
     {
         if ($this->sportVariant instanceof AgainstH2h) {
-            return $this->sportVariant->getNrOfGamesPerPlaceOneH2H($this->nrOfPlaces) * $this->sportVariant->getNrOfH2H(
+            return $this->sportVariant->getNrOfGamesPerPlaceOneH2h($this->nrOfPlaces) * $this->sportVariant->getNrOfH2H(
                 );
         }
         return $this->sportVariant->getNrOfGamesPerPlace();

@@ -63,24 +63,24 @@ class AgainstTest extends TestCase
     public function testNrOfGamesOneH2H(): void
     {
         $sportVariant1VS1 = new AgainstSportH2hVariant(1, 1, 1);
-        self::assertSame(1, $sportVariant1VS1->getNrOfGamesOneH2H(2));
-        self::assertSame(3, $sportVariant1VS1->getNrOfGamesOneH2H(3));
-        self::assertSame(6, $sportVariant1VS1->getNrOfGamesOneH2H(4));
-        self::assertSame(10, $sportVariant1VS1->getNrOfGamesOneH2H(5));
+        self::assertSame(1, $sportVariant1VS1->getNrOfGamesOneH2h(2));
+        self::assertSame(3, $sportVariant1VS1->getNrOfGamesOneH2h(3));
+        self::assertSame(6, $sportVariant1VS1->getNrOfGamesOneH2h(4));
+        self::assertSame(10, $sportVariant1VS1->getNrOfGamesOneH2h(5));
 
         $sportVariant1VS2 = new AgainstSportGppVariant(1, 2, 1);
-        self::assertSame(3, $sportVariant1VS2->getNrOfGamesOneH2H(3));
-        self::assertSame(12, $sportVariant1VS2->getNrOfGamesOneH2H(4));
-        self::assertSame(30, $sportVariant1VS2->getNrOfGamesOneH2H(5));
-        self::assertSame(60, $sportVariant1VS2->getNrOfGamesOneH2H(6));
+        self::assertSame(3, $sportVariant1VS2->getNrOfGamesOneH2h(3));
+        self::assertSame(12, $sportVariant1VS2->getNrOfGamesOneH2h(4));
+        self::assertSame(30, $sportVariant1VS2->getNrOfGamesOneH2h(5));
+        self::assertSame(60, $sportVariant1VS2->getNrOfGamesOneH2h(6));
 
         $sportVariant1VS2 = new AgainstSportGppVariant(2, 2, 1);
-        self::assertSame(3, $sportVariant1VS2->getNrOfGamesOneH2H(4));
-        self::assertSame(15, $sportVariant1VS2->getNrOfGamesOneH2H(5));
-        self::assertSame(45, $sportVariant1VS2->getNrOfGamesOneH2H(6));
-        self::assertSame(105, $sportVariant1VS2->getNrOfGamesOneH2H(7));
-        self::assertSame(210, $sportVariant1VS2->getNrOfGamesOneH2H(8));
-        self::assertSame(378, $sportVariant1VS2->getNrOfGamesOneH2H(9));
+        self::assertSame(3, $sportVariant1VS2->getNrOfGamesOneH2h(4));
+        self::assertSame(15, $sportVariant1VS2->getNrOfGamesOneH2h(5));
+        self::assertSame(45, $sportVariant1VS2->getNrOfGamesOneH2h(6));
+        self::assertSame(105, $sportVariant1VS2->getNrOfGamesOneH2h(7));
+        self::assertSame(210, $sportVariant1VS2->getNrOfGamesOneH2h(8));
+        self::assertSame(378, $sportVariant1VS2->getNrOfGamesOneH2h(9));
     }
 
 //    public function testIsMixed(): void
@@ -151,16 +151,16 @@ class AgainstTest extends TestCase
     public function testNrOfGamesPerPlaceOneH2H(): void
     {
         $sportVariant1VS2 = new AgainstSportGppVariant(1, 2, 1);
-        self::assertSame(3, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2H(3));
-        self::assertSame(9, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2H(4));
-        self::assertSame(18, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2H(5));
+        self::assertSame(3, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2h(3));
+        self::assertSame(9, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2h(4));
+        self::assertSame(18, $sportVariant1VS2->getNrOfGamesPerPlaceOneH2h(5));
 
         $sportVariant2VS2 = new AgainstSportGppVariant(2, 2, 1);
-        self::assertSame(3, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(4));
-        self::assertSame(12, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(5));
-        self::assertSame(30, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(6));
-        self::assertSame(60, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(7));
-        self::assertSame(105, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2H(8));
+        self::assertSame(3, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2h(4));
+        self::assertSame(12, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2h(5));
+        self::assertSame(30, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2h(6));
+        self::assertSame(60, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2h(7));
+        self::assertSame(105, $sportVariant2VS2->getNrOfGamesPerPlaceOneH2h(8));
     }
 
 

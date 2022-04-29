@@ -29,7 +29,7 @@ class GamesPerPlace extends Against implements \Stringable
 
     ////    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
     ////    {
-    ////        return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces();
+    ////        return $this->getNrOfGamesOneH2h($nrOfPlaces) * $this->getNrOfGamePlaces();
     ////    }
     ////
 //
@@ -55,13 +55,13 @@ class GamesPerPlace extends Against implements \Stringable
 //
     ////    public function getNrOfGamesOneSerie(int $nrOfPlaces): int
     ////    {
-    ////        return $this->getNrOfGamesOneH2H($nrOfPlaces) * 2;
+    ////        return $this->getNrOfGamesOneH2h($nrOfPlaces) * 2;
     ////    }
 //
 //
 //    public function withAgainstMustBeEquallyAssigned(int $nrOfPlaces): bool
 //    {
-//        return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) === 0;
+//        return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) === 0;
 //    }
 //
 //    public function allPlacesPlaySameNrOfGames(int $nrOfPlaces): bool
@@ -70,12 +70,12 @@ class GamesPerPlace extends Against implements \Stringable
 //        return (int)ceil($totalNrOfGamePlaces / $this->getNrOfGamePlaces());
 //
 //        alleen als het totaal aantal gameplaces deelbaar is door het aantal places
-//        return ($this->getTotalNrOfGames($nrOfPlaces) % $this->getNrOfGamesOneH2H($nrOfPlaces)) === 0;
+//        return ($this->getTotalNrOfGames($nrOfPlaces) % $this->getNrOfGamesOneH2h($nrOfPlaces)) === 0;
 //    }
 //
 //    public function allPlacesPlayH2h(int $nrOfPlaces): bool
 //    {
-//        return ($this->getTotalNrOfGames($nrOfPlaces) % $this->getNrOfGamesOneH2H($nrOfPlaces)) === 0;
+//        return ($this->getTotalNrOfGames($nrOfPlaces) % $this->getNrOfGamesOneH2h($nrOfPlaces)) === 0;
 //    }
 //
 //

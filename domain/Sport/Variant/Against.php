@@ -45,12 +45,6 @@ abstract class Against extends Base implements Variant
         return $this->getNrOfGamePlaces() > 2;
     }
 
-//    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
-//    {
-//        return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces();
-//    }
-//
-
     public function canAllPlacesPlaySimultaneously(int $nrOfPlaces): bool
     {
         return $nrOfPlaces === $this->getMaxNrOfGamePlacesSimultaneously($nrOfPlaces);
@@ -61,43 +55,24 @@ abstract class Against extends Base implements Variant
         return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
     }
 
-//    public function getNrOfGamesOneGameRound(int $nrOfPlaces): int
-//    {
-//        $nrOfPlacesPerGameRound = $this->getNrOfPlacesOneGameRound($nrOfPlaces);
-//        return (int)($nrOfPlacesPerGameRound / $this->getNrOfGamePlaces());
-//    }
-
-
-//    public function getNrOfGameRounds(int $nrOfPlaces): int
-//    {
-//        $nrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
-//        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
-//        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
-//    }
-
-//    protected function getNrOfPlacesPerGameRound(int $nrOfPlaces): int
-//    {
-//        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
-//    }
-
     public function getNrOfGamesPerPlaceOneSerie(int $nrOfPlaces): int
     {
-        return $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) * 2;
+        return $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * 2;
     }
 
     // 1vs1: 2=>1, 3=>2, 4=>3, 5=>4
     // 1vs2: 3=>3, 4=>9(12-3), 5=>21(30-9)
-    public function getNrOfGamesPerPlaceOneH2H(int $nrOfPlaces): int
+    public function getNrOfGamesPerPlaceOneH2h(int $nrOfPlaces): int
     {
 //        if (!$this->isMixed()) {
 //            return $nrOfPlaces - 1;
 //        }
-        $nrOfGamesOneH2H = $this->getNrOfGamesOneH2H($nrOfPlaces);
-        $nrOfGamesOneH2HOneLess = $this->getNrOfGamesOneH2H($nrOfPlaces - 1);
+        $nrOfGamesOneH2H = $this->getNrOfGamesOneH2h($nrOfPlaces);
+        $nrOfGamesOneH2HOneLess = $this->getNrOfGamesOneH2h($nrOfPlaces - 1);
         return $nrOfGamesOneH2H - $nrOfGamesOneH2HOneLess;
     }
 
-    public function getNrOfGamesOneH2H(int $nrOfPlaces): int
+    public function getNrOfGamesOneH2h(int $nrOfPlaces): int
     {
         $q1 = (new SportMath())->above($nrOfPlaces, $this->getNrOfGamePlaces());
         $q2 = $this->getNrOfHomeAwayFormations();

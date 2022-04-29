@@ -37,4 +37,14 @@ class Balanced extends PouleStructure
         }
         return $idx + 1;
     }
+
+    public function removePoule2(): self
+    {
+        if (count($this->poules) <= 1) {
+            throw new Exception('not enough poules', E_ERROR);
+        }
+        $poules = $this->poules;
+        array_pop($poules);
+        return new self(...$poules);
+    }
 }

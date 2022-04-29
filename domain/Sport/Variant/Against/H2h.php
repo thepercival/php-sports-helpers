@@ -21,7 +21,7 @@ class H2h extends Against implements \Stringable
 
     public function getTotalNrOfGamePlaces(int $nrOfPlaces): int
     {
-        return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces() * $this->getNrOfH2H();
+        return $this->getNrOfGamesOneH2h($nrOfPlaces) * $this->getNrOfGamePlaces() * $this->getNrOfH2H();
     }
 
     public function getNrOfH2H(): int
@@ -31,52 +31,14 @@ class H2h extends Against implements \Stringable
 
     public function getTotalNrOfGames(int $nrOfPlaces): int
     {
-        $totalNrOfGamePlaces = $nrOfPlaces * $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) * $this->getNrOfH2H();
+        $totalNrOfGamePlaces = $nrOfPlaces * $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * $this->getNrOfH2H();
         return (int)ceil($totalNrOfGamePlaces / $this->getNrOfGamePlaces());
     }
 
-//
-//    protected function getNrOfPlacesOneGameRound(int $nrOfPlaces): int
-//    {
-//        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
-//    }
-//
-//    public function getNrOfGamesOneGameRound(int $nrOfPlaces): int
-//    {
-//        $nrOfPlacesPerGameRound = $this->getNrOfPlacesOneGameRound($nrOfPlaces);
-//        return (int)($nrOfPlacesPerGameRound / $this->getNrOfGamePlaces());
-//    }
-//
-
     public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
     {
-        return $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) * $this->getNrOfH2H();
+        return $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * $this->getNrOfH2H();
     }
-//
-////    public function getNrOfGamesOneSerie(int $nrOfPlaces): int
-////    {
-////        return $this->getNrOfGamesOneH2H($nrOfPlaces) * 2;
-////    }
-//
-
-
-//
-//    public function withAgainstMustBeEquallyAssigned(int $nrOfPlaces): bool
-//    {
-//        return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2H($nrOfPlaces) === 0;
-//    }
-//
-
-//
-//
-//    public function getNrOfGameRounds(int $nrOfPlaces): int
-//    {
-//        $nrOfGames = $this->getTotalNrOfGames($nrOfPlaces);
-//        $nrOfGamesPerGameRound = (int)floor($nrOfPlaces / $this->getNrOfGamePlaces());
-//        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
-//    }
-//
-//
 
     public function toPersistVariant(): PersistVariant
     {
@@ -90,18 +52,13 @@ class H2h extends Against implements \Stringable
         );
     }
 
-////    protected function getNrOfPlacesPerGameRound(int $nrOfPlaces): int
-////    {
-////        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
-////    }
-
     public function __toString()
     {
         return parent::__toString() . $this->getNrOfH2H() . ':0';
     }
 
-    private function getNrOfGamePlacesOneH2H(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesOneH2H($nrOfPlaces) * $this->getNrOfGamePlaces();
-    }
+//    private function getNrOfGamePlacesOneH2h(int $nrOfPlaces): int
+//    {
+//        return $this->getNrOfGamesOneH2h($nrOfPlaces) * $this->getNrOfGamePlaces();
+//    }
 }
