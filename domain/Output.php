@@ -62,12 +62,7 @@ abstract class Output
                 return Color::Magenta;
             case 6:
                 return Color::Cyan;
-            case 7:
-            case 8:
-            case 9:
-            case 0:
-                return Color::White;
         }
-        throw new \Exception('number must be 0-9', E_ERROR);
+        return Color::White;
     }
 }
