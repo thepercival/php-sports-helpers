@@ -46,4 +46,28 @@ abstract class Output
         }
         $this->logger->info(Color::getColored($color, $str));
     }
+
+    public function convertNumberToColor(int $number): Color
+    {
+        switch ($number) {
+            case 1:
+                return Color::Red;
+            case 2:
+                return Color::Green;
+            case 3:
+                return Color::Yellow;
+            case 4:
+                return Color::Blue;
+            case 5:
+                return Color::Magenta;
+            case 6:
+                return Color::Cyan;
+            case 7:
+            case 8:
+            case 9:
+            case 0:
+                return Color::White;
+        }
+        throw new \Exception('number must be 0-9', E_ERROR);
+    }
 }
