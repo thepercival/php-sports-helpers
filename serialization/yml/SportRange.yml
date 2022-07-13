@@ -1,0 +1,8 @@
+SportsHelpers\SportRange:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    min:
+      type: integer
+    max:
+      type: integer
