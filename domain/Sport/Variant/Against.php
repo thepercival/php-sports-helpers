@@ -79,6 +79,17 @@ abstract class Against extends Base implements Variant
         return $q1 * $q2;
     }
 
+    /**
+     * 2 gameplaces => 1 : 1 vs 2
+     * 3 gameplaces => 2 : 1 vs 3 & 2 vs 3
+     * 4 gameplaces => 4 : 1 vs 3, 1 vs 4, 2 vs 3 & 2 vs 4
+     * 6 gameplaces => 9 :  1 vs 4, 1 vs 5, 1 vs 6, 2 vs 4, 2 vs 5, 2 vs 6, 3 vs 4, 3 vs 5 & 3 vs 6
+     *
+     * @return int
+     */
+    public function getNrOfHomeAwayCombinations(): int {
+        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
+    }
 
     /**
      * 2 gameplaces => 1 : 1 vs 2
