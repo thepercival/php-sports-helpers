@@ -90,6 +90,11 @@ class VariantWithPoule
         return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
     }
 
+    public function allPlacesPlaySameNrOfGames(): bool {
+        return !($this->sportVariant instanceof AgainstGpp)
+            || $this->sportVariant->allPlacesPlaySameNrOfGames($this->getNrOfPlaces());
+    }
+
     // SINGLE
 //    public function getTotalNrOfGames(int $nrOfPlaces): int
 //    {
