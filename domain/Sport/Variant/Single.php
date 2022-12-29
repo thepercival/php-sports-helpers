@@ -62,4 +62,6 @@ class Single extends Base implements Variant
     {
         return 'single(' . $this->getNrOfGamePlaces() . ') gpp=>' . $this->getNrOfGamesPerPlace();
     }
+
+
 }

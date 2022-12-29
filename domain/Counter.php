@@ -21,10 +21,12 @@ class Counter implements \Countable
         $this->count = 0;
     }
 
-    public function decrement(): int
+    /**
+     * @return self<T>
+     */
+    public function decrement2(): self
     {
-        $this->count--;
-        return $this->count;
+        return new self($this->countedObject, $this->count - 1 );
     }
 
     public function increment(): int

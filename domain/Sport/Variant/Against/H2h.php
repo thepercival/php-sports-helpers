@@ -19,25 +19,9 @@ class H2h extends Against implements \Stringable
         parent::__construct($nrOfHomePlaces, $nrOfAwayPlaces);
     }
 
-    public function getTotalNrOfGamePlaces(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesOneH2h($nrOfPlaces) * $this->getNrOfGamePlaces() * $this->getNrOfH2H();
-    }
-
     public function getNrOfH2H(): int
     {
         return $this->nrOfH2H;
-    }
-
-    public function getTotalNrOfGames(int $nrOfPlaces): int
-    {
-        $totalNrOfGamePlaces = $nrOfPlaces * $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * $this->getNrOfH2H();
-        return (int)ceil($totalNrOfGamePlaces / $this->getNrOfGamePlaces());
-    }
-
-    public function getTotalNrOfGamesPerPlace(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * $this->getNrOfH2H();
     }
 
     public function toPersistVariant(): PersistVariant
@@ -52,7 +36,7 @@ class H2h extends Against implements \Stringable
         );
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return parent::__toString() . $this->getNrOfH2H() . ':0';
     }

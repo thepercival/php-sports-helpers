@@ -6,6 +6,8 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sport\GamePlaceCalculator;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
+use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
+use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 
 final class GamePlaceCalculatorTest extends TestCase
 {
@@ -31,18 +33,20 @@ final class GamePlaceCalculatorTest extends TestCase
         $nrOfPlaces = 5;
         $totalNrOfGames = 0;
 
-        $sport1 = new AgainstH2hSportVariant(1, 1, 1);
-        $totalNrOfGames += $sport1->getTotalNrOfGamesPerPlace($nrOfPlaces);
+        $sportVariant1 = new AgainstH2hSportVariant(1, 1, 1);
+        $againstWithPoule1 = new AgainstH2hWithPoule($nrOfPlaces, $sportVariant1);
 
-        $sport2 = new AgainstGppSportVariant(1, 2, 1);
-        $totalNrOfGames += $sport2->getNrOfGamesPerPlace();
+        $totalNrOfGames += $againstWithPoule1->getTotalNrOfGamesPerPlace();
+
+        $sportVariant2 = new AgainstGppSportVariant(1, 2, 1);
+        $againstWithPoule2 = new AgainstGppWithPoule($nrOfPlaces, $sportVariant2);
+        $totalNrOfGames += $sportVariant2->getNrOfGamesPerPlace();
 
         $calculator = new GamePlaceCalculator();
         self::assertSame(
             $totalNrOfGames,
             $calculator->getMaxNrOfGamesPerPlace(
-                $nrOfPlaces,
-                [$sport1, $sport2]
+                [$againstWithPoule1, $againstWithPoule2]
             )
         );
     }

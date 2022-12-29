@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant\Against;
 
+use SportsHelpers\Against\Side;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
@@ -17,14 +18,6 @@ class GamesPerPlace extends Against implements \Stringable
     public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfGamesPerPlace)
     {
         parent::__construct($nrOfHomePlaces, $nrOfAwayPlaces);
-    }
-
-    public function equalNrOfHomePlaces(int $nrOfPlaces): bool
-    {
-        if ($this->getNrOfHomePlaces() !== $this->getNrOfAwayPlaces()) {
-            return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) === 0;
-        }
-        return $this->getNrOfGamesPerPlace() % $this->getNrOfGamesPerPlaceOneSerie($nrOfPlaces) === 0;
     }
 
     ////    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
@@ -86,12 +79,6 @@ class GamesPerPlace extends Against implements \Stringable
 //        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
 //    }
 
-    public function allPlacesPlaySameNrOfGames(int $nrOfPlaces): bool
-    {
-        $totalNrOfGamePlaces = $this->getNrOfGamesPerPlace() * $nrOfPlaces;
-        return ($totalNrOfGamePlaces % $this->getNrOfGamePlaces()) === 0;
-    }
-
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(
@@ -104,7 +91,37 @@ class GamesPerPlace extends Against implements \Stringable
         );
     }
 
-    public function __toString()
+    /**
+     * 2 gameplaces => 1 : 1 vs 2
+     * 3 gameplaces => 2 : 1 vs 3 & 2 vs 3
+     * 4 gameplaces => 4 : 1 vs 3, 1 vs 4, 2 vs 3 & 2 vs 4
+     * 6 gameplaces => 9 :  1 vs 4, 1 vs 5, 1 vs 6, 2 vs 4, 2 vs 5, 2 vs 6, 3 vs 4, 3 vs 5 & 3 vs 6
+     *
+     * @return int
+     */
+    public function getNrOfAgainstCombinationsPerGame(Side|null $side = null): int {
+        if( $side === Side::Home) {
+            return $this->getNrOfAwayPlaces();
+        } else if( $side === Side::Away) {
+            return $this->getNrOfHomePlaces();
+        }
+        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
+
+    }
+
+    public function getNrOfWithCombinationsPerGame(Side|null $side = null): int {
+        return $side !== null ? 1 : 2;
+//        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
+//        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
+//        if( $side === Side::Home) {
+//            return $nrOfHomeWithCombinations;
+//        } else if( $side === Side::Away) {
+//            return $nrOfAwayWithCombinations;
+//        }
+//        return $nrOfHomeWithCombinations + $nrOfAwayWithCombinations;
+    }
+
+    public function __toString(): string
     {
         return parent::__toString() . '0:' . $this->getNrOfGamesPerPlace();
     }

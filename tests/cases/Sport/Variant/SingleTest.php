@@ -7,7 +7,7 @@ namespace SportsHelpers\Tests\Sport\Variant;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
-use SportsHelpers\Sport\VariantWithPoule;
+use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
 
 class SingleTest extends TestCase
 {
@@ -22,9 +22,9 @@ class SingleTest extends TestCase
     public function testTotalNrOfGames(): void
     {
         $sportVariant = new SingleSportVariant(3, 2);
-        $variantWithPoule = new VariantWithPoule($sportVariant, 9);
+        $variantWithPoule = new SingleWithPoule(9, $sportVariant);
         self::assertSame(6, $variantWithPoule->getTotalNrOfGames());
-        $variantWithPoule = new VariantWithPoule($sportVariant, 10);
+        $variantWithPoule = new SingleWithPoule(10, $sportVariant);
         self::assertSame(7, $variantWithPoule->getTotalNrOfGames());
     }
 

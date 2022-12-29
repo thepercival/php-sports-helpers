@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
-use SportsHelpers\Sport\Variant as SportVariant;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\Variant\AllInOneGame;
-use SportsHelpers\Sport\Variant\Single;
+use SportsHelpers\Sport\Variant\WithPoule\AllInOneGame as AllInOneGameWithPoule;
+use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
+use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
+use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
 
 class GamePlaceCalculator
 {
@@ -39,16 +38,18 @@ class GamePlaceCalculator
     }
 
     /**
-     * @param int $nrOfPlaces
-     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
+     * @param list<AllInOneGameWithPoule|SingleWithPoule|AgainstH2hWithPoule|AgainstGppWithPoule> $sportVariantsWithPoule
      * @return int
      */
-    public function getMaxNrOfGamesPerPlace(int $nrOfPlaces, array $sportVariants): int
+    public function getMaxNrOfGamesPerPlace(array $sportVariantsWithPoule): int
     {
         $nrOfGamesPerPlace = 0;
-        foreach ($sportVariants as $sportVariant) {
-            $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
-            $nrOfGamesPerPlace += $sportVariantWithPoule->getTotalNrOfGamesPerPlace();
+        foreach ($sportVariantsWithPoule as $sportVariantWithPoule) {
+            if( $sportVariantWithPoule instanceof AgainstGppWithPoule ) {
+                $nrOfGamesPerPlace += $sportVariantWithPoule->getMaxNrOfGamesPerPlace();
+            } else {
+                $nrOfGamesPerPlace += $sportVariantWithPoule->getTotalNrOfGamesPerPlace();
+            }
         }
         return $nrOfGamesPerPlace;
     }

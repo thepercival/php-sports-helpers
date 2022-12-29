@@ -4,13 +4,11 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\Sport\Variant as SportVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\AllInOneGame;
 use SportsHelpers\Sport\Variant\Single;
-use SportsHelpers\Sport\VariantWithFields;
-use SportsHelpers\Sport\VariantWithPoule;
+use SportsHelpers\Sport\Variant\Creator as VariantCreator;
 use Stringable;
 
 class PouleStructure implements Stringable
@@ -92,8 +90,7 @@ class PouleStructure implements Stringable
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
             foreach ($sportVariants as $sportVariant) {
-                $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
-                $nrOfGames += $sportVariantWithPoule->getTotalNrOfGames();
+                $nrOfGames += (new VariantCreator())->createWithPoule($nrOfPlaces, $sportVariant)->getTotalNrOfGames();
             }
         }
         return $nrOfGames;
@@ -127,7 +124,7 @@ class PouleStructure implements Stringable
     {
         foreach ($this->poules as $nrOfPlaces) {
             foreach ($sportVariants as $sportVariant) {
-                $sportVariantWithPoule = new VariantWithPoule($sportVariant, $nrOfPlaces);
+                $sportVariantWithPoule = (new VariantCreator())->createWithPoule($nrOfPlaces, $sportVariant);
                 if ($sportVariantWithPoule->canAllPlacesPlaySimultaneously()) {
                     return false;
                 };
@@ -135,6 +132,8 @@ class PouleStructure implements Stringable
         }
         return true;
     }
+
+
 
 //    /**
 //     * @param array|SportConfig[] $sportConfigs

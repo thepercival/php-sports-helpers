@@ -12,6 +12,14 @@ use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
 
 class PouleStructureTest extends TestCase
 {
+
+    public function testConstructor(): void
+    {
+        self::expectException(\Exception::class);
+        new PouleStructure();
+    }
+
+
     public function testNrOfPoules(): void
     {
         $pouleStructure = new PouleStructure(3, 2);

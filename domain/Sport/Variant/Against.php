@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport\Variant;
 
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
 use SportsHelpers\SportMath;
 
@@ -45,50 +44,10 @@ abstract class Against extends Base implements Variant
         return $this->getNrOfGamePlaces() > 2;
     }
 
-    public function canAllPlacesPlaySimultaneously(int $nrOfPlaces): bool
-    {
-        return $nrOfPlaces === $this->getMaxNrOfGamePlacesSimultaneously($nrOfPlaces);
-    }
-
-    protected function getMaxNrOfGamePlacesSimultaneously(int $nrOfPlaces): int
-    {
-        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
-    }
-
-    public function getNrOfGamesPerPlaceOneSerie(int $nrOfPlaces): int
-    {
-        return $this->getNrOfGamesPerPlaceOneH2h($nrOfPlaces) * 2;
-    }
-
-    // 1vs1: 2=>1, 3=>2, 4=>3, 5=>4
-    // 1vs2: 3=>3, 4=>9(12-3), 5=>21(30-9)
-    public function getNrOfGamesPerPlaceOneH2h(int $nrOfPlaces): int
-    {
-//        if (!$this->isMixed()) {
-//            return $nrOfPlaces - 1;
-//        }
-        $nrOfGamesOneH2H = $this->getNrOfGamesOneH2h($nrOfPlaces);
-        $nrOfGamesOneH2HOneLess = $this->getNrOfGamesOneH2h($nrOfPlaces - 1);
-        return $nrOfGamesOneH2H - $nrOfGamesOneH2HOneLess;
-    }
-
     public function getNrOfGamesOneH2h(int $nrOfPlaces): int
     {
-        $q1 = (new SportMath())->above($nrOfPlaces, $this->getNrOfGamePlaces());
-        $q2 = $this->getNrOfHomeAwayFormations();
-        return $q1 * $q2;
-    }
-
-    /**
-     * 2 gameplaces => 1 : 1 vs 2
-     * 3 gameplaces => 2 : 1 vs 3 & 2 vs 3
-     * 4 gameplaces => 4 : 1 vs 3, 1 vs 4, 2 vs 3 & 2 vs 4
-     * 6 gameplaces => 9 :  1 vs 4, 1 vs 5, 1 vs 6, 2 vs 4, 2 vs 5, 2 vs 6, 3 vs 4, 3 vs 5 & 3 vs 6
-     *
-     * @return int
-     */
-    public function getNrOfHomeAwayCombinations(): int {
-        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
+        $nrOfCombinations = (new SportMath())->above($nrOfPlaces, $this->getNrOfGamePlaces());
+        return (int)($nrOfCombinations * $this->getNrOfHomeAwayCombinations());
     }
 
     /**
@@ -98,7 +57,7 @@ abstract class Against extends Base implements Variant
      *
      * @return int
      */
-    protected function getNrOfHomeAwayFormations(): int
+    public function getNrOfHomeAwayCombinations(): int
     {
         if ($this->getNrOfHomePlaces() !== $this->getNrOfAwayPlaces()) {
             return (new SportMath())->above($this->getNrOfGamePlaces(), $this->getNrOfHomePlaces())
