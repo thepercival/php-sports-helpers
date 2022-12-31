@@ -85,6 +85,24 @@ class GamesPerPlaceTest extends TestCase
         $sportVariant = new AgainstSportGppVariant(2, 2, 6);
         $againstWithPoule = new AgainstGppWithPoule(6, $sportVariant);
         self::assertFalse($againstWithPoule->allAgainstSameNrOfGamesAssignable());
+
+        {
+            $sportVariant = new AgainstSportGppVariant(2, 2, 6);
+            $againstWithPoule = new AgainstGppWithPoule(4, $sportVariant);
+            self::assertTrue($againstWithPoule->allAgainstSameNrOfGamesAssignable());
+
+            $sportVariant = new AgainstSportGppVariant(2, 2, 8);
+            $againstWithPoule = new AgainstGppWithPoule(4, $sportVariant);
+            self::assertFalse($againstWithPoule->allAgainstSameNrOfGamesAssignable());
+
+            $sportVariant = new AgainstSportGppVariant(2, 2, 10);
+            $againstWithPoule = new AgainstGppWithPoule(4, $sportVariant);
+            self::assertFalse($againstWithPoule->allAgainstSameNrOfGamesAssignable());
+
+            $sportVariant = new AgainstSportGppVariant(2, 2, 24);
+            $againstWithPoule = new AgainstGppWithPoule(4, $sportVariant);
+            self::assertTrue($againstWithPoule->allAgainstSameNrOfGamesAssignable());
+        }
     }
 
     public function testAllWithSameNrOfGamesAssignable(): void
@@ -99,21 +117,21 @@ class GamesPerPlaceTest extends TestCase
 
         $sportVariant = new AgainstSportGppVariant(1, 2, 3);
         $variantWithPoule = new AgainstGppWithPoule(3, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(4, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(5, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(6, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(7, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
 
         $sportVariant = new AgainstSportGppVariant(1, 2, 9);
         $variantWithPoule = new AgainstGppWithPoule(3, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(4, $sportVariant);
-        self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
         $variantWithPoule = new AgainstGppWithPoule(5, $sportVariant);
         self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable(Side::Home));
 
