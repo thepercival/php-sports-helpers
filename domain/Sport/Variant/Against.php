@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
 
+use SportsHelpers\Against\Side;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant;
 use SportsHelpers\SportMath;
@@ -32,6 +33,11 @@ abstract class Against extends Base implements Variant
     public function getNrOfAwayPlaces(): int
     {
         return $this->nrOfAwayPlaces;
+    }
+
+    public function getNrOfSidePlaces(Side $side): int
+    {
+        return $side === Side::Home ? $this->nrOfHomePlaces : $this->nrOfAwayPlaces;
     }
 
     public function getNrOfGamePlaces(): int

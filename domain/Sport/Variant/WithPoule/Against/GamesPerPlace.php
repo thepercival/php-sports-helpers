@@ -33,9 +33,32 @@ class GamesPerPlace extends AgainstWithPoule
         return $totalNrOfGamePlaces % $this->sportVariant->getNrOfGamePlaces();
     }
 
+    public function getNrOfAgainstDeficit(): int
+    {
+        $nrOfCombinations = $this->sportVariant->getNrOfAgainstCombinationsPerGame() * $this->getTotalNrOfGames();
+        return (new EquallyAssignCalculator())->getNrOfDeficit(
+            $nrOfCombinations,
+            $this->getNrOfPossibleAgainstCombinations(),
+        );
+    }
+
+    public function getNrOfWithDeficit(): int
+    {
+        $nrOfCombinations = $this->sportVariant->getNrOfWithCombinationsPerGame() * $this->getTotalNrOfGames();
+        return (new EquallyAssignCalculator())->getNrOfDeficit(
+            $nrOfCombinations,
+            $this->getNrOfPossibleWithCombinations()
+        );
+    }
+
     public function getTotalNrOfGamePlaces(): int
     {
         return $this->getTotalNrOfGames() * $this->sportVariant->getNrOfGamePlaces();
+    }
+
+    public function getTotalNrOfSidePlaces(Side $side): int
+    {
+        return $this->getTotalNrOfGames() * $this->sportVariant->getNrOfSidePlaces($side);
     }
 
 //    public function getTotalNrOfGamesPerPlace(): int
@@ -53,23 +76,40 @@ class GamesPerPlace extends AgainstWithPoule
         return ($this->getTotalNrOfGamePlaces() % $this->nrOfPlaces) === 0;
     }
 
-    public function getNrOfPossibleAgainstCombinations(): int
+    public function allPlacesSameNrOfOfSidePlacesAssignable(Side $side): bool
     {
-        return (new SportMath())->above($this->nrOfPlaces, 2);
+        return ($this->getTotalNrOfSidePlaces($side) % $this->nrOfPlaces) === 0;
+    }
+
+    public function getNrOfPossibleAgainstCombinations(int|null $nrOfPlaces = null): int
+    {
+        if( $nrOfPlaces === null ) {
+            $nrOfPlaces = $this->nrOfPlaces;
+        }
+        return (new SportMath())->above($nrOfPlaces, 2);
     }
 
     public function getNrOfPossibleWithCombinations(Side|null $side = null): int
     {
         $combinations = 0;
-        if( $side === null || $side === Side::Home) {
-            $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfHomePlaces());
+        if( $this->sportVariant->getNrOfHomePlaces() > 1 ) {
+            if( $side === null || $side === Side::Home) {
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfHomePlaces());
+            }
         }
-        if( $side === null && $this->sportVariant->getNrOfAwayPlaces() !== $this->sportVariant->getNrOfHomePlaces() ) {
-            $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfAwayPlaces());
-        } else if( $side === Side::Away ) {
-            $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfAwayPlaces());
+
+        if( $this->sportVariant->getNrOfAwayPlaces() > 1 ) {
+            if( $side === Side::Away || ($side === null && $combinations === 0)) {
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfAwayPlaces());
+            }
         }
+
         return $combinations;
+    }
+
+    public function allAgainstSameNrOfGamesAssignable(): bool
+    {
+        return $this->getNrOfAgainstDeficit() === 0;
     }
 
     public function allWithSameNrOfGamesAssignable(Side|null $side = null): bool
@@ -81,14 +121,7 @@ class GamesPerPlace extends AgainstWithPoule
         );
     }
 
-    public function allAgainstSameNrOfGamesAssignable(): bool
-    {
-        return (new EquallyAssignCalculator())->assignEqually(
-            $this->getTotalNrOfGames(),
-            $this->getNrOfPossibleAgainstCombinations(),
-            $this->sportVariant->getNrOfAgainstCombinationsPerGame()
-        );
-    }
+
 
     public function getMinNrOfGamesPerPlace(): int {
         return $this->sportVariant->getNrOfGamesPerPlace() - ($this->getDeficit() ? 1 : 0);

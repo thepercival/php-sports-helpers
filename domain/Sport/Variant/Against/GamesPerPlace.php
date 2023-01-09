@@ -110,15 +110,14 @@ class GamesPerPlace extends Against implements \Stringable
     }
 
     public function getNrOfWithCombinationsPerGame(Side|null $side = null): int {
-        return $side !== null ? 1 : 2;
-//        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
-//        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
-//        if( $side === Side::Home) {
-//            return $nrOfHomeWithCombinations;
-//        } else if( $side === Side::Away) {
-//            return $nrOfAwayWithCombinations;
-//        }
-//        return $nrOfHomeWithCombinations + $nrOfAwayWithCombinations;
+        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
+        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
+        if( $side === Side::Home) {
+            return $nrOfHomeWithCombinations;
+        } else if( $side === Side::Away) {
+            return $nrOfAwayWithCombinations;
+        }
+        return $nrOfHomeWithCombinations + $nrOfAwayWithCombinations;
     }
 
     public function __toString(): string

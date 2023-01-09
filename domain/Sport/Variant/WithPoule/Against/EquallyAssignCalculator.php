@@ -2,10 +2,8 @@
 
 namespace SportsHelpers\Sport\Variant\WithPoule\Against;
 
-use SportsHelpers\Against\Side;
 use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\SportMath;
 
 
 class EquallyAssignCalculator
@@ -78,7 +76,25 @@ class EquallyAssignCalculator
     ): bool
     {
         $nrOfCombinations = $nrOfCombinationsPerGame * $totalNrOfGames;
-        return ($nrOfCombinations % $nrOfPossibleCombinations) === 0;
+        return $this->getNrOfDeficit($nrOfCombinations, $nrOfPossibleCombinations) === 0;
+    }
+
+    public function getNrOfDeficit(
+        int $nrOfCombinations,
+        int $nrOfPossibleCombinations ): int
+    {
+        if( $nrOfPossibleCombinations === 0) {
+            return 0;
+        }
+        $rest = $nrOfCombinations % $nrOfPossibleCombinations;
+        return $rest === 0 ? 0 : $nrOfPossibleCombinations - $rest;
+    }
+
+    public function getMaxAmount(
+        int $nrOfCombinations,
+        int $nrOfPossibleCombinations ): int
+    {
+        return (int)ceil( $nrOfCombinations / $nrOfPossibleCombinations );;
     }
 
     /**
