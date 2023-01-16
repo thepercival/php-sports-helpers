@@ -138,9 +138,9 @@ class GamesPerPlaceTest extends TestCase
         $variantWithPoule = new AgainstGppWithPoule(3, $sportVariant);
         self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable());
         $variantWithPoule = new AgainstGppWithPoule(4, $sportVariant);
-        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable());
-        $variantWithPoule = new AgainstGppWithPoule(5, $sportVariant);
         self::assertFalse($variantWithPoule->allWithSameNrOfGamesAssignable());
+        $variantWithPoule = new AgainstGppWithPoule(5, $sportVariant);
+        self::assertTrue($variantWithPoule->allWithSameNrOfGamesAssignable());
 
         {
             $sportVariant = new AgainstSportGppVariant(2, 2, 2);

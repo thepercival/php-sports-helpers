@@ -9,6 +9,7 @@ use SportsHelpers\SelfReferee;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
+use SportsHelpers\SportMath;
 
 /**
  * @template-extends SportVariantWithPoule<AgainstGpp|AgainstH2h>
@@ -46,6 +47,24 @@ abstract class Against extends SportVariantWithPoule
         return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
     }
 
+    public function getNrOfPossibleWithCombinations(Side|null $side = null): int
+    {
+        $combinations = 0;
+        // if( $this->againstVariant->getNrOfHomePlaces() > 1 ) {
+            if( $side === null || $side === Side::Home) {
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->getNrOfHomePlaces());
+            }
+        // }
+
+        // if( $this->againstVariant->getNrOfAwayPlaces() > 1 ) {
+            if( $side === Side::Away || ($side === null
+                    && $this->againstVariant->getNrOfHomePlaces() !== $this->againstVariant->getNrOfAwayPlaces())) {
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->getNrOfAwayPlaces());
+            }
+        // }
+
+        return $combinations;
+    }
 
 //
 //    protected function getMaxNrOfGamePlacesSimultaneously(int $nrOfPlaces): int

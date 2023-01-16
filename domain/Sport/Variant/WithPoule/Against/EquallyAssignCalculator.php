@@ -94,7 +94,7 @@ class EquallyAssignCalculator
         int $nrOfCombinations,
         int $nrOfPossibleCombinations ): int
     {
-        return (int)ceil( $nrOfCombinations / $nrOfPossibleCombinations );;
+        return (int)ceil( $nrOfCombinations / $nrOfPossibleCombinations );
     }
 
     /**

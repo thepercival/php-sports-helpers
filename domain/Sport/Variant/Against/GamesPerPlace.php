@@ -91,35 +91,6 @@ class GamesPerPlace extends Against implements \Stringable
         );
     }
 
-    /**
-     * 2 gameplaces => 1 : 1 vs 2
-     * 3 gameplaces => 2 : 1 vs 3 & 2 vs 3
-     * 4 gameplaces => 4 : 1 vs 3, 1 vs 4, 2 vs 3 & 2 vs 4
-     * 6 gameplaces => 9 :  1 vs 4, 1 vs 5, 1 vs 6, 2 vs 4, 2 vs 5, 2 vs 6, 3 vs 4, 3 vs 5 & 3 vs 6
-     *
-     * @return int
-     */
-    public function getNrOfAgainstCombinationsPerGame(Side|null $side = null): int {
-        if( $side === Side::Home) {
-            return $this->getNrOfAwayPlaces();
-        } else if( $side === Side::Away) {
-            return $this->getNrOfHomePlaces();
-        }
-        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
-
-    }
-
-    public function getNrOfWithCombinationsPerGame(Side|null $side = null): int {
-        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
-        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
-        if( $side === Side::Home) {
-            return $nrOfHomeWithCombinations;
-        } else if( $side === Side::Away) {
-            return $nrOfAwayWithCombinations;
-        }
-        return $nrOfHomeWithCombinations + $nrOfAwayWithCombinations;
-    }
-
     public function __toString(): string
     {
         return parent::__toString() . '0:' . $this->getNrOfGamesPerPlace();

@@ -89,24 +89,6 @@ class GamesPerPlace extends AgainstWithPoule
         return (new SportMath())->above($nrOfPlaces, 2);
     }
 
-    public function getNrOfPossibleWithCombinations(Side|null $side = null): int
-    {
-        $combinations = 0;
-        if( $this->sportVariant->getNrOfHomePlaces() > 1 ) {
-            if( $side === null || $side === Side::Home) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfHomePlaces());
-            }
-        }
-
-        if( $this->sportVariant->getNrOfAwayPlaces() > 1 ) {
-            if( $side === Side::Away || ($side === null && $combinations === 0)) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->sportVariant->getNrOfAwayPlaces());
-            }
-        }
-
-        return $combinations;
-    }
-
     public function allAgainstSameNrOfGamesAssignable(): bool
     {
         return $this->getNrOfAgainstDeficit() === 0;

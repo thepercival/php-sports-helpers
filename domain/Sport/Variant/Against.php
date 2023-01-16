@@ -58,6 +58,35 @@ abstract class Against extends Base implements Variant
 
     /**
      * 2 gameplaces => 1 : 1 vs 2
+     * 3 gameplaces => 2 : 1 vs 3 & 2 vs 3
+     * 4 gameplaces => 4 : 1 vs 3, 1 vs 4, 2 vs 3 & 2 vs 4
+     * 6 gameplaces => 9 :  1 vs 4, 1 vs 5, 1 vs 6, 2 vs 4, 2 vs 5, 2 vs 6, 3 vs 4, 3 vs 5 & 3 vs 6
+     *
+     * @return int
+     */
+    public function getNrOfAgainstCombinationsPerGame(Side|null $side = null): int {
+        if( $side === Side::Home) {
+            return $this->getNrOfAwayPlaces();
+        } else if( $side === Side::Away) {
+            return $this->getNrOfHomePlaces();
+        }
+        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
+
+    }
+
+    public function getNrOfWithCombinationsPerGame(Side|null $side = null): int {
+//        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
+//        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
+        if( $side === Side::Home) {
+            return 1;
+        } else if( $side === Side::Away) {
+            return 1;
+        }
+        return 2;
+    }
+
+    /**
+     * 2 gameplaces => 1 : 1 vs 2
      * 4 gameplaces => 3 : 1 2 vs 3 4, 1 3 vs 2 4, 1 4 vs 2 3
      * 6 gameplaces => 10 :  1 2 3 vs 4 5 6, 1 2 4 vs 3 5 6, 1 2 5 vs 3 5 6 ..
      *
