@@ -6,6 +6,7 @@ namespace SportsHelpers\Sport\Variant\WithPoule;
 
 use SportsHelpers\Against\Side;
 use SportsHelpers\SelfReferee;
+use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
@@ -38,12 +39,15 @@ abstract class Against extends SportVariantWithPoule
         return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
     }
 
-    public function getMaxNrOfGamesSimultaneously(SelfReferee $selfReferee): int {
+    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
         $nrOfGamePlaces = $this->againstVariant->getNrOfGamePlaces();
-        if ($selfReferee === SelfReferee::SamePoule) {
-            $nrOfGamePlaces++;
+        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && !$selfRefereeInfo->multipleSimSelfRefs) {
+            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
+        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->multipleSimSelfRefs) {
+            $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
+        } else {
+            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
         }
-        $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
         return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
     }
 

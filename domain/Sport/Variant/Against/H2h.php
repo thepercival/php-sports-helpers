@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant\Against;
 
-use SportsHelpers\GameMode;
 use SportsHelpers\Sport\PersistVariant;
-use SportsHelpers\Sport\Variant;
 use SportsHelpers\Sport\Variant\Against;
-use SportsHelpers\SportMath;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)

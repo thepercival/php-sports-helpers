@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace SportsHelpers\Tests\Sport\Variant\WithPoule\Against;
 
 use PHPUnit\Framework\TestCase;
+use SportsHelpers\SelfReferee;
+use SportsHelpers\SelfRefereeInfo;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstSportH2hVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
 
@@ -51,5 +54,16 @@ class H2hTest extends TestCase
         self::assertSame(3, $variantWithPoule->getTotalNrOfGamesPerPlace());
         $variantWithPoule = new AgainstH2hWithPoule(5, $sportVariant);
         self::assertSame(4, $variantWithPoule->getTotalNrOfGamesPerPlace());
+    }
+
+    public function testMaxNrOfGamesSimultaneously(): void
+    {
+        $withPoule = new AgainstH2hWithPoule(5, new AgainstH2h(1, 1 , 1));
+
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, true));
+        self::assertSame(2, $maxNrOfGamesSimultaneously);
+
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, false));
+        self::assertSame(1, $maxNrOfGamesSimultaneously);
     }
 }

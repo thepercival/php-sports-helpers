@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport\Variant\WithPoule;
 
 use SportsHelpers\SelfReferee;
+use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Single as SingleVariant;
 use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
 
@@ -14,7 +15,7 @@ use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
 class Single extends SportVariantWithPoule
 {
     public function __construct(int $nrOfPlaces, protected SingleVariant $sportVariant ) {
-        parent::__construct($nrOfPlaces, );
+        parent::__construct($nrOfPlaces );
     }
 
     public function getSportVariant(): SingleVariant {
@@ -67,12 +68,15 @@ class Single extends SportVariantWithPoule
         return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
     }
 
-    public function getMaxNrOfGamesSimultaneously(SelfReferee $selfReferee): int {
+    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
         $nrOfGamePlaces = $this->sportVariant->getNrOfGamePlaces();
-        if ($selfReferee === SelfReferee::SamePoule) {
-            $nrOfGamePlaces++;
+        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && !$selfRefereeInfo->multipleSimSelfRefs) {
+            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
+        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->multipleSimSelfRefs) {
+            $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
+        } else {
+            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
         }
-        $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
         return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
     }
 

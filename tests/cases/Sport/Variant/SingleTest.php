@@ -6,6 +6,8 @@ namespace SportsHelpers\Tests\Sport\Variant;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
+use SportsHelpers\SelfReferee;
+use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
 
@@ -56,5 +58,16 @@ class SingleTest extends TestCase
     {
         $sportVariant = new SingleSportVariant(3, 2);
         self::assertGreaterThan(0, strlen((string)$sportVariant));
+    }
+
+    public function testMaxNrOfGamesSimultaneously(): void
+    {
+        $withPoule = new SingleWithPoule(5, new SingleSportVariant(2, 4));
+
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, true));
+        self::assertSame(2, $maxNrOfGamesSimultaneously);
+
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, false));
+        self::assertSame(1, $maxNrOfGamesSimultaneously);
     }
 }
