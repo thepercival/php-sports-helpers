@@ -3,11 +3,6 @@ SportsHelpers\Sport\PersistVariant:
   exclude: false
   properties:
     gameMode:
-      type: int
-      access_type: public_method
-      accessor:
-        getter: getGameModeNative
-        setter: setGameModeNative
       groups: [ noReference ]
     nrOfHomePlaces:
       type: integer

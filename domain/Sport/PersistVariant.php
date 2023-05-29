@@ -22,12 +22,15 @@ class PersistVariant extends Identifiable
         protected int $nrOfGamesPerPlace
     ) {
     }
-
     public function getGameMode(): GameMode
     {
         return $this->gameMode;
     }
 
+    public function setGameMode(GameMode $gameMode): void
+    {
+        $this->gameMode = $gameMode;
+    }
     public function getNrOfHomePlaces(): int
     {
         return $this->nrOfHomePlaces;
@@ -66,15 +69,5 @@ class PersistVariant extends Identifiable
             return new AgainstH2h($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2H);
         }
         return new AgainstGpp($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfGamesPerPlace);
-    }
-
-    public function getGameModeNative(): int
-    {
-        return $this->gameMode->value;
-    }
-
-    public function setGameModeNative(int $gameMode): void
-    {
-        $this->gameMode = GameMode::from($gameMode);
     }
 }
