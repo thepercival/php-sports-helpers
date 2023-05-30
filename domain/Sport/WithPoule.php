@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport;
 
+use SportsHelpers\SelfRefereeInfo;
+
 /**
  * @template T
  */
@@ -26,4 +28,6 @@ abstract class WithPoule
     abstract public function getSportVariant(): mixed;
 
     abstract public function getTotalNrOfGames(): int;
+
+    abstract public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int;
 }

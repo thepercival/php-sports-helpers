@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport\Variant\WithPoule;
 
 use SportsHelpers\SelfReferee;
+use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameVariant;
 use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
 
@@ -66,7 +67,7 @@ class AllInOneGame extends SportVariantWithPoule
         return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
     }
 
-    public function getMaxNrOfGamesSimultaneously(SelfReferee $selfReferee): int {
+    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
         return 1;
     }
 
