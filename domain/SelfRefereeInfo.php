@@ -5,7 +5,7 @@ namespace SportsHelpers;
 class SelfRefereeInfo
 {
     public int $nrIfSimSelfRefs = 0;
-    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefs)
+    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefs = 0)
     {
         if ($selfReferee !== SelfReferee::Disabled) {
             if( $nrIfSimSelfRefs > 0 ) {
