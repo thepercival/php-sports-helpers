@@ -64,10 +64,12 @@ class SingleTest extends TestCase
     {
         $withPoule = new SingleWithPoule(5, new SingleSportVariant(2, 4));
 
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, true));
+        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
         self::assertSame(2, $maxNrOfGamesSimultaneously);
 
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously(new SelfRefereeInfo(SelfReferee::SamePoule, false));
+        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
+        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
         self::assertSame(1, $maxNrOfGamesSimultaneously);
     }
 }

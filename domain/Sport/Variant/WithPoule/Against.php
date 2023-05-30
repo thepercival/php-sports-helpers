@@ -41,9 +41,9 @@ abstract class Against extends SportVariantWithPoule
 
     public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
         $nrOfGamePlaces = $this->againstVariant->getNrOfGamePlaces();
-        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && !$selfRefereeInfo->multipleSimSelfRefs) {
+        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs === 1) {
             $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
-        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->multipleSimSelfRefs) {
+        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs > 1) {
             $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
         } else {
             $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);

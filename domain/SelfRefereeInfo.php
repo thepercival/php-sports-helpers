@@ -4,11 +4,11 @@ namespace SportsHelpers;
 
 class SelfRefereeInfo
 {
-    public bool $multipleSimSelfRefs = false;
-    public function __construct(public SelfReferee $selfReferee, bool $multipleSimSelfRefs = false)
+    public int $nrIfSimSelfRefs = 0;
+    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefs)
     {
-        if ($selfReferee !== SelfReferee::Disabled) {
-            $this->multipleSimSelfRefs = $multipleSimSelfRefs;
+        if ($selfReferee !== SelfReferee::Disabled && $nrIfSimSelfRefs > 0) {
+            $this->nrIfSimSelfRefs = $nrIfSimSelfRefs;
         }
     }
 }
