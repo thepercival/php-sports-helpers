@@ -6,6 +6,7 @@ namespace SportsHelpers;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
+use UnitEnum;
 
 abstract class EnumDbType extends Type
 {
@@ -16,7 +17,10 @@ abstract class EnumDbType extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        return $value?->value;
+        if( $value instanceof UnitEnum ) {
+            return $value->value;
+        }
+        return $value;
     }
 
     public function getName()
