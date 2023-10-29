@@ -90,40 +90,7 @@ class PouleStructureTest extends TestCase
         self::assertSame(5, $pouleStructure->getTotalNrOfGames([$sport]));
     }
 
-    public function testSelfRefereeBeAvailableSamePouleNo(): void
-    {
-        $sport = new AgainstGppSportVariant(2, 2, 3);
-        $pouleStructure = new PouleStructure(5, 4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
-    }
 
-    public function testSelfRefereeBeAvailableSamePouleYes(): void
-    {
-        $sport = new AgainstGppSportVariant(2, 2, 1);
-        $pouleStructure = new PouleStructure(5);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::SamePoule, [$sport]));
-    }
-
-    public function testSelfRefereeBeAvailableOtherPouleNo(): void
-    {
-        $sport = new AgainstGppSportVariant(2, 2, 1);
-        $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
-    }
-
-    public function testSelfRefereeBeAvailableOtherPouleYes(): void
-    {
-        $sport = new AgainstGppSportVariant(2, 2, 1);
-        $pouleStructure = new PouleStructure(4, 4);
-        self::assertTrue($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::OtherPoules, [$sport]));
-    }
-
-    public function testSelfRefereeBeAvailableDisabledNo(): void
-    {
-        $sport = new AgainstGppSportVariant(2, 2, 1);
-        $pouleStructure = new PouleStructure(4);
-        self::assertFalse($pouleStructure->isSelfRefereeBeAvailable(SelfReferee::Disabled, [$sport]));
-    }
 
     public function testToString(): void
     {

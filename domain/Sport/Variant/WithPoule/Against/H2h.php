@@ -32,8 +32,8 @@ class H2h extends AgainstWithPoule
         return (int)($this->getNrOfGamesPerPlaceOneH2h() * $this->sportVariant->getNrOfH2H());
     }
 
-    public function getNrOfGameGroups(): int
-    {
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
-    }
+//    public function getNrOfGameGroups(): int
+//    {
+//        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
+//    }
 }

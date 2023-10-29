@@ -87,7 +87,6 @@ class BalancedIterator implements Iterator
         }
         if ($this->current->getBiggestPoule() > $this->placesPerPouleRange->getMax()) {
             $this->nextNrOfPoules();
-            return;
         }
     }
 

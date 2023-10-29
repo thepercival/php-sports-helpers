@@ -37,38 +37,38 @@ class AllInOneGame extends SportVariantWithPoule
         return $this->sportVariant->getNrOfGamesPerPlace();
     }
 
-    public function canAllPlacesPlaySimultaneously(): bool
-    {
-        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
-    }
-
-    protected function getNrOfGamePlacesSimultaneously(): int
-    {
-        return $this->nrOfPlaces;
-    }
-
-    public function getNrOfGamePlaces(): int
-    {
-        return $this->nrOfPlaces;
-    }
+//    public function canAllPlacesPlaySimultaneously(): bool
+//    {
+//        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
+//    }
+//
+//    protected function getNrOfGamePlacesSimultaneously(): int
+//    {
+//        return $this->nrOfPlaces;
+//    }
+//
+//    public function getNrOfGamePlaces(): int
+//    {
+//        return $this->nrOfPlaces;
+//    }
 
 //    public function canAllPlacesPlaySimultaneously(): bool
 //    {
 //        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
 //    }
 
-    public function getNrOfGamesSimultaneously(): int
-    {
-        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->getNrOfGamePlaces());
-    }
+//    public function getNrOfGamesSimultaneously(): int
+//    {
+//        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->getNrOfGamePlaces());
+//    }
+//
+//    public function getNrOfGameGroups(): int
+//    {
+//        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
+//    }
 
-    public function getNrOfGameGroups(): int
-    {
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
-    }
-
-    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
-        return 1;
-    }
+//    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
+//        return 1;
+//    }
 
 }

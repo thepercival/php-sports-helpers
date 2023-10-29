@@ -96,43 +96,6 @@ class PouleStructure implements Stringable
         return $nrOfGames;
     }
 
-    /**
-     * @param SelfReferee $selfReferee
-     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sports
-     * @return bool
-     */
-    public function isSelfRefereeBeAvailable(SelfReferee $selfReferee, array $sports): bool
-    {
-        if ($selfReferee === SelfReferee::SamePoule) {
-            return $this->isSelfRefereeSamePouleBeAvailable($sports);
-        } elseif ($selfReferee === SelfReferee::OtherPoules) {
-            return $this->isSelfRefereeOtherPoulesBeAvailable();
-        }
-        return false;
-    }
-
-    protected function isSelfRefereeOtherPoulesBeAvailable(): bool
-    {
-        return $this->getNrOfPoules() > 1;
-    }
-
-    /**
-     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
-     * @return bool
-     */
-    protected function isSelfRefereeSamePouleBeAvailable(array $sportVariants): bool
-    {
-        foreach ($this->poules as $nrOfPlaces) {
-            foreach ($sportVariants as $sportVariant) {
-                $sportVariantWithPoule = (new VariantCreator())->createWithPoule($nrOfPlaces, $sportVariant);
-                if ($sportVariantWithPoule->canAllPlacesPlaySimultaneously()) {
-                    return false;
-                };
-            }
-        }
-        return true;
-    }
-
 
 
 //    /**

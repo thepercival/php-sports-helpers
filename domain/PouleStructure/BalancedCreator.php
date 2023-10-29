@@ -8,6 +8,15 @@ use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 
 class BalancedCreator
 {
+    /**
+     * nrOfPlaces = 11, nrOfPoules = 2 wordt [6,5]
+     *
+     *
+     * @param int $nrOfPlaces
+     * @param int $nrOfPoules
+     * @return Balanced
+     * @throws \Exception
+     */
     public function createBalanced(int $nrOfPlaces, int $nrOfPoules): BalancedPouleStructure
     {
         $calculateNrOfPlacesPerPoule = function (int $nrOfPlaces, int $nrOfPoules): int {

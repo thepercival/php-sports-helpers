@@ -60,16 +60,17 @@ class SingleTest extends TestCase
         self::assertGreaterThan(0, strlen((string)$sportVariant));
     }
 
-    public function testMaxNrOfGamesSimultaneously(): void
-    {
-        $withPoule = new SingleWithPoule(5, new SingleSportVariant(2, 4));
-
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
-        self::assertSame(2, $maxNrOfGamesSimultaneously);
-
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
-        self::assertSame(1, $maxNrOfGamesSimultaneously);
-    }
+    // @TODO CDK MOVE TO PLANNING
+//    public function testMaxNrOfGamesSimultaneously(): void
+//    {
+//        $withPoule = new SingleWithPoule(5, new SingleSportVariant(2, 4));
+//
+//        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
+//        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
+//        self::assertSame(2, $maxNrOfGamesSimultaneously);
+//
+//        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
+//        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
+//        self::assertSame(1, $maxNrOfGamesSimultaneously);
+//    }
 }

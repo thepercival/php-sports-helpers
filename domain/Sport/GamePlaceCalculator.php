@@ -32,25 +32,9 @@ class GamePlaceCalculator
         return $maxNrOfGamePlaces;
     }*/
 
-    public function getNrOfGamePlaces(int $nrOfGamePlaces, bool $selfReferee): int
-    {
-        return $selfReferee ? $nrOfGamePlaces + 1 : $nrOfGamePlaces;
-    }
+//    public function getNrOfGamePlaces(int $nrOfGamePlaces, bool $selfReferee): int
+//    {
+//        return $selfReferee ? $nrOfGamePlaces + 1 : $nrOfGamePlaces;
+//    }
 
-    /**
-     * @param list<AllInOneGameWithPoule|SingleWithPoule|AgainstH2hWithPoule|AgainstGppWithPoule> $sportVariantsWithPoule
-     * @return int
-     */
-    public function getMaxNrOfGamesPerPlace(array $sportVariantsWithPoule): int
-    {
-        $nrOfGamesPerPlace = 0;
-        foreach ($sportVariantsWithPoule as $sportVariantWithPoule) {
-            if( $sportVariantWithPoule instanceof AgainstGppWithPoule ) {
-                $nrOfGamesPerPlace += $sportVariantWithPoule->getMaxNrOfGamesPerPlace();
-            } else {
-                $nrOfGamesPerPlace += $sportVariantWithPoule->getTotalNrOfGamesPerPlace();
-            }
-        }
-        return $nrOfGamesPerPlace;
-    }
 }

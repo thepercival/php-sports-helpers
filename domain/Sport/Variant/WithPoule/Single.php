@@ -43,42 +43,42 @@ class Single extends SportVariantWithPoule
 //        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
 //    }
 //
-    protected function getNrOfGamePlacesSimultaneously(): int
-    {
-        return $this->nrOfPlaces;
-    }
+//    protected function getNrOfGamePlacesSimultaneously(): int
+//    {
+//        return $this->nrOfPlaces;
+//    }
 //
 //    public function getNrOfGamePlaces(): int
 //    {
 //        return $this->nrOfPlaces;
 //    }
 
-    public function canAllPlacesPlaySimultaneously(): bool
-    {
-        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
-    }
+//    public function canAllPlacesPlaySimultaneously(): bool
+//    {
+//        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
+//    }
+//
+//    public function getNrOfGamesSimultaneously(): int
+//    {
+//        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->sportVariant->getNrOfGamePlaces());
+//    }
 
-    public function getNrOfGamesSimultaneously(): int
-    {
-        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->sportVariant->getNrOfGamePlaces());
-    }
-
-    public function getNrOfGameGroups(): int
-    {
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
-    }
-
-    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
-        $nrOfGamePlaces = $this->sportVariant->getNrOfGamePlaces();
-        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs === 1) {
-            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
-        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs > 1) {
-            $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
-        } else {
-            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
-        }
-        return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
-    }
+//    public function getNrOfGameGroups(): int
+//    {
+//        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
+//    }
+//
+//    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
+//        $nrOfGamePlaces = $this->sportVariant->getNrOfGamePlaces();
+//        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs === 1) {
+//            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
+//        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs > 1) {
+//            $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
+//        } else {
+//            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
+//        }
+//        return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
+//    }
 
 
 

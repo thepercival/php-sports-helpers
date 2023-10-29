@@ -56,16 +56,17 @@ class H2hTest extends TestCase
         self::assertSame(4, $variantWithPoule->getTotalNrOfGamesPerPlace());
     }
 
-    public function testMaxNrOfGamesSimultaneously(): void
-    {
-        $withPoule = new AgainstH2hWithPoule(5, new AgainstH2h(1, 1 , 1));
-
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
-        self::assertSame(2, $maxNrOfGamesSimultaneously);
-
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
-        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
-        self::assertSame(1, $maxNrOfGamesSimultaneously);
-    }
+    // @TODO CDK MOVE TO PLANNING
+//    public function testMaxNrOfGamesSimultaneously(): void
+//    {
+//        $withPoule = new AgainstH2hWithPoule(5, new AgainstH2h(1, 1 , 1));
+//
+//        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
+//        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
+//        self::assertSame(2, $maxNrOfGamesSimultaneously);
+//
+//        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
+//        $maxNrOfGamesSimultaneously = $withPoule->getMaxNrOfGamesSimultaneously($selfRefereeInfo);
+//        self::assertSame(1, $maxNrOfGamesSimultaneously);
+//    }
 }

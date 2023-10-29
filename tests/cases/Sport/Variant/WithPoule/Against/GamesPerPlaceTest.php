@@ -235,4 +235,12 @@ class GamesPerPlaceTest extends TestCase
             self::assertTrue($variantWithPoule->canAllPlacesPlaySimultaneously());
         }
     }
+
+    // @TODO CDK MOVE TO PLANNING
+//    public function testGetMaxNrOfGamesSimultaneously(): void {
+//        $variantWithPoule = new AgainstGppWithPoule(8, $sportVariant);
+//        $refereeInfoo = new RefereeInfo
+//        self::assertSame(2, $variantWithPoule->getMaxNrOfGamesSimultaneously($refereeInfoo));
+//
+//    }
 }
