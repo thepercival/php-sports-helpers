@@ -66,7 +66,7 @@ class GamesPerPlace extends AgainstWithPoule
 //        return $this->sportVariant->getNrOfGamesPerPlace();
 //    }
 
-    public function getNrOfGameGroups(): int
+    public function getNrOfGamePlacesPerBatch(): int
     {
         return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
     }

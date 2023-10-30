@@ -28,16 +28,16 @@ abstract class Against extends SportVariantWithPoule
     {
         return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
     }
-
+//
     protected function getNrOfGamePlacesSimultaneously(): int
     {
         return $this->nrOfPlaces - ($this->nrOfPlaces % $this->againstVariant->getNrOfGamePlaces());
     }
-
-    public function getNrOfGamesSimultaneously(): int
-    {
-        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
-    }
+//
+//    public function getNrOfGamesSimultaneously(): int
+//    {
+//        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
+//    }
 
     // kijken bij simultaneously
     // a eigen scheidsrechters
