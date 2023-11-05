@@ -39,39 +39,6 @@ abstract class Against extends SportVariantWithPoule
         return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
     }
 
-    // kijken bij simultaneously
-    // a eigen scheidsrechters
-
-    // HET AANTAL BIJ MEERDERE POULES MET VERSCHILLENDE GROOTTES WIL JE HET MAX BEREKENING
-    // DAARBIJ IS HET BELANGRIJK OM AAN TE GEVEN ALS DIT EEN MAXIMUM IS DIE HAALBAAR IS VOOR DE ALLE ITERATIES!!
-
-    // VOORBEELD
-    // BIJ [6,5] EN SportAgainst MET 2 VELDEN GEBRUIK PLANNINGPOULESTRUCTURE
-    // BIJ NrOfPlaces 5 Kun je niet Alleen iets met SAMEPOULE ]
-
-
-    // maxNrOfGamePlacesSimultaneouslyPossible, against
-    // bij eigen scheids uit eigen poule
-    //  a1 ja, andere poule dan meetellen voor desbetreffende poule
-    //          a1a eigen poule scheids ontvangen  : altijd verzekerd, bij
-    //          a1b eigen poule scheids leveren     : hoeveelheid kan verschillen
-    //  a2 nee, eigen poule scheids ontvangen  : kan niet
-    //          eigen poule scheids leveren     : hoeveelheid kan verschillen
-    //
-//    public function getMaxNrOfGamesSimultaneouslyPossible(SelfRefereeInfo $refereeInfo): int {
-//        $nrOfGamePlaces = $this->againstVariant->getNrOfGamePlaces();
-//
-//        // als i
-//        if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs === 1) {
-//            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / ($nrOfGamePlaces + 1));
-//        } else if ($selfRefereeInfo->selfReferee === SelfReferee::SamePoule && $selfRefereeInfo->nrIfSimSelfRefs > 1) {
-//            $nrOfSimGames = (int)floor(($this->getNrOfPlaces() - 1) / $nrOfGamePlaces);
-//        } else {
-//            $nrOfSimGames = (int)floor($this->getNrOfPlaces() / $nrOfGamePlaces);
-//        }
-//        return $nrOfSimGames === 0 ? 1 : $nrOfSimGames;
-//    }
-
     public function getNrOfPossibleWithCombinations(Side|null $side = null): int
     {
         $combinations = 0;

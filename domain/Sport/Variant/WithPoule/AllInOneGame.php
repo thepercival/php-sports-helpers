@@ -62,8 +62,4 @@ class AllInOneGame extends SportVariantWithPoule
         return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
     }
 
-//    public function getMaxNrOfGamesSimultaneously(SelfRefereeInfo $selfRefereeInfo): int {
-//        return 1;
-//    }
-
 }
