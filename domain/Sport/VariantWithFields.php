@@ -22,6 +22,10 @@ class VariantWithFields implements \Stringable
         return $this->sportVariant;
     }
 
+    public function getPersistVariant(): PersistVariant {
+        return $this->sportVariant->toPersistVariant();
+    }
+
     public function getNrOfFields(): int
     {
         return $this->nrOfFields;

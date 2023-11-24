@@ -60,6 +60,11 @@
       "mkdir ../superelf-api/vendor/thepercival/php-sports-helpers",
       "cp . ../superelf-api/vendor/thepercival/php-sports-helpers -R"
     ],
+    "copy-sch": [
+      "rm -rf ../sports-scheduler-api/vendor/thepercival/php-sports-helpers",
+      "mkdir ../sports-scheduler-api/vendor/thepercival/php-sports-helpers",
+      "cp . ../sports-scheduler-api/vendor/thepercival/php-sports-helpers -R"
+    ],
     "copy-sports": [
       "rm -rf ../php-sports/vendor/thepercival/php-sports-helpers",
       "mkdir ../php-sports/vendor/thepercival/php-sports-helpers",

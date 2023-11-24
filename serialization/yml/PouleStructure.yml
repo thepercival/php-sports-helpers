@@ -1,0 +1,6 @@
+SportsHelpers\PouleStructure:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    poules:
+      type: array<integer>

@@ -36,6 +36,8 @@ class GamesPerPlaceTest extends TestCase
         self::assertSame(105, $sportVariant->getNrOfGamesOneH2h(7));
         self::assertSame(210, $sportVariant->getNrOfGamesOneH2h(8));
         self::assertSame(378, $sportVariant->getNrOfGamesOneH2h(9));
+
+        self::assertSame(1485, $sportVariant->getNrOfGamesOneH2h(12));
     }
 
 //    public function testIsMixed(): void

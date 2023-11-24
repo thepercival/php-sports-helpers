@@ -1,0 +1,10 @@
+SportsHelpers\Sport\VariantWithFields:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    nrOfFields:
+      type: integer
+  virtual_properties:
+    getPersistVariant:
+      type: SportsHelpers\Sport\PersistVariant
+      serialized_name: variant
