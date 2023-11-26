@@ -2,9 +2,7 @@ SportsHelpers\Sport\VariantWithFields:
   exclusion_policy: ALL
   exclude: false
   properties:
+    sportVariant:
+      type: SportsHelpers\Sport\Variant\Against\H2h|SportsHelpers\Sport\Variant\Against\GamesPerPlace|SportsHelpers\Sport\Variant\AllInOneGame|SportsHelpers\Sport\Variant\Single;
     nrOfFields:
       type: integer
-  virtual_properties:
-    getPersistVariant:
-      type: SportsHelpers\Sport\PersistVariant
-      serialized_name: variant
