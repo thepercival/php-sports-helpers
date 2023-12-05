@@ -2,7 +2,7 @@
 
 namespace SportsHelpers;
 
-class PlaceLocation implements  PlaceLocationInterface, \Stringable
+class PlaceLocation implements PlaceLocationInterface, \Stringable
 {
     public function __construct(protected int $pouleNr, protected int $placeNr)
     {
