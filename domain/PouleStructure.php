@@ -125,14 +125,16 @@ class PouleStructure implements Stringable
         SelfReferee $selfReferee): bool
     {
         if ($selfReferee === SelfReferee::SamePoule) {
-            return $this->getNrOfPoules() > 1;
-        } elseif ($selfReferee === SelfReferee::OtherPoules) {
             foreach ($sportVariants as $sportVariant) {
                 if( $sportVariant instanceof AllInOneGame) {
                     return false;
                 }
-                return $sportVariant->getNrOfGamePlaces() < $this->getSmallestPoule();
+                if( $sportVariant->getNrOfGamePlaces() >= $this->getSmallestPoule() ) {
+                    return false;
+                }
             }
+        } elseif ($selfReferee === SelfReferee::OtherPoules) {
+            return $this->getNrOfPoules() > 1;
         }
         return true;
     }
