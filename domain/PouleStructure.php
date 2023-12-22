@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
+use SportsHelpers\PouleStructure as PouleStructureBase;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\AllInOneGame;
@@ -114,6 +115,27 @@ class PouleStructure implements Stringable
 //        return $nrOfGames;
 //    }
 
+    /**
+     * @param list<Single|AgainstH2h|AgainstGpp|AllInOneGame> $sportVariants
+     * @param SelfReferee $selfReferee
+     * @return bool
+     */
+    public function sportsAndSelfRefereeAreCompatible(
+        array     $sportVariants,
+        SelfReferee $selfReferee): bool
+    {
+        if ($selfReferee === SelfReferee::SamePoule) {
+            return $this->getNrOfPoules() > 1;
+        } elseif ($selfReferee === SelfReferee::OtherPoules) {
+            foreach ($sportVariants as $sportVariant) {
+                if( $sportVariant instanceof AllInOneGame) {
+                    return false;
+                }
+                return $sportVariant->getNrOfGamePlaces() < $this->getSmallestPoule();
+            }
+        }
+        return true;
+    }
     /**
      * @return non-empty-list<int>
      */
