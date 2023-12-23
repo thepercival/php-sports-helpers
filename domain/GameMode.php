@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-enum GameMode: int
+enum GameMode: string
 {
-    case Single = 1;
-    case Against = 2;
-    case AllInOneGame = 3;
-    // just package
-
+    case Single = 'single';
+    case Against = 'against';
+    case AllInOneGame = 'allInOneGame';
 }
