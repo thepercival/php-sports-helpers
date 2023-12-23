@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Against;
 
-enum Result: int
+enum Result: string
 {
-    case Win = 1;
-    case Draw = 2;
-    case Loss = 3;
+    case Win = 'win';
+    case Draw = 'draw';
+    case Loss = 'loss';
 }

@@ -6,10 +6,10 @@ namespace SportsHelpers\Against;
 
 use SportsHelpers\Against\Side as AgainstSide;
 
-enum Side: int
+enum Side: string
 {
-    case Home = 1;
-    case Away = 2;
+    case Home = 'home';
+    case Away = 'away';
 
     public function getOpposite(): self
     {

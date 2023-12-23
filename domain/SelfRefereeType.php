@@ -29,6 +29,6 @@ class SelfRefereeType extends EnumDbType
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform)
     {
-        return 'int';
+        return 'varchar(11)';
     }
 }

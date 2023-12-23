@@ -27,6 +27,6 @@ class SideType extends EnumDbType
 
     public function getSQLDeclaration(array $column, AbstractPlatform $platform)
     {
-        return 'int';
+        return 'varchar(4)';
     }
 }

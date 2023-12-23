@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-enum SelfReferee: int
+enum SelfReferee: string
 {
-    case Disabled = 0;
-    case OtherPoules = 1;
-    case SamePoule = 2;
+    case Disabled = 'disabled';
+    case OtherPoules = 'otherPoules';
+    case SamePoule = 'samePoule';
 }
