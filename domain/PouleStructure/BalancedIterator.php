@@ -9,6 +9,9 @@ use Iterator;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 use SportsHelpers\SportRange;
 
+/**
+ * @template-implements Iterator<string,BalancedPouleStructure|null>
+ */
 class BalancedIterator implements Iterator
 {
     private SportRange $pouleRange;
@@ -30,7 +33,7 @@ class BalancedIterator implements Iterator
         $this->validateNrOfPlacesPerPouleAfterNext();
     }
 
-    public function current(): ?BalancedPouleStructure
+    public function current(): BalancedPouleStructure|null
     {
         return $this->current;
     }
