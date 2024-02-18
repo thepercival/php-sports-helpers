@@ -11,19 +11,22 @@ use SportsHelpers\Sport\Variant\Single;
 
 class VariantWithFields implements \Stringable
 {
+    protected PersistVariant $persistVariant;
+
     public function __construct(
-        protected AgainstH2h|AgainstGpp|Single|AllInOneGame $sportVariant,
+        AgainstH2h|AgainstGpp|Single|AllInOneGame $sportVariant,
         protected int $nrOfFields
     ) {
+        $this->persistVariant = $sportVariant->toPersistVariant();
     }
 
     public function getSportVariant(): AgainstH2h|AgainstGpp|Single|AllInOneGame
     {
-        return $this->sportVariant;
+        return $this->persistVariant->createVariant();
     }
 
     public function getPersistVariant(): PersistVariant {
-        return $this->sportVariant->toPersistVariant();
+        return $this->persistVariant;
     }
 
     public function getNrOfFields(): int
