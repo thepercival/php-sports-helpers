@@ -39,12 +39,18 @@ abstract class Output
     public function outputString(string|int $value, int $minLength = null, Color|null $color = null): void
     {
         $str = '' . $value;
+        $str = $this->stringToMinLength($str, $minLength);
+        $this->logger->info(Color::getColored($color, $str));
+    }
+
+    public function stringToMinLength(string $value, int $minLength = null): string
+    {
         if ($minLength > 0) {
-            while (strlen($str) < $minLength) {
-                $str = ' ' . $str;
+            while (strlen($value) < $minLength) {
+                $value = ' ' . $value;
             }
         }
-        $this->logger->info(Color::getColored($color, $str));
+        return $value;
     }
 
     public function convertNumberToColor(int $number): Color
