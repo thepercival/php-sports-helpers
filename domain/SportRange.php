@@ -6,6 +6,7 @@ namespace SportsHelpers;
 
 class SportRange implements \Stringable
 {
+    public const string Seperator = '->';
     protected int $min;
     protected int $max;
 
@@ -58,6 +59,6 @@ class SportRange implements \Stringable
 
     public function __toString(): string
     {
-        return '[' . $this->getMin() . '->' . $this->getMax() . ']';
+        return '[' . $this->getMin() . self::Seperator . $this->getMax() . ']';
     }
 }
