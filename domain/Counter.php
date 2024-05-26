@@ -7,7 +7,7 @@ namespace SportsHelpers;
 /**
  * @template T
  */
-class Counter implements \Countable
+readonly class Counter implements \Countable
 {
     /**
      * @param T $countedObject
@@ -16,28 +16,27 @@ class Counter implements \Countable
     {
     }
 
-    public function reset(): void
+    public function reset2(): self
     {
-        $this->count = 0;
+        return new self($this->countedObject);
     }
 
     /**
      * @return self<T>
      */
-    public function decrement2(): self
+    public function decrement(): self
     {
         return new self($this->countedObject, $this->count - 1 );
     }
 
-    public function increment(): int
+    public function increment(): self
     {
-        $this->count++;
-        return $this->count;
+        return new self($this->countedObject, $this->count + 1 );
     }
 
-    public function increase(int $count): void
+    public function increase(int $count): self
     {
-        $this->count += $count;
+        return new self($this->countedObject, $this->count + $count );
     }
 
     public function count(): int

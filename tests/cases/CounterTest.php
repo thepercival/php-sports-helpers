@@ -23,7 +23,7 @@ final class CounterTest extends TestCase
         $stdClass = new \stdClass();
 
         $counter = new Counter($stdClass, 4);
-        $counter->reset();
+        $counter->reset2();
         self::assertSame(0, $counter->count());
     }
 
@@ -32,10 +32,10 @@ final class CounterTest extends TestCase
         $stdClass = new \stdClass();
 
         $counter = new Counter($stdClass);
-        self::assertSame(-1, ($counter->decrement2())->count());
+        self::assertSame(-1, $counter->decrement()->count());
 
         $counter = new Counter($stdClass, 4);
-        self::assertSame(3, ($counter->decrement2())->count());
+        self::assertSame(3, $counter->decrement()->count());
     }
 
     public function testIncrement(): void
