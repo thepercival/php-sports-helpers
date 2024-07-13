@@ -6,8 +6,7 @@ namespace SportsHelpers\Sport\Variant;
 
 class MinNrOfPlacesCalculator
 {
-    public const MinNrOfPlacesPerPoule = 2;
-
+    public const int MinNrOfPlacesPerPoule = 2;
     public function __construct()
     {
     }
