@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppVariant;
-use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 
 class GamesPerPlaceTest extends TestCase
 {

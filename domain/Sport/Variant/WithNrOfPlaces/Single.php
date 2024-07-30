@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant\WithPoule;
+namespace SportsHelpers\Sport\Variant\WithNrOfPlaces;
 
 use SportsHelpers\SelfReferee;
 use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Single as SingleVariant;
-use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
+use SportsHelpers\Sport\WithNrOfPlaces as SportVariantWithNrOfPlaces;
 
 /**
- * @template-extends SportVariantWithPoule<SingleVariant>
+ * @template-extends SportVariantWithNrOfPlaces<SingleVariant>
  */
-class Single extends SportVariantWithPoule
+class Single extends SportVariantWithNrOfPlaces
 {
     public function __construct(int $nrOfPlaces, protected SingleVariant $sportVariant ) {
         parent::__construct($nrOfPlaces );

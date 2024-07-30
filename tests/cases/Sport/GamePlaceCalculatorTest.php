@@ -6,8 +6,8 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sport\GamePlaceCalculator;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
-use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
-use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\H2h as AgainstH2hWithNrOfPlaces;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\GamesPerPlace as AgainstGppWithNrOfPlaces;
 
 final class GamePlaceCalculatorTest extends TestCase
 {

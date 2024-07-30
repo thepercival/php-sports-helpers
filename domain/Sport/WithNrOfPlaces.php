@@ -9,7 +9,7 @@ use SportsHelpers\SelfRefereeInfo;
 /**
  * @template T
  */
-abstract class WithPoule
+abstract class WithNrOfPlaces
 {
     /**
      * @param int $nrOfPlaces

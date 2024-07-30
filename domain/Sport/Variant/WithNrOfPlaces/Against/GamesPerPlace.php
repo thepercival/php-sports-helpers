@@ -1,15 +1,15 @@
 <?php
 declare(strict_types = 1);
 
-namespace SportsHelpers\Sport\Variant\WithPoule\Against;
+namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Against\Side;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
 use SportsHelpers\SportMath;
 
-class GamesPerPlace extends AgainstWithPoule
+class GamesPerPlace extends AgainstWithNrOfPlaces
 {
     public function __construct(int $nrOfPlaces, protected AgainstGpp $sportVariant)
     {

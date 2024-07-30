@@ -1,8 +1,8 @@
 <?php
 
-namespace SportsHelpers\Sport\Variant\WithPoule\Against;
+namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
-use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\GamesPerPlace as AgainstGppWithNrOfPlaces;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 
 
@@ -22,9 +22,9 @@ class EquallyAssignCalculator
             $nrOfPossibleCombinations = null;
             foreach( $againstGpps as $againstGpp) {
                 $uniqueNrOfCombinationsPerGame = $againstGpp->getNrOfAgainstCombinationsPerGame();
-                $againstGppWithPoule = new AgainstGppWithPoule($nrOfPlaces, $againstGpp);
-                $nrOfPossibleCombinations = $againstGppWithPoule->getNrOfPossibleAgainstCombinations();
-                $totalNrOfGames += $againstGppWithPoule->getTotalNrOfGames();
+                $againstGppWithNrOfPlaces = new AgainstGppWithNrOfPlaces($nrOfPlaces, $againstGpp);
+                $nrOfPossibleCombinations = $againstGppWithNrOfPlaces->getNrOfPossibleAgainstCombinations();
+                $totalNrOfGames += $againstGppWithNrOfPlaces->getTotalNrOfGames();
             }
             if( $uniqueNrOfCombinationsPerGame !== null && $totalNrOfGames > 0
                 && $nrOfPossibleCombinations !== null &&
@@ -52,9 +52,9 @@ class EquallyAssignCalculator
             $nrOfPossibleCombinations = null;
             foreach( $againstGpps as $againstGpp) {
                 $uniqueNrOfCombinationsPerGame = $againstGpp->getNrOfWithCombinationsPerGame();
-                $againstGppWithPoule = new AgainstGppWithPoule($nrOfPlaces, $againstGpp);
-                $nrOfPossibleCombinations = $againstGppWithPoule->getNrOfPossibleWithCombinations();
-                $totalNrOfGames += $againstGppWithPoule->getTotalNrOfGames();
+                $againstGppWithNrOfPlaces = new AgainstGppWithNrOfPlaces($nrOfPlaces, $againstGpp);
+                $nrOfPossibleCombinations = $againstGppWithNrOfPlaces->getNrOfPossibleWithCombinations();
+                $totalNrOfGames += $againstGppWithNrOfPlaces->getTotalNrOfGames();
             }
             if( $uniqueNrOfCombinationsPerGame !== null && $totalNrOfGames > 0
                 && $nrOfPossibleCombinations !== null &&

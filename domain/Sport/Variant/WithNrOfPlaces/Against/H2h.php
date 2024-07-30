@@ -1,12 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace SportsHelpers\Sport\Variant\WithPoule\Against;
+namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
 
-class H2h extends AgainstWithPoule
+class H2h extends AgainstWithNrOfPlaces
 {
     public function __construct(int $nrOfPlaces, protected AgainstH2h $sportVariant)
     {

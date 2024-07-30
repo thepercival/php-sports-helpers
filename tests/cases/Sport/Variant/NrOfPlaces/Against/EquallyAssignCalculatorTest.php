@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Tests\Sport\Variant\WithPoule\Against;
+namespace SportsHelpers\Tests\Sport\Variant\NrOfPlaces\Against;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\Against\Side;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
-use SportsHelpers\Sport\Variant\WithPoule\Against\EquallyAssignCalculator;
-use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\EquallyAssignCalculator;
 
 class EquallyAssignCalculatorTest extends TestCase
 {

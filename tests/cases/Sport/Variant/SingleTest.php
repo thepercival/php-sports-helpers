@@ -9,7 +9,7 @@ use SportsHelpers\GameMode;
 use SportsHelpers\SelfReferee;
 use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
-use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
+use SportsHelpers\Sport\Variant\WithNrOfPlaces\Single as SingleWithNrOfPlaces;
 
 class SingleTest extends TestCase
 {
@@ -24,10 +24,10 @@ class SingleTest extends TestCase
     public function testTotalNrOfGames(): void
     {
         $sportVariant = new SingleSportVariant(3, 2);
-        $variantWithPoule = new SingleWithPoule(9, $sportVariant);
-        self::assertSame(6, $variantWithPoule->getTotalNrOfGames());
-        $variantWithPoule = new SingleWithPoule(10, $sportVariant);
-        self::assertSame(7, $variantWithPoule->getTotalNrOfGames());
+        $variantWithNrOfPlaces = new SingleWithNrOfPlaces(9, $sportVariant);
+        self::assertSame(6, $variantWithNrOfPlaces->getTotalNrOfGames());
+        $variantWithNrOfPlaces = new SingleWithNrOfPlaces(10, $sportVariant);
+        self::assertSame(7, $variantWithNrOfPlaces->getTotalNrOfGames());
     }
 
 //    public function testTotalNrOfGamesPerPlace(): void

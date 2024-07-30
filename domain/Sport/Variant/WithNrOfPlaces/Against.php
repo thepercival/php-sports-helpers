@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant\WithPoule;
+namespace SportsHelpers\Sport\Variant\WithNrOfPlaces;
 
 use SportsHelpers\Against\Side;
-use SportsHelpers\SelfReferee;
-use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
+use SportsHelpers\Sport\WithNrOfPlaces as SportVariantWithNrOfPlaces;
 use SportsHelpers\SportMath;
 
 /**
- * @template-extends SportVariantWithPoule<AgainstGpp|AgainstH2h>
+ * @template-extends SportVariantWithNrOfPlaces<AgainstGpp|AgainstH2h>
  */
-abstract class Against extends SportVariantWithPoule
+abstract class Against extends SportVariantWithNrOfPlaces
 {
      public function __construct(int $nrOfPlaces, protected AgainstGpp|AgainstH2h $againstVariant ) {
          if( $nrOfPlaces < $againstVariant->getNrOfGamePlaces() ) {

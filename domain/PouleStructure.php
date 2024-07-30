@@ -91,7 +91,7 @@ class PouleStructure implements Stringable
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
             foreach ($sportVariants as $sportVariant) {
-                $nrOfGames += (new VariantCreator())->createWithPoule($nrOfPlaces, $sportVariant)->getTotalNrOfGames();
+                $nrOfGames += (new VariantCreator())->createWithNrOfPlaces($nrOfPlaces, $sportVariant)->getTotalNrOfGames();
             }
         }
         return $nrOfGames;
