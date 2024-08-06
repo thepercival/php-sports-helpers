@@ -103,10 +103,8 @@ class GamesPerPlace extends AgainstWithNrOfPlaces
         );
     }
 
-
-
     public function getMinNrOfGamesPerPlace(): int {
-        return $this->sportVariant->getNrOfGamesPerPlace() - ($this->getDeficit() ? 1 : 0);
+        return $this->sportVariant->getNrOfGamesPerPlace() - (($this->getDeficit() > 0) ? 1 : 0);
     }
 
     public function getMaxNrOfGamesPerPlace(): int {

@@ -12,9 +12,9 @@ final class CounterTest extends TestCase
         $stdClass = new \stdClass();
 
         $counter = new Counter($stdClass);
-        self::assertSame(0, $counter->count());
+        self::assertCount(0, $counter);
 
         $counter = new Counter($stdClass, 5);
-        self::assertSame(5, $counter->count());
+        self::assertCount(5, $counter);
     }
 }

@@ -22,19 +22,19 @@ final class SportRangeTest extends TestCase
     public function testIsWithin(): void
     {
         $range = new SportRange(3, 5);
-        self::assertSame(false, $range->isWithIn(2));
-        self::assertSame(true, $range->isWithIn(3));
-        self::assertSame(true, $range->isWithIn(4));
-        self::assertSame(true, $range->isWithIn(5));
-        self::assertSame(false, $range->isWithIn(6));
+        self::assertFalse($range->isWithIn(2));
+        self::assertTrue($range->isWithIn(3));
+        self::assertTrue($range->isWithIn(4));
+        self::assertTrue($range->isWithIn(5));
+        self::assertFalse($range->isWithIn(6));
     }
 
     public function testEquals(): void
     {
         $range = new SportRange(3, 5);
-        self::assertSame(false, $range->equals(new SportRange(2, 5)));
-        self::assertSame(false, $range->equals(new SportRange(3, 4)));
-        self::assertSame(true, $range->equals(new SportRange(3, 5)));
+        self::assertFalse($range->equals(new SportRange(2, 5)));
+        self::assertFalse($range->equals(new SportRange(3, 4)));
+        self::assertTrue($range->equals(new SportRange(3, 5)));
     }
 
     public function testToArray(): void
