@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\PouleStructure as PouleStructureBase;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\AllInOneGame;
@@ -12,13 +11,13 @@ use SportsHelpers\Sport\Variant\Single;
 use SportsHelpers\Sport\Variant\Creator as VariantCreator;
 use Stringable;
 
-class PouleStructure implements Stringable
+readonly class PouleStructure implements Stringable
 {
     /**
      * @var non-empty-list<int> $poules
      */
     protected array $poules;
-    protected int|null $nrOfGamePlaces = null;
+    protected int $totalNrOfPlaces;
 
     public function __construct(int ...$nrOfPlaces)
     {
@@ -32,6 +31,7 @@ class PouleStructure implements Stringable
             throw new \Exception('nrOfPlaces-list can not be empty', E_ERROR);
         }
         $this->poules = array_values($nrOfPlaces);
+        $this->totalNrOfPlaces = array_sum($this->poules);
     }
 
     public function getNrOfPoules(): int
@@ -41,20 +41,17 @@ class PouleStructure implements Stringable
 
     public function getNrOfPlaces(): int
     {
-        if ($this->nrOfGamePlaces === null) {
-            $this->nrOfGamePlaces = array_sum($this->poules);
-        }
-        return $this->nrOfGamePlaces;
+        return $this->totalNrOfPlaces;
     }
 
     public function getBiggestPoule(): int
     {
-        return reset($this->poules);
+        return $this->poules[0];
     }
 
     public function getSmallestPoule(): int
     {
-        return end($this->poules);
+        return $this->poules[count($this->poules)-1];
     }
 
     public function isAlmostBalanced(): bool

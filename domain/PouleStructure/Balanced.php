@@ -7,7 +7,7 @@ namespace SportsHelpers\PouleStructure;
 use Exception;
 use SportsHelpers\PouleStructure;
 
-class Balanced extends PouleStructure
+readonly class Balanced extends PouleStructure
 {
     public function __construct(int ...$nrOfPlaces)
     {
