@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace SportsHelpers\Tests\Sport\Variant\WithNrOfPlaces\Against;
 
 use PHPUnit\Framework\TestCase;
-use SportsHelpers\SelfReferee;
-use SportsHelpers\SelfRefereeInfo;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstSportH2hVariant;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\H2h as AgainstH2hWithNrOfPlaces;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstSportH2hVariant;
 
 class H2hTest extends TestCase
 {

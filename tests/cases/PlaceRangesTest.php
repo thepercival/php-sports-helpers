@@ -8,11 +8,11 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
-use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
 use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
+use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGppSportVariant;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2hSportVariant;
+use SportsHelpers\SportVariants\Single as SingleSportVariant;
 
 final class PlaceRangesTest extends TestCase
 {

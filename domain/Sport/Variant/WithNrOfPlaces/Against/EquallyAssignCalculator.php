@@ -3,7 +3,7 @@
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\GamesPerPlace as AgainstGppWithNrOfPlaces;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
 
 
 class EquallyAssignCalculator

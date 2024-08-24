@@ -4,10 +4,9 @@ declare(strict_types = 1);
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Against\Side;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
 use SportsHelpers\SportMath;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
 
 class GamesPerPlace extends AgainstWithNrOfPlaces
 {

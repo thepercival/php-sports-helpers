@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Tests\Sport\Variant\Against;
+namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppVariant;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstSportGppVariant;
 
-class GamesPerPlaceTest extends TestCase
+class AgainstGppTest extends TestCase
 {
     public function testCreation(): void
     {
@@ -53,7 +52,7 @@ class GamesPerPlaceTest extends TestCase
 
     public function testToPersistVariant(): void
     {
-        $sportVariant = new AgainstGppVariant(1, 1, 1);
+        $sportVariant = new AgainstSportGppVariant(1, 1, 1);
         $persistVariant = $sportVariant->toPersistVariant();
         self::assertSame(1, $persistVariant->getNrOfHomePlaces());
         self::assertSame(1, $persistVariant->getNrOfAwayPlaces());

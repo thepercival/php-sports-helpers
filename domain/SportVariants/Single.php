@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant;
+namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
 
-class Single extends Base implements Variant
+readonly class Single implements Variant
 {
     public function __construct(protected int $nrOfGamePlaces, protected int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::Single);
+    }
+
+    public function getGameMode(): GameMode {
+        return GameMode::Single;
     }
 
     public function getNrOfGamesPerPlace(): int
@@ -63,5 +66,12 @@ class Single extends Base implements Variant
         return 'single(' . $this->getNrOfGamePlaces() . ') gpp=>' . $this->getNrOfGamesPerPlace();
     }
 
-
+    public function toJson(): string {
+        $name = [
+            'nrOfGamesPerPlace' => $this->getNrOfGamesPerPlace(),
+            'nrOfGamePlaces' => $this->getNrOfGamePlaces()
+        ];
+        $json = json_encode($name);
+        return $json === false ? '?' : $json;
+    }
 }

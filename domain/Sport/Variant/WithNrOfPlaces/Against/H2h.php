@@ -3,8 +3,8 @@ declare(strict_types = 1);
 
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
 
 class H2h extends AgainstWithNrOfPlaces
 {

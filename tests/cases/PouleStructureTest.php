@@ -6,9 +6,7 @@ namespace SportsHelpers\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PouleStructure;
-use SportsHelpers\SelfReferee;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2hSportVariant;
 
 class PouleStructureTest extends TestCase
 {

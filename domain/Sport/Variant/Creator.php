@@ -2,12 +2,14 @@
 
 namespace SportsHelpers\Sport\Variant;
 
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\GamesPerPlace as AgainstGppWithNrOfPlaces;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\H2h as AgainstH2hWithNrOfPlaces;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\AllInOneGame as AllInOneGameWithNrOfPlaces;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Single as SingleWithNrOfPlaces;
+use SportsHelpers\SportVariants\AllInOneGame;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\Single;
 
 class Creator
 {

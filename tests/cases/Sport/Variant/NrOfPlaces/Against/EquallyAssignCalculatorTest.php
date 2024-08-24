@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace SportsHelpers\Tests\Sport\Variant\NrOfPlaces\Against;
 
 use PHPUnit\Framework\TestCase;
-use SportsHelpers\Against\Side;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\EquallyAssignCalculator;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstSportGppVariant;
 
 class EquallyAssignCalculatorTest extends TestCase
 {

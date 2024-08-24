@@ -2,17 +2,20 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant;
+namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
 
-class AllInOneGame extends Base implements Variant
+readonly class AllInOneGame implements Variant
 {
     public function __construct(protected int $nrOfGamesPerPlace)
     {
-        parent::__construct(GameMode::AllInOneGame);
+    }
+
+    public function getGameMode(): GameMode {
+        return GameMode::AllInOneGame;
     }
 
     public function getNrOfGamesPerPlace(): int
@@ -52,5 +55,12 @@ class AllInOneGame extends Base implements Variant
     public function __toString()
     {
         return 'allinone gpp=>' . $this->getNrOfGamesPerPlace();
+    }
+
+    private function toJson(): string {
+
+        $name = ['nrOfGamesPerPlace' => $this->getNrOfGamesPerPlace()];
+        $json = json_encode($name);
+        return $json === false ? '?' : $json;
     }
 }

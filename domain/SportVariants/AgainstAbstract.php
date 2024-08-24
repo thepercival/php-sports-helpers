@@ -2,27 +2,30 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant;
+namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\Against\Side;
+use SportsHelpers\GameModeBase;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant;
 use SportsHelpers\SportMath;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-abstract class Against extends Base implements Variant
+readonly abstract class AgainstAbstract implements Variant
 {
-    public function __construct(protected int $nrOfHomePlaces, protected int $nrOfAwayPlaces)
+    public function __construct(public int $nrOfHomePlaces, public int $nrOfAwayPlaces)
     {
-        parent::__construct(GameMode::Against);
-
         if ($this->nrOfHomePlaces < 1 || $this->nrOfAwayPlaces < 1) {
             throw new \Exception('nrOfHomePlaces and nrOfAwayPlaces should be at least 1', E_ERROR);
         }
         if ($this->nrOfHomePlaces > $this->nrOfAwayPlaces) {
             throw new \Exception('nrOfHomePlaces should be smaller than nrOfAwayPlaces', E_ERROR);
         }
+    }
+
+    public function getGameMode(): GameMode {
+        return GameMode::Against;
     }
 
     public function getNrOfHomePlaces(): int

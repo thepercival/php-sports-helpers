@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces;
 
 use SportsHelpers\Against\Side;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\WithNrOfPlaces as SportVariantWithNrOfPlaces;
 use SportsHelpers\SportMath;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
 
 /**
  * @template-extends SportVariantWithNrOfPlaces<AgainstGpp|AgainstH2h>

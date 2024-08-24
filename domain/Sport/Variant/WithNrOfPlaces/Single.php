@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces;
 
-use SportsHelpers\SelfReferee;
-use SportsHelpers\SelfRefereeInfo;
-use SportsHelpers\Sport\Variant\Single as SingleVariant;
 use SportsHelpers\Sport\WithNrOfPlaces as SportVariantWithNrOfPlaces;
+use SportsHelpers\SportVariants\Single as SingleVariant;
 
 /**
  * @template-extends SportVariantWithNrOfPlaces<SingleVariant>

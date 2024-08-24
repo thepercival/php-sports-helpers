@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
-use SportsHelpers\Sport\Variant\AllInOneGame;
-use SportsHelpers\Sport\Variant\Single;
 use SportsHelpers\Sport\Variant\Creator as VariantCreator;
+use SportsHelpers\SportVariants\AllInOneGame;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\Single;
 use Stringable;
 
 readonly class PouleStructure implements Stringable

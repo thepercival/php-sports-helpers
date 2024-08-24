@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Tests\Sport\Variant;
+namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
+use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
 
 class AllInOneGameTest extends TestCase
 {

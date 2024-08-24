@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Tests\Sport\Variant\Against;
+namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
-use SportsHelpers\Sport\Variant\Against\H2h as AgainstSportH2hVariant;
+use SportsHelpers\SportVariants\AgainstGpp as AgainstSportGppVariant;
+use SportsHelpers\SportVariants\AgainstH2h as AgainstSportH2hVariant;
 
-class H2hTest extends TestCase
+class  AgainstH2HTest extends TestCase
 {
     public function testCreation(): void
     {

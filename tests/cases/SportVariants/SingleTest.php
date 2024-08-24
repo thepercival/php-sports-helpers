@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Tests\Sport\Variant;
+namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\SelfReferee;
-use SportsHelpers\SelfRefereeInfo;
-use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Single as SingleWithNrOfPlaces;
+use SportsHelpers\SportVariants\Single as SingleSportVariant;
 
 class SingleTest extends TestCase
 {

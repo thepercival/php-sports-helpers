@@ -2,12 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport\Variant;
+namespace SportsHelpers;
 
-use SportsHelpers\GameMode;
-use SportsHelpers\Identifiable;
-
-class Base extends Identifiable
+class GameModeBase extends Identifiable
 {
     public function __construct(protected GameMode $gameMode)
     {
