@@ -33,7 +33,7 @@ class GamesPerPlaceTest extends TestCase
         self::assertSame(3, $variantWithNrOfPlaces->getTotalNrOfGames());
     }
 
-    public function testNrOfGamesPerPlaceOneH2H(): void
+    public function testNrOfGamesPerPlaceOneH2h(): void
     {
         $sportVariant = new AgainstSportGppVariant(1, 2, 1);
         $variantWithNrOfPlaces = new AgainstGppWithNrOfPlaces(3, $sportVariant);

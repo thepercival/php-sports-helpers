@@ -7,8 +7,8 @@ namespace SportsHelpers\Sport;
 use SportsHelpers\GameMode;
 use SportsHelpers\Identifiable;
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h;
 use SportsHelpers\SportVariants\Single;
 
 class PersistVariant extends Identifiable
@@ -18,7 +18,7 @@ class PersistVariant extends Identifiable
         protected int $nrOfHomePlaces,
         protected int $nrOfAwayPlaces,
         protected int $nrOfGamePlaces,
-        protected int $nrOfH2H,
+        protected int $nrOfH2h,
         protected int $nrOfGamesPerPlace
     ) {
     }
@@ -46,9 +46,9 @@ class PersistVariant extends Identifiable
         return $this->nrOfGamePlaces;
     }
 
-    public function getNrOfH2H(): int
+    public function getNrOfH2h(): int
     {
-        return $this->nrOfH2H;
+        return $this->nrOfH2h;
     }
 
     public function getNrOfGamesPerPlace(): int
@@ -65,8 +65,8 @@ class PersistVariant extends Identifiable
         if ($this->gameMode === GameMode::AllInOneGame) {
             return new AllInOneGame($this->nrOfGamesPerPlace);
         }
-        if ($this->nrOfH2H > 0) {
-            return new AgainstH2h($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2H);
+        if ($this->nrOfH2h > 0) {
+            return new AgainstH2h($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2h);
         }
         return new AgainstGpp($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfGamesPerPlace);
     }

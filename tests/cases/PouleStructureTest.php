@@ -6,7 +6,7 @@ namespace SportsHelpers\Tests;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PouleStructure;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2hSportVariant;
+use SportsHelpers\SportVariants\AgainstH2h;
 
 class PouleStructureTest extends TestCase
 {
@@ -83,7 +83,7 @@ class PouleStructureTest extends TestCase
 
     public function testTotalNrOfGames(): void
     {
-        $sport = new AgainstH2hSportVariant(1, 1, 1);
+        $sport = new AgainstH2h(1, 1, 1);
         $pouleStructure = new PouleStructure(3, 2, 2);
         self::assertSame(5, $pouleStructure->getTotalNrOfGames([$sport]));
     }

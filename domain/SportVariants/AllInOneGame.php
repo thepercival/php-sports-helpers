@@ -10,7 +10,7 @@ use SportsHelpers\Sport\Variant;
 
 readonly class AllInOneGame implements Variant
 {
-    public function __construct(protected int $nrOfGamesPerPlace)
+    public function __construct(public int $nrOfGamesPerPlace)
     {
     }
 
@@ -55,12 +55,5 @@ readonly class AllInOneGame implements Variant
     public function __toString()
     {
         return 'allinone gpp=>' . $this->getNrOfGamesPerPlace();
-    }
-
-    private function toJson(): string {
-
-        $name = ['nrOfGamesPerPlace' => $this->getNrOfGamesPerPlace()];
-        $json = json_encode($name);
-        return $json === false ? '?' : $json;
     }
 }

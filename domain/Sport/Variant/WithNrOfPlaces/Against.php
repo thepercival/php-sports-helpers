@@ -7,8 +7,8 @@ namespace SportsHelpers\Sport\Variant\WithNrOfPlaces;
 use SportsHelpers\Against\Side;
 use SportsHelpers\Sport\WithNrOfPlaces as SportVariantWithNrOfPlaces;
 use SportsHelpers\SportMath;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h;
 
 /**
  * @template-extends SportVariantWithNrOfPlaces<AgainstGpp|AgainstH2h>
@@ -40,16 +40,16 @@ abstract class Against extends SportVariantWithNrOfPlaces
     public function getNrOfPossibleWithCombinations(Side|null $side = null): int
     {
         $combinations = 0;
-        // if( $this->againstVariant->getNrOfHomePlaces() > 1 ) {
+        // if( $this->againstVariant->nrOfHomePlaces > 1 ) {
             if( $side === null || $side === Side::Home) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->getNrOfHomePlaces());
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfHomePlaces);
             }
         // }
 
-        // if( $this->againstVariant->getNrOfAwayPlaces() > 1 ) {
+        // if( $this->againstVariant->nrOfAwayPlaces() > 1 ) {
             if( $side === Side::Away || ($side === null
-                    && $this->againstVariant->getNrOfHomePlaces() !== $this->againstVariant->getNrOfAwayPlaces())) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->getNrOfAwayPlaces());
+                    && $this->againstVariant->nrOfHomePlaces !== $this->againstVariant->nrOfAwayPlaces)) {
+                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfAwayPlaces);
             }
         // }
 
@@ -74,9 +74,9 @@ abstract class Against extends SportVariantWithNrOfPlaces
 //        if (!$this->isMixed()) {
 //            return $nrOfPlaces - 1;
 //        }
-        $nrOfGamesOneH2H = $this->againstVariant->getNrOfGamesOneH2h($this->nrOfPlaces);
-        $nrOfGamesOneH2HOneLess = $this->againstVariant->getNrOfGamesOneH2h($this->nrOfPlaces - 1);
-        return $nrOfGamesOneH2H - $nrOfGamesOneH2HOneLess;
+        $nrOfGamesOneH2h = $this->againstVariant->getNrOfGamesOneH2h($this->nrOfPlaces);
+        $nrOfGamesOneH2hOneLess = $this->againstVariant->getNrOfGamesOneH2h($this->nrOfPlaces - 1);
+        return $nrOfGamesOneH2h - $nrOfGamesOneH2hOneLess;
     }
 
 

@@ -28,16 +28,6 @@ readonly abstract class AgainstAbstract implements Variant
         return GameMode::Against;
     }
 
-    public function getNrOfHomePlaces(): int
-    {
-        return $this->nrOfHomePlaces;
-    }
-
-    public function getNrOfAwayPlaces(): int
-    {
-        return $this->nrOfAwayPlaces;
-    }
-
     public function getNrOfSidePlaces(Side $side): int
     {
         return $side === Side::Home ? $this->nrOfHomePlaces : $this->nrOfAwayPlaces;
@@ -69,17 +59,17 @@ readonly abstract class AgainstAbstract implements Variant
      */
     public function getNrOfAgainstCombinationsPerGame(Side|null $side = null): int {
         if( $side === Side::Home) {
-            return $this->getNrOfAwayPlaces();
+            return $this->nrOfAwayPlaces;
         } else if( $side === Side::Away) {
-            return $this->getNrOfHomePlaces();
+            return $this->nrOfHomePlaces;
         }
-        return (int)($this->getNrOfHomePlaces() * $this->getNrOfAwayPlaces());
+        return (int)($this->nrOfHomePlaces * $this->nrOfAwayPlaces);
 
     }
 
     public function getNrOfWithCombinationsPerGame(Side|null $side = null): int {
-//        $nrOfHomeWithCombinations = $this->getNrOfHomePlaces() > 1 ? 1 : 0;
-//        $nrOfAwayWithCombinations = $this->getNrOfAwayPlaces() > 1 ? 1 : 0;
+//        $nrOfHomeWithCombinations = $this->nrOfHomePlaces > 1 ? 1 : 0;
+//        $nrOfAwayWithCombinations = $this->nrOfAwayPlaces() > 1 ? 1 : 0;
         if( $side === Side::Home) {
             return 1;
         } else if( $side === Side::Away) {
@@ -97,17 +87,17 @@ readonly abstract class AgainstAbstract implements Variant
      */
     public function getNrOfHomeAwayCombinations(): int
     {
-        if ($this->getNrOfHomePlaces() !== $this->getNrOfAwayPlaces()) {
-            return (new SportMath())->above($this->getNrOfGamePlaces(), $this->getNrOfHomePlaces())
-                * (new SportMath())->above($this->getNrOfGamePlaces() - $this->getNrOfHomePlaces(), $this->getNrOfAwayPlaces());
+        if ($this->nrOfHomePlaces !== $this->nrOfAwayPlaces) {
+            return (new SportMath())->above($this->getNrOfGamePlaces(), $this->nrOfHomePlaces)
+                * (new SportMath())->above($this->getNrOfGamePlaces() - $this->nrOfHomePlaces, $this->nrOfAwayPlaces);
         }
         $nrOfSides = 2;
-        $nrOfFormations = (new SportMath())->above($this->getNrOfGamePlaces(), $this->getNrOfHomePlaces());
+        $nrOfFormations = (new SportMath())->above($this->getNrOfGamePlaces(), $this->nrOfHomePlaces);
         return (int)($nrOfFormations / $nrOfSides); // remove symetric
     }
 
     public function __toString()
     {
-        return 'against(' . $this->getNrOfHomePlaces() . 'vs' . $this->getNrOfAwayPlaces() . ')' . ' h2h:gpp=>';
+        return 'against(' . $this->nrOfHomePlaces . 'vs' . $this->nrOfAwayPlaces . ')' . ' h2h:gpp=>';
     }
 }

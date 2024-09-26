@@ -10,12 +10,12 @@ use SportsHelpers\Sport\PersistVariant;
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
 readonly class AgainstGpp extends AgainstAbstract implements \Stringable
 {
-    public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfGamesPerPlace)
+    public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, public int $nrOfGamesPerPlace)
     {
         parent::__construct($nrOfHomePlaces, $nrOfAwayPlaces);
     }
 
-    ////    protected function getNrOfPlacesOneH2H(int $nrOfPlaces): int
+    ////    protected function getNrOfPlacesOneH2h(int $nrOfPlaces): int
     ////    {
     ////        return $this->getNrOfGamesOneH2h($nrOfPlaces) * $this->getNrOfGamePlaces();
     ////    }
@@ -34,11 +34,6 @@ readonly class AgainstGpp extends AgainstAbstract implements \Stringable
 //        return (int)($nrOfPlacesPerGameRound / $this->getNrOfGamePlaces());
 //    }
 //
-
-    public function getNrOfGamesPerPlace(): int
-    {
-        return $this->nrOfGamesPerPlace;
-    }
 
 //
     ////    public function getNrOfGamesOneSerie(int $nrOfPlaces): int
@@ -78,27 +73,16 @@ readonly class AgainstGpp extends AgainstAbstract implements \Stringable
     {
         return new PersistVariant(
             $this->getGameMode(),
-            $this->getNrOfHomePlaces(),
-            $this->getNrOfAwayPlaces(),
+            $this->nrOfHomePlaces,
+            $this->nrOfAwayPlaces,
             0,
             0,
-            $this->getNrOfGamesPerPlace()
+            $this->nrOfGamesPerPlace
         );
     }
 
     public function __toString(): string
     {
-        return parent::__toString() . '0:' . $this->getNrOfGamesPerPlace();
-    }
-
-    private function toJson(): string {
-
-        $name = [
-            'nrOfHomePlaces' => $this->getNrOfHomePlaces(),
-            'nrOfAwayPlaces' => $this->getNrOfAwayPlaces(),
-            'nrOfGamesPerPlace' => $this->getNrOfGamesPerPlace()
-        ];
-        $json = json_encode($name);
-        return $json === false ? '?' : $json;
+        return parent::__toString() . '0:' . $this->nrOfGamesPerPlace;
     }
 }

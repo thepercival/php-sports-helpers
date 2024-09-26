@@ -6,28 +6,28 @@ namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstSportGppVariant;
+use SportsHelpers\SportVariants\AgainstGpp;
 
 class AgainstGppTest extends TestCase
 {
     public function testCreation(): void
     {
-        $sportVariant = new AgainstSportGppVariant(1, 2, 1);
+        $sportVariant = new AgainstGpp(1, 2, 1);
         self::assertSame(GameMode::Against, $sportVariant->getGameMode());
-        self::assertSame(1, $sportVariant->getNrOfHomePlaces());
-        self::assertSame(2, $sportVariant->getNrOfAwayPlaces());
-        self::assertSame(1, $sportVariant->getNrOfGamesPerPlace());
+        self::assertSame(1, $sportVariant->nrOfHomePlaces);
+        self::assertSame(2, $sportVariant->nrOfAwayPlaces);
+        self::assertSame(1, $sportVariant->nrOfGamesPerPlace);
     }
 
-    public function testNrOfGamesOneH2H(): void
+    public function testNrOfGamesOneH2h(): void
     {
-        $sportVariant = new AgainstSportGppVariant(1, 2, 1);
+        $sportVariant = new AgainstGpp(1, 2, 1);
         self::assertSame(3, $sportVariant->getNrOfGamesOneH2h(3));
         self::assertSame(12, $sportVariant->getNrOfGamesOneH2h(4));
         self::assertSame(30, $sportVariant->getNrOfGamesOneH2h(5));
         self::assertSame(60, $sportVariant->getNrOfGamesOneH2h(6));
 
-        $sportVariant = new AgainstSportGppVariant(2, 2, 1);
+        $sportVariant = new AgainstGpp(2, 2, 1);
         self::assertSame(3, $sportVariant->getNrOfGamesOneH2h(4));
         self::assertSame(15, $sportVariant->getNrOfGamesOneH2h(5));
         self::assertSame(45, $sportVariant->getNrOfGamesOneH2h(6));
@@ -52,27 +52,27 @@ class AgainstGppTest extends TestCase
 
     public function testToPersistVariant(): void
     {
-        $sportVariant = new AgainstSportGppVariant(1, 1, 1);
+        $sportVariant = new AgainstGpp(1, 1, 1);
         $persistVariant = $sportVariant->toPersistVariant();
         self::assertSame(1, $persistVariant->getNrOfHomePlaces());
         self::assertSame(1, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(0, $persistVariant->getNrOfGamePlaces());
-        self::assertSame(0, $persistVariant->getNrOfH2H());
+        self::assertSame(0, $persistVariant->getNrOfH2h());
     }
 
     public function testGetNrOfGamesPerPlace(): void
     {
-        $sportVariant = new AgainstSportGppVariant(1, 2, 2);
-        self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
-        self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
+        $sportVariant = new AgainstGpp(1, 2, 2);
+        self::assertSame(2, $sportVariant->nrOfAwayPlaces);
+        self::assertSame(2, $sportVariant->nrOfGamesPerPlace);
 
-        $sportVariant = new AgainstSportGppVariant(2, 2, 2);
-        self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
+        $sportVariant = new AgainstGpp(2, 2, 2);
+        self::assertSame(2, $sportVariant->nrOfGamesPerPlace);
     }
 
     public function testToString(): void
     {
-        $sportVariant = new AgainstSportGppVariant(1, 2, 3);
+        $sportVariant = new AgainstGpp(1, 2, 3);
         self::assertGreaterThan(0, strlen((string)$sportVariant));
     }
 

@@ -11,42 +11,26 @@ use SportsHelpers\Sport\PersistVariant;
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
 readonly class AgainstH2h extends AgainstAbstract implements \Stringable
 {
-    public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfH2H)
+    public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, public int $nrOfH2h)
     {
         parent::__construct($nrOfHomePlaces, $nrOfAwayPlaces);
-    }
-
-    public function getNrOfH2H(): int
-    {
-        return $this->nrOfH2H;
     }
 
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(
             $this->getGameMode(),
-            $this->getNrOfHomePlaces(),
-            $this->getNrOfAwayPlaces(),
+            $this->nrOfHomePlaces,
+            $this->nrOfAwayPlaces,
             0,
-            $this->getNrOfH2H(),
+            $this->nrOfH2h,
             0
         );
     }
 
     public function __toString(): string
     {
-        return parent::__toString() . $this->getNrOfH2H() . ':0';
-    }
-
-    private function toJson(): string {
-
-        $name = [
-            'nrOfHomePlaces' => $this->getNrOfHomePlaces(),
-            'nrOfAwayPlaces' => $this->getNrOfAwayPlaces(),
-            'nrOfH2H' => $this->getNrOfH2H()
-        ];
-        $json = json_encode($name);
-        return $json === false ? '?' : $json;
+        return parent::__toString() . $this->nrOfH2h . ':0';
     }
 
 //    private function getNrOfGamePlacesOneH2h(int $nrOfPlaces): int

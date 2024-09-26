@@ -9,7 +9,7 @@ SportsHelpers\Sport\PersistVariant:
       type: integer
     nrOfGamePlaces:
       type: integer
-    nrOfH2H:
+    nrOfH2h:
       type: integer
     nrOfGamesPerPlace:
       type: integer

@@ -49,7 +49,7 @@ class SingleTest extends TestCase
         self::assertSame(0, $persistVariant->getNrOfHomePlaces());
         self::assertSame(0, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(3, $persistVariant->getNrOfGamePlaces());
-        self::assertSame(0, $persistVariant->getNrOfH2H());
+        self::assertSame(0, $persistVariant->getNrOfH2h());
     }
 
     public function testToString(): void

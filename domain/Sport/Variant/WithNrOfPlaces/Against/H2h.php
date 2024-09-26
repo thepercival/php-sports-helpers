@@ -4,7 +4,7 @@ declare(strict_types = 1);
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\AgainstH2h;
 
 class H2h extends AgainstWithNrOfPlaces
 {
@@ -19,7 +19,7 @@ class H2h extends AgainstWithNrOfPlaces
 
     public function getTotalNrOfGames(): int
     {
-        return $this->sportVariant->getNrOfGamesOneH2h($this->nrOfPlaces) * $this->sportVariant->getNrOfH2H();
+        return $this->sportVariant->getNrOfGamesOneH2h($this->nrOfPlaces) * $this->sportVariant->nrOfH2h;
     }
 
     public function getTotalNrOfGamePlaces(): int
@@ -29,7 +29,7 @@ class H2h extends AgainstWithNrOfPlaces
 
     public function getTotalNrOfGamesPerPlace(): int
     {
-        return (int)($this->getNrOfGamesPerPlaceOneH2h() * $this->sportVariant->getNrOfH2H());
+        return (int)($this->getNrOfGamesPerPlaceOneH2h() * $this->sportVariant->nrOfH2h);
     }
 
     public function getNrOfGamePlacesPerBatch(): int

@@ -3,7 +3,7 @@
 namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\GamesPerPlace as AgainstGppWithNrOfPlaces;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstGpp;
 
 
 class EquallyAssignCalculator
@@ -114,6 +114,6 @@ class EquallyAssignCalculator
     }
 
     private function getGamePlacesId(AgainstGpp $againstGpp): string {
-        return $againstGpp->getNrOfHomePlaces() . '-' . $againstGpp->getNrOfAwayPlaces();
+        return $againstGpp->nrOfHomePlaces . '-' . $againstGpp->nrOfAwayPlaces;
     }
 }

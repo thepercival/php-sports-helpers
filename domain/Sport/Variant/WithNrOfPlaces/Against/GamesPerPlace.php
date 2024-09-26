@@ -6,7 +6,7 @@ namespace SportsHelpers\Sport\Variant\WithNrOfPlaces\Against;
 use SportsHelpers\Against\Side;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against as AgainstWithNrOfPlaces;
 use SportsHelpers\SportMath;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
+use SportsHelpers\SportVariants\AgainstGpp;
 
 class GamesPerPlace extends AgainstWithNrOfPlaces
 {
@@ -21,14 +21,14 @@ class GamesPerPlace extends AgainstWithNrOfPlaces
 
     public function getTotalNrOfGames(): int
     {
-        $totalNrOfGamePlaces =  $this->nrOfPlaces * $this->sportVariant->getNrOfGamesPerPlace();
+        $totalNrOfGamePlaces =  $this->nrOfPlaces * $this->sportVariant->nrOfGamesPerPlace;
         $totalNrOfGames = $totalNrOfGamePlaces / $this->sportVariant->getNrOfGamePlaces();
         return (int)floor($totalNrOfGames);
     }
 
     public function getDeficit(): int
     {
-        $totalNrOfGamePlaces =  $this->nrOfPlaces * $this->sportVariant->getNrOfGamesPerPlace();
+        $totalNrOfGamePlaces =  $this->nrOfPlaces * $this->sportVariant->nrOfGamesPerPlace;
         return $totalNrOfGamePlaces % $this->sportVariant->getNrOfGamePlaces();
     }
 
@@ -103,11 +103,11 @@ class GamesPerPlace extends AgainstWithNrOfPlaces
     }
 
     public function getMinNrOfGamesPerPlace(): int {
-        return $this->sportVariant->getNrOfGamesPerPlace() - (($this->getDeficit() > 0) ? 1 : 0);
+        return $this->sportVariant->nrOfGamesPerPlace - (($this->getDeficit() > 0) ? 1 : 0);
     }
 
     public function getMaxNrOfGamesPerPlace(): int {
-        return $this->sportVariant->getNrOfGamesPerPlace();
+        return $this->sportVariant->nrOfGamesPerPlace;
     }
 
     public function getMinAgainstAmountPerPlace(): int
@@ -122,13 +122,13 @@ class GamesPerPlace extends AgainstWithNrOfPlaces
 
     public function getMinNrOfAgainstPlacesForPlace(): float
     {
-        $minNrOfSidePlaces = min($this->sportVariant->getNrOfHomePlaces(), $this->sportVariant->getNrOfAwayPlaces());
+        $minNrOfSidePlaces = min($this->sportVariant->nrOfHomePlaces, $this->sportVariant->nrOfAwayPlaces);
         return $this->getMinNrOfGamesPerPlace() * $minNrOfSidePlaces;
     }
 
     public function getMaxNrOfAgainstPlacesForPlace(): float
     {
-        $minNrOfSidePlaces = max($this->sportVariant->getNrOfHomePlaces(), $this->sportVariant->getNrOfAwayPlaces());
+        $minNrOfSidePlaces = max($this->sportVariant->nrOfHomePlaces, $this->sportVariant->nrOfAwayPlaces);
         return $this->getMaxNrOfGamesPerPlace() * $minNrOfSidePlaces;
     }
 }

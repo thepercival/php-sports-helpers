@@ -7,8 +7,8 @@ use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\H2h as AgainstH2hWithNrOf
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\AllInOneGame as AllInOneGameWithNrOfPlaces;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Single as SingleWithNrOfPlaces;
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h;
 use SportsHelpers\SportVariants\Single;
 
 class Creator

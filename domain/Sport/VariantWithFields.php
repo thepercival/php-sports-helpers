@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SportsHelpers\Sport;
 
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstGpp as AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h as AgainstH2h;
+use SportsHelpers\SportVariants\AgainstGpp;
+use SportsHelpers\SportVariants\AgainstH2h;
 use SportsHelpers\SportVariants\Single;
 
 class VariantWithFields implements \Stringable
