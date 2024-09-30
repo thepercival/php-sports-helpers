@@ -18,11 +18,6 @@ readonly class AllInOneGame implements Variant
         return GameMode::AllInOneGame;
     }
 
-    public function getNrOfGamesPerPlace(): int
-    {
-        return $this->nrOfGamesPerPlace;
-    }
-
 //    public function getTotalNrOfGames(int $nrOfPlaces): int
 //    {
 //        return $this->nrOfGamesPerPlace;
@@ -34,10 +29,10 @@ readonly class AllInOneGame implements Variant
 //    }
 //
 
-    public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool
-    {
-        return true;
-    }
+//    public function allPlacesParticipateInGameRound(int $nrOfPlaces): bool
+//    {
+//        return true;
+//    }
 
     public function toPersistVariant(): PersistVariant
     {
@@ -47,13 +42,13 @@ readonly class AllInOneGame implements Variant
             0,
             0,
             0,
-            $this->getNrOfGamesPerPlace()
+            $this->nrOfGamesPerPlace
         );
     }
 
 
     public function __toString()
     {
-        return 'allinone gpp=>' . $this->getNrOfGamesPerPlace();
+        return 'allinone gpp=>' . $this->nrOfGamesPerPlace;
     }
 }

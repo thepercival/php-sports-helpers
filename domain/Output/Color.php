@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Output;
 
-use SportsHelpers\Output;
-
 enum Color: string
 {
     case Red = '0;31';

@@ -6,9 +6,10 @@ namespace SportsHelpers\Sport;
 
 use SportsHelpers\GameMode;
 use SportsHelpers\Identifiable;
+use SportsHelpers\SportVariants\AgainstOneVsTwo;
+use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h;
+use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\Single;
 
 class PersistVariant extends Identifiable
@@ -18,7 +19,7 @@ class PersistVariant extends Identifiable
         protected int $nrOfHomePlaces,
         protected int $nrOfAwayPlaces,
         protected int $nrOfGamePlaces,
-        protected int $nrOfH2h,
+        protected int $nrOfCycles,
         protected int $nrOfGamesPerPlace
     ) {
     }
@@ -46,9 +47,9 @@ class PersistVariant extends Identifiable
         return $this->nrOfGamePlaces;
     }
 
-    public function getNrOfH2h(): int
+    public function getNrOfCycles(): int
     {
-        return $this->nrOfH2h;
+        return $this->nrOfCycles;
     }
 
     public function getNrOfGamesPerPlace(): int
@@ -57,7 +58,7 @@ class PersistVariant extends Identifiable
     }
 
 
-    public function createVariant(): Single|AgainstH2h|AgainstGpp|AllInOneGame
+    public function createVariant(): Single|AllInOneGame|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo
     {
         if ($this->gameMode === GameMode::Single) {
             return new Single($this->nrOfGamePlaces, $this->nrOfGamesPerPlace);
@@ -65,9 +66,12 @@ class PersistVariant extends Identifiable
         if ($this->gameMode === GameMode::AllInOneGame) {
             return new AllInOneGame($this->nrOfGamesPerPlace);
         }
-        if ($this->nrOfH2h > 0) {
-            return new AgainstH2h($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfH2h);
+        if( $this->nrOfHomePlaces === 1 && $this->nrOfAwayPlaces === 1 ) {
+            return new AgainstOneVsOne($this->nrOfCycles);
         }
-        return new AgainstGpp($this->nrOfHomePlaces, $this->nrOfAwayPlaces, $this->nrOfGamesPerPlace);
+        if( $this->nrOfHomePlaces === 1 && $this->nrOfAwayPlaces === 2 ) {
+            return new AgainstOneVsTwo($this->nrOfCycles);
+        }
+        return new AgainstTwoVsTwo($this->nrOfCycles);
     }
 }

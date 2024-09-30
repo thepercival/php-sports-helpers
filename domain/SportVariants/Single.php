@@ -10,22 +10,12 @@ use SportsHelpers\Sport\Variant;
 
 readonly class Single implements Variant
 {
-    public function __construct(protected int $nrOfGamePlaces, protected int $nrOfGamesPerPlace)
+    public function __construct(public int $nrOfGamePlaces, public int $nrOfGamesPerPlace)
     {
     }
 
     public function getGameMode(): GameMode {
         return GameMode::Single;
-    }
-
-    public function getNrOfGamesPerPlace(): int
-    {
-        return $this->nrOfGamesPerPlace;
-    }
-
-    public function getNrOfGamePlaces(): int
-    {
-        return $this->nrOfGamePlaces;
     }
 
 //    public function getNrOfGameGroups(int $nrOfPlaces): int
@@ -55,21 +45,21 @@ readonly class Single implements Variant
             $this->getGameMode(),
             0,
             0,
-            $this->getNrOfGamePlaces(),
+            $this->nrOfGamePlaces,
             0,
-            $this->getNrOfGamesPerPlace(),
+            $this->nrOfGamesPerPlace,
         );
     }
 
     public function __toString()
     {
-        return 'single(' . $this->getNrOfGamePlaces() . ') gpp=>' . $this->getNrOfGamesPerPlace();
+        return 'single(' . $this->nrOfGamePlaces . ') gpp=>' . $this->nrOfGamesPerPlace;
     }
 
     public function toJson(): string {
         $name = [
-            'nrOfGamesPerPlace' => $this->getNrOfGamesPerPlace(),
-            'nrOfGamePlaces' => $this->getNrOfGamePlaces()
+            'nrOfGamesPerPlace' => $this->nrOfGamesPerPlace,
+            'nrOfGamePlaces' => $this->nrOfGamePlaces
         ];
         $json = json_encode($name);
         return $json === false ? '?' : $json;

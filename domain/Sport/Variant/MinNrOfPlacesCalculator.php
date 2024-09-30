@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sport\Variant;
 
-use SportsHelpers\SportVariants\AgainstAbstract;
+use SportsHelpers\SportVariants\AgainstOneVsOne;
+use SportsHelpers\SportVariants\AgainstOneVsTwo;
+use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame;
 use SportsHelpers\SportVariants\Single;
 
@@ -16,7 +18,7 @@ class MinNrOfPlacesCalculator
     }
 
     /**
-     * @param list<Single | AgainstAbstract | AllInOneGame> $sportVariants
+     * @param list<Single | AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo | AllInOneGame> $sportVariants
      * @return int
      */
     public function getMinNrOfPlacesPerPoule(array $sportVariants): int
@@ -25,7 +27,7 @@ class MinNrOfPlacesCalculator
             return self::MinNrOfPlacesPerPoule;
         }
         $minimum = min(
-            array_map(function (Single|AgainstAbstract|AllInOneGame $sportVariant) {
+            array_map(function (Single|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|AllInOneGame $sportVariant) {
                 return $this->getMinNrOfPlacesPerPouleForSport($sportVariant);
             }, $sportVariants)
         );
@@ -36,10 +38,14 @@ class MinNrOfPlacesCalculator
         return $minimum;
     }
 
-    protected function getMinNrOfPlacesPerPouleForSport(Single|AgainstAbstract|AllInOneGame $sportVariant): int
+    protected function getMinNrOfPlacesPerPouleForSport(
+        Single|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|AllInOneGame $sportVariant): int
     {
         if ($sportVariant instanceof AllInOneGame) {
             return self::MinNrOfPlacesPerPoule;
+        }
+        if ($sportVariant instanceof Single) {
+            return $sportVariant->nrOfGamePlaces;
         }
         return $sportVariant->getNrOfGamePlaces();
     }

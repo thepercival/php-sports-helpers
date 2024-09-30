@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 use Exception;
-use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
-use SportsHelpers\PouleStructure\BalancedCreator as BalancedPouleStructureCreator;
+use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
+use SportsHelpers\PouleStructures\BalancedCreator as BalancedPouleStructureCreator;
 
 class PlaceRanges
 {

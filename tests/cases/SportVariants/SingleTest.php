@@ -6,8 +6,8 @@ namespace SportsHelpers\Tests\SportVariants;
 
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\Variant\WithNrOfPlaces\Single as SingleWithNrOfPlaces;
 use SportsHelpers\SportVariants\Single as SingleSportVariant;
+use SportsHelpers\SportVariants\WithNrOfPlaces\SingleWithNrOfPlaces as SingleWithNrOfPlaces;
 
 class SingleTest extends TestCase
 {
@@ -15,17 +15,8 @@ class SingleTest extends TestCase
     {
         $sportVariant = new SingleSportVariant(3, 2);
         self::assertSame(GameMode::Single, $sportVariant->getGameMode());
-        self::assertSame(3, $sportVariant->getNrOfGamePlaces());
-        self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
-    }
-
-    public function testTotalNrOfGames(): void
-    {
-        $sportVariant = new SingleSportVariant(3, 2);
-        $variantWithNrOfPlaces = new SingleWithNrOfPlaces(9, $sportVariant);
-        self::assertSame(6, $variantWithNrOfPlaces->getTotalNrOfGames());
-        $variantWithNrOfPlaces = new SingleWithNrOfPlaces(10, $sportVariant);
-        self::assertSame(7, $variantWithNrOfPlaces->getTotalNrOfGames());
+        self::assertSame(3, $sportVariant->nrOfGamePlaces);
+        self::assertSame(2, $sportVariant->nrOfGamesPerPlace);
     }
 
 //    public function testTotalNrOfGamesPerPlace(): void
@@ -49,13 +40,23 @@ class SingleTest extends TestCase
         self::assertSame(0, $persistVariant->getNrOfHomePlaces());
         self::assertSame(0, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(3, $persistVariant->getNrOfGamePlaces());
-        self::assertSame(0, $persistVariant->getNrOfH2h());
+        self::assertSame(0, $persistVariant->getNrOfCycles());
     }
 
     public function testToString(): void
     {
         $sportVariant = new SingleSportVariant(3, 2);
         self::assertGreaterThan(0, strlen((string)$sportVariant));
+    }
+
+    public function testToJson(): void
+    {
+        $single = new SingleSportVariant(3, 2);
+        $serializedSingle = json_decode( $single->toJson(), true );
+        self::assertIsArray($serializedSingle);
+        self::assertCount(2, $serializedSingle);
+        self::assertTrue(array_key_exists('nrOfGamesPerPlace', $serializedSingle));
+        self::assertTrue(array_key_exists('nrOfGamePlaces', $serializedSingle));
     }
 
     // @TODO CDK MOVE TO PLANNING

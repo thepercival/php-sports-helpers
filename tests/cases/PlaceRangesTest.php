@@ -7,11 +7,11 @@ namespace SportsHelpers\Tests;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
-use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
+use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
 use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
+use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\SportVariants\AgainstGpp;
-use SportsHelpers\SportVariants\AgainstH2h;
+use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\Single as SingleSportVariant;
 
 final class PlaceRangesTest extends TestCase
@@ -62,8 +62,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesValid2(): void
     {
-        $nrOfSidePlaces = 1;
-        $againstSportVariant = new AgainstH2h($nrOfSidePlaces, $nrOfSidePlaces, 1);
+        $againstSportVariant = new AgainstOneVsOne(1);
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
@@ -84,8 +83,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesInvalid(): void
     {
-        $nrOfSidePlaces = 2;
-        $againstSportVariant = new AgainstGpp($nrOfSidePlaces, $nrOfSidePlaces, 1);
+        $againstSportVariant = new AgainstTwoVsTwo(1);
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 3;
@@ -107,8 +105,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesValid(): void
     {
-        $nrOfSidePlaces = 2;
-        $againstSportVariant = new AgainstGpp($nrOfSidePlaces, $nrOfSidePlaces, 1);
+        $againstSportVariant = new AgainstTwoVsTwo(1);
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 4;
