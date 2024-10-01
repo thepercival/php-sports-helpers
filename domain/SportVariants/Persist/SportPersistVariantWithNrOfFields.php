@@ -9,32 +9,24 @@ use SportsHelpers\SportVariants\AgainstOneVsTwo;
 use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame;
 use SportsHelpers\SportVariants\Single;
-class SportPersistVariantWithNrOfFields implements \Stringable
+
+readonly class SportPersistVariantWithNrOfFields implements \Stringable
 {    protected SportPersistVariant $persistVariant;
 
     public function __construct(
         AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|Single|AllInOneGame $sportVariant,
-        protected int                                  $nrOfFields
+        public int $nrOfFields
     ) {
         $this->persistVariant = $sportVariant->toPersistVariant();
     }
 
-    public function getSportVariant(): AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|Single|AllInOneGame
+    public function createSportVariant(): AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|Single|AllInOneGame
     {
         return $this->persistVariant->createVariant();
     }
 
-    public function getPersistVariant(): SportPersistVariant {
-        return $this->persistVariant;
-    }
-
-    public function getNrOfFields(): int
-    {
-        return $this->nrOfFields;
-    }
-
     public function __toString(): string
     {
-        return $this->getSportVariant() . ' f(' . $this->nrOfFields . ')';
+        return $this->createSportVariant() . ' f(' . $this->nrOfFields . ')';
     }
 }
