@@ -41,44 +41,44 @@ readonly class AgainstWithNrOfPlaces extends WithNrOfPlacesAbstract
         return (int)($this->getNrOfGamesPerPlaceForSingleCycle() * $this->againstVariant->nrOfCycles);
     }
 
-    public function getNrOfGamePlacesPerBatch(): int
-    {
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
-    }
+//    public function getNrOfGamePlacesPerBatch(): int
+//    {
+//        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
+//    }
 
     public function canAllPlacesPlaySimultaneously(): bool
     {
-        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
+        return $this->nrOfPlaces === $this->getMaxNrOfGamePlacesSimultaneously();
     }
 //
-    protected function getNrOfGamePlacesSimultaneously(): int
+    protected function getMaxNrOfGamePlacesSimultaneously(): int
     {
         return $this->nrOfPlaces - ($this->nrOfPlaces % $this->againstVariant->getNrOfGamePlaces());
     }
 
-    public function getNrOfGamesSimultaneously(): int
+    public function getMaxNrOfGamesSimultaneously(): int
     {
-        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
+        return (int)floor($this->nrOfPlaces / $this->againstVariant->getNrOfGamePlaces());
     }
 
-    public function getNrOfPossibleWithCombinations(AgainstSide|null $side = null): int
-    {
-        $combinations = 0;
-        // if( $this->againstVariant->nrOfHomePlaces > 1 ) {
-            if( $side === null || $side === AgainstSide::Home) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfHomePlaces);
-            }
-        // }
-
-        // if( $this->againstVariant->nrOfAwayPlaces() > 1 ) {
-            if( $side === AgainstSide::Away || ($side === null
-                    && $this->againstVariant->nrOfHomePlaces !== $this->againstVariant->nrOfAwayPlaces)) {
-                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfAwayPlaces);
-            }
-        // }
-
-        return $combinations;
-    }
+//    public function getNrOfPossibleWithCombinations(AgainstSide|null $side = null): int
+//    {
+//        $combinations = 0;
+//        // if( $this->againstVariant->nrOfHomePlaces > 1 ) {
+//            if( $side === null || $side === AgainstSide::Home) {
+//                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfHomePlaces);
+//            }
+//        // }
+//
+//        // if( $this->againstVariant->nrOfAwayPlaces() > 1 ) {
+//            if( $side === AgainstSide::Away || ($side === null
+//                    && $this->againstVariant->nrOfHomePlaces !== $this->againstVariant->nrOfAwayPlaces)) {
+//                $combinations += (new SportMath())->above($this->nrOfPlaces, $this->againstVariant->nrOfAwayPlaces);
+//            }
+//        // }
+//
+//        return $combinations;
+//    }
 
 //
 //    protected function getMaxNrOfGamePlacesSimultaneously(int $nrOfPlaces): int
@@ -86,10 +86,10 @@ readonly class AgainstWithNrOfPlaces extends WithNrOfPlacesAbstract
 //        return $nrOfPlaces - ($nrOfPlaces % $this->getNrOfGamePlaces());
 //    }
 //
-    public function getNrOfGamesPerPlaceOneSerie(): int
-    {
-        return $this->getNrOfGamesPerPlaceForSingleCycle() * 2;
-    }
+//    public function getNrOfGamesPerPlaceOneSerie(): int
+//    {
+//        return $this->getNrOfGamesPerPlaceForSingleCycle() * 2;
+//    }
 //
 //    // 1vs1: 2=>1, 3=>2, 4=>3, 5=>4
 //    // 1vs2: 3=>3, 4=>9(12-3), 5=>21(30-9)

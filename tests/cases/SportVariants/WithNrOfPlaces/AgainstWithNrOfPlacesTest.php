@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\AgainstOneVsTwo;
-use SportsHelpers\SportVariants\Single;
+use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\WithNrOfPlaces\AgainstWithNrOfPlaces;
 
 class AgainstWithNrOfPlacesTest extends TestCase
@@ -19,7 +19,21 @@ class AgainstWithNrOfPlacesTest extends TestCase
         self::assertSame(GameMode::Against, $againstOneVsOne->getGameMode());
     }
 
-    public function testTotalNrOfGames(): void
+    public function testCreateException(): void
+    {
+        self::expectException(\Exception::class);
+        $against = new AgainstTwoVsTwo(1);
+        new AgainstWithNrOfPlaces(3, $against);
+    }
+
+    public function testGetSportVariant(): void
+    {
+        $againstOneVsOne = new AgainstOneVsOne(1);
+        $againstOneVsOneWithNrOfPlaces = new AgainstWithNrOfPlaces(4, $againstOneVsOne);
+        self::assertSame($againstOneVsOne, $againstOneVsOneWithNrOfPlaces->getSportVariant());
+    }
+
+    public function testGetTotalNrOfGames(): void
     {
         $againstOneVsOne = new AgainstOneVsOne(1);
         $variantWithNrOfPlaces = new AgainstWithNrOfPlaces(2, $againstOneVsOne);
@@ -30,6 +44,15 @@ class AgainstWithNrOfPlacesTest extends TestCase
         self::assertSame(6, $variantWithNrOfPlaces->getTotalNrOfGames());
         $variantWithNrOfPlaces = new AgainstWithNrOfPlaces(5, $againstOneVsOne);
         self::assertSame(10, $variantWithNrOfPlaces->getTotalNrOfGames());
+    }
+
+    public function testGetTotalNrOfGamePlaces(): void
+    {
+        $againstOneVsOne = new AgainstOneVsOne(1);
+        $variantWithNrOfPlaces = new AgainstWithNrOfPlaces(2, $againstOneVsOne);
+        self::assertSame(2, $variantWithNrOfPlaces->getTotalNrOfGamePlaces());
+        $variantWithNrOfPlaces = new AgainstWithNrOfPlaces(3, $againstOneVsOne);
+        self::assertSame(6, $variantWithNrOfPlaces->getTotalNrOfGamePlaces());
     }
 
     public function testAllPlacesPlaySimultaneously(): void
@@ -69,6 +92,13 @@ class AgainstWithNrOfPlacesTest extends TestCase
         self::assertSame(1, $persist->getNrOfHomePlaces());
         self::assertSame(2, $persist->getNrOfAwayPlaces());
         self::assertSame(3, $persist->getNrOfCycles());
+    }
+
+    public function testGetMaxNrOfGamesSimultaneously() : void
+    {
+        $sportVariant = new AgainstOneVsOne( 1);
+        $variantWithNrOfPlaces = new AgainstWithNrOfPlaces(5, $sportVariant);
+        self::assertSame(2, $variantWithNrOfPlaces->getMaxNrOfGamesSimultaneously());
     }
 
     // @TODO CDK MOVE TO PLANNING

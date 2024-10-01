@@ -8,10 +8,10 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
 use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
-use SportsHelpers\Sport\Variant\MinNrOfPlacesCalculator;
+use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
+use SportsHelpers\SportVariants\Helpers\MinNrOfPlacesCalculator;
 use SportsHelpers\SportVariants\Single as SingleSportVariant;
 
 final class PlaceRangesTest extends TestCase
@@ -21,7 +21,7 @@ final class PlaceRangesTest extends TestCase
         $nrOfGamePlaces = 3;
         $singleSportVariant = new SingleSportVariant($nrOfGamePlaces, 3);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$singleSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$singleSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 3;
@@ -42,7 +42,7 @@ final class PlaceRangesTest extends TestCase
         $nrOfGamePlaces = 3;
         $singleSportVariant = new SingleSportVariant($nrOfGamePlaces, 1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$singleSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$singleSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 2;
@@ -64,7 +64,7 @@ final class PlaceRangesTest extends TestCase
     {
         $againstSportVariant = new AgainstOneVsOne(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 4;
@@ -85,7 +85,7 @@ final class PlaceRangesTest extends TestCase
     {
         $againstSportVariant = new AgainstTwoVsTwo(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 3;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -107,7 +107,7 @@ final class PlaceRangesTest extends TestCase
     {
         $againstSportVariant = new AgainstTwoVsTwo(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$againstSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 4;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -127,7 +127,7 @@ final class PlaceRangesTest extends TestCase
     {
         $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -147,7 +147,7 @@ final class PlaceRangesTest extends TestCase
     {
         $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 1;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -168,7 +168,7 @@ final class PlaceRangesTest extends TestCase
     {
         $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 5;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -189,7 +189,7 @@ final class PlaceRangesTest extends TestCase
     {
         $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 5;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -211,7 +211,7 @@ final class PlaceRangesTest extends TestCase
     {
         $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->getMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 5;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;

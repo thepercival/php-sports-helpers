@@ -34,29 +34,13 @@ readonly class AllInOneGameWithNrOfPlaces extends WithNrOfPlacesAbstract
         return $this->sportVariant->nrOfGamesPerPlace;
     }
 
-    public function canAllPlacesPlaySimultaneously(): bool
-    {
-        return $this->nrOfPlaces === $this->getNrOfGamePlacesSimultaneously();
-    }
-
-    protected function getNrOfGamePlacesSimultaneously(): int
-    {
-        return $this->nrOfPlaces;
-    }
-
-    private function getNrOfGamePlaces(): int
+    public function getNrOfGamePlaces(): int
     {
         return $this->nrOfPlaces;
     }
 
     public function getNrOfGamesSimultaneously(): int
     {
-        return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->getNrOfGamePlaces());
+        return 1;
     }
-
-    public function getNrOfGamePlacesPerBatch(): int
-    {
-        return (int)ceil($this->getTotalNrOfGamePlaces() / $this->getNrOfGamePlacesSimultaneously());
-    }
-
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport;
+namespace SportsHelpers\Old\Sport;
 
 class GamePlaceCalculator
 {

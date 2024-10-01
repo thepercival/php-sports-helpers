@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\PersistVariant;
-use SportsHelpers\Sport\Variant;
+use SportsHelpers\SportVariants\Persist\SportPersistVariant;
 
-readonly class Single implements Variant
+readonly class Single implements SportVariant
 {
     public function __construct(public int $nrOfGamePlaces, public int $nrOfGamesPerPlace)
     {
@@ -39,9 +38,9 @@ readonly class Single implements Variant
 //    }
 
 
-    public function toPersistVariant(): PersistVariant
+    public function toPersistVariant(): SportPersistVariant
     {
-        return new PersistVariant(
+        return new SportPersistVariant(
             $this->getGameMode(),
             0,
             0,

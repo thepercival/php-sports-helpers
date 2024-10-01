@@ -26,4 +26,39 @@ class AllInOneGameWithNrOfPlacesTest extends TestCase
         $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
         self::assertSame($allInOneGame, $allInOneGameWithNrOfPlaces->getSportVariant());
     }
+
+    public function testGetTotalNrOfGames(): void
+    {
+        $allInOneGame = new AllInOneGame(3);
+        $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
+        self::assertSame(3, $allInOneGameWithNrOfPlaces->getTotalNrOfGames());
+    }
+
+    public function testGetTotalNrOfGamePlaces(): void
+    {
+        $allInOneGame = new AllInOneGame(3);
+        $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
+        self::assertSame(12, $allInOneGameWithNrOfPlaces->getTotalNrOfGamePlaces());
+    }
+
+    public function testGetTotalNrOfGamesPerPlace(): void
+    {
+        $allInOneGame = new AllInOneGame(3);
+        $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
+        self::assertSame(3, $allInOneGameWithNrOfPlaces->getTotalNrOfGamesPerPlace());
+    }
+
+    public function testGetNrOfGamePlaces(): void
+    {
+        $allInOneGame = new AllInOneGame(3);
+        $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
+        self::assertSame(4, $allInOneGameWithNrOfPlaces->getNrOfGamePlaces());
+    }
+
+    public function testGetNrOfGamesSimultaneously(): void
+    {
+        $allInOneGame = new AllInOneGame(3);
+        $allInOneGameWithNrOfPlaces = new AllInOneGameWithNrOfPlaces(4, $allInOneGame);
+        self::assertSame(1, $allInOneGameWithNrOfPlaces->getNrOfGamesSimultaneously());
+    }
 }

@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport;
+namespace SportsHelpers\SportVariants\Persist;
 
+use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\AgainstOneVsTwo;
 use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\Single;
-
-class VariantWithFields implements \Stringable
-{
-    protected PersistVariant $persistVariant;
+class SportPersistVariantWithNrOfFields implements \Stringable
+{    protected SportPersistVariant $persistVariant;
 
     public function __construct(
         AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|Single|AllInOneGame $sportVariant,
@@ -26,7 +24,7 @@ class VariantWithFields implements \Stringable
         return $this->persistVariant->createVariant();
     }
 
-    public function getPersistVariant(): PersistVariant {
+    public function getPersistVariant(): SportPersistVariant {
         return $this->persistVariant;
     }
 

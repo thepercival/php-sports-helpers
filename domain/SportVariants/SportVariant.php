@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport;
+namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\GameMode;
+use SportsHelpers\SportVariants\Persist\SportPersistVariant;
 
-interface Variant extends \Stringable
+interface SportVariant extends \Stringable
 {
     public function getGameMode(): GameMode;
 
-    public function toPersistVariant(): PersistVariant;
+    public function toPersistVariant(): SportPersistVariant;
 
 //    public function getTotalNrOfGames(int $nrOfPlaces): int;
 //

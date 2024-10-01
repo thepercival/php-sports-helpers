@@ -6,13 +6,12 @@ namespace SportsHelpers\SportVariants;
 
 use SportsHelpers\Against\AgainstSide;
 use SportsHelpers\GameMode;
-use SportsHelpers\Sport\PersistVariant;
-use SportsHelpers\Sport\Variant;
 use SportsHelpers\SportMath;
+use SportsHelpers\SportVariants\Persist\SportPersistVariant;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-readonly abstract class AgainstAbstract implements Variant
+readonly abstract class AgainstAbstract implements SportVariant
 {
     public function __construct(public int $nrOfHomePlaces, public int $nrOfAwayPlaces, public int $nrOfCycles)
     {
@@ -72,9 +71,9 @@ readonly abstract class AgainstAbstract implements Variant
         return (int)($nrOfFormations / $nrOfSides); // remove symetric
     }
 
-    public function toPersistVariant(): PersistVariant
+    public function toPersistVariant(): SportPersistVariant
     {
-        return new PersistVariant(
+        return new SportPersistVariant(
             $this->getGameMode(),
             $this->nrOfHomePlaces,
             $this->nrOfAwayPlaces,

@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Sport;
+namespace SportsHelpers\SportVariants\Persist;
 
 use SportsHelpers\GameMode;
 use SportsHelpers\Identifiable;
+use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\AgainstOneVsTwo;
 use SportsHelpers\SportVariants\AgainstTwoVsTwo;
 use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
 use SportsHelpers\SportVariants\Single;
 
-class PersistVariant extends Identifiable
+class SportPersistVariant extends Identifiable
 {
     public function __construct(
         protected GameMode $gameMode,
