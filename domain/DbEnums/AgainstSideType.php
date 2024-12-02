@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers\Against;
+namespace SportsHelpers\DbEnums;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use SportsHelpers\EnumDbType;
+use SportsHelpers\Against\AgainstSide;
 
 class AgainstSideType extends EnumDbType
 {
