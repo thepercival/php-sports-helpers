@@ -2,8 +2,12 @@ name: Generate tag
 
 on:
   push:
-    branches:
-      - master
+    branches-ignore: [ main ]
+  pull_request:
+    branches: [ main ]
+    types:
+      - opened
+      - closed
 
 jobs:
   build:
