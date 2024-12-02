@@ -6,9 +6,9 @@ namespace SportsHelpers;
 
 class SportRange implements \Stringable
 {
-    public const string Seperator = '->';
     protected int $min;
     protected int $max;
+    public const string Seperator = '->';    
 
     public function __construct(int $min, int $max)
     {
