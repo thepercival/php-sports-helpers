@@ -18,7 +18,7 @@
     </include>
     <exclude>
       <directory suffix="Repository.php">../domain</directory>
-<!--      <directory suffix="Output.php">../domain</directory>-->
+      <directory suffix="Output.php">../domain</directory>
       <directory>../domain/DbEnums</directory>
       <directory>../domain/Old</directory>
       <directory>../domain/Output</directory>
