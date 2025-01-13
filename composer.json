@@ -26,7 +26,7 @@
     "phpstan/phpstan-phpunit": "^1.0",
     "phpstan/phpstan-strict-rules": "^1.1",
     "friendsofphp/php-cs-fixer": "^3.2",
-    "vimeo/psalm": "^5.15",
+    "vimeo/psalm": "^5.0",
     "psalm/plugin-phpunit": "^0.18"
   },
   "autoload": {

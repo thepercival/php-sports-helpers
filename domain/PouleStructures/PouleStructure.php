@@ -85,7 +85,7 @@ readonly class PouleStructure implements Stringable
      * @param list<AllInOneGame|Single|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo> $sportVariants
      * @return int
      */
-    public function getTotalNrOfGames(array $sportVariants): int
+    public function calculateTotalNrOfGames(array $sportVariants): int
     {
         $nrOfGames = 0;
         foreach ($this->poules as $nrOfPlaces) {
@@ -119,7 +119,7 @@ readonly class PouleStructure implements Stringable
      * @param SelfReferee $selfReferee
      * @return bool
      */
-    public function sportsAndSelfRefereeAreCompatible(
+    public function isCompatibleWithSportsAndSelfReferee(
         array     $sportVariants,
         SelfReferee $selfReferee): bool
     {
