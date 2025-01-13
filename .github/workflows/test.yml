@@ -27,10 +27,8 @@ jobs:
           php_version: "8.3"
 
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v4
         with:
           php_version: 8.3
           php_extensions: xdebug
           configuration: tests/phpunit.xml
-        env:
-          XDEBUG_MODE: coverage
