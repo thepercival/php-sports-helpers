@@ -34,7 +34,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: PHPUnit Coverage
-        uses: php-actions/phpunit@v3
+        uses: php-actions/phpunit@v4
         with:
           php_version: 8.3
           php_extensions: xdebug intl

@@ -85,7 +85,7 @@ class PouleStructureTest extends TestCase
     {
         $sport = new AgainstOneVsOne( 1);
         $pouleStructure = new PouleStructure(3, 2, 2);
-        self::assertSame(5, $pouleStructure->getTotalNrOfGames([$sport]));
+        self::assertSame(5, $pouleStructure->calculateTotalNrOfGames([$sport]));
     }
 
 
