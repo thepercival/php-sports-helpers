@@ -21,17 +21,17 @@ readonly class AllInOneGameWithNrOfPlaces extends WithNrOfPlacesAbstract
 
     public function getTotalNrOfGames(): int
     {
-        return $this->sportVariant->nrOfGamesPerPlace;
+        return $this->sportVariant->nrOfCycles;
     }
 
     public function getTotalNrOfGamePlaces(): int
     {
-        return (int)($this->sportVariant->nrOfGamesPerPlace * $this->nrOfPlaces);
+        return (int)($this->sportVariant->nrOfCycles * $this->nrOfPlaces);
     }
 
     public function getTotalNrOfGamesPerPlace(): int
     {
-        return $this->sportVariant->nrOfGamesPerPlace;
+        return $this->sportVariant->nrOfCycles;
     }
 
     public function getNrOfGamePlaces(): int
