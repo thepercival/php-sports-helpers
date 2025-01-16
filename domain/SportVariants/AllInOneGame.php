@@ -9,7 +9,7 @@ use SportsHelpers\SportVariants\Persist\SportPersistVariant;
 
 readonly class AllInOneGame implements SportVariant
 {
-    public function __construct(public int $nrOfGamesPerPlace)
+    public function __construct(public int $nrOfCycles)
     {
     }
 
@@ -40,14 +40,14 @@ readonly class AllInOneGame implements SportVariant
             0,
             0,
             0,
-            0,
-            $this->nrOfGamesPerPlace
+            $this->nrOfCycles,
+            0
         );
     }
 
 
     public function __toString()
     {
-        return 'allinone gpp=>' . $this->nrOfGamesPerPlace;
+        return 'allinone gpp=>' . $this->nrOfCycles;
     }
 }

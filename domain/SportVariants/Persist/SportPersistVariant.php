@@ -20,7 +20,7 @@ class SportPersistVariant extends Identifiable
         protected int $nrOfAwayPlaces,
         protected int $nrOfGamePlaces,
         protected int $nrOfCycles,
-        protected int $nrOfGamesPerPlace
+        protected int $nrOfCycleParts
     ) {
     }
     public function getGameMode(): GameMode
@@ -52,19 +52,19 @@ class SportPersistVariant extends Identifiable
         return $this->nrOfCycles;
     }
 
-    public function getNrOfGamesPerPlace(): int
+    public function getNrOfCycleParts(): int
     {
-        return $this->nrOfGamesPerPlace;
+        return $this->nrOfCycleParts;
     }
 
 
     public function createVariant(): Single|AllInOneGame|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo
     {
         if ($this->gameMode === GameMode::Single) {
-            return new Single($this->nrOfGamePlaces, $this->nrOfGamesPerPlace);
+            return new Single($this->nrOfGamePlaces, $this->nrOfCycles);
         }
         if ($this->gameMode === GameMode::AllInOneGame) {
-            return new AllInOneGame($this->nrOfGamesPerPlace);
+            return new AllInOneGame($this->nrOfCycles);
         }
         if( $this->nrOfHomePlaces === 1 && $this->nrOfAwayPlaces === 1 ) {
             return new AgainstOneVsOne($this->nrOfCycles);
