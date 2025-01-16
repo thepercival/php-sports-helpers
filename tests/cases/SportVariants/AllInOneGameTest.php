@@ -14,7 +14,7 @@ class AllInOneGameTest extends TestCase
     {
         $sportVariant = new AllInOneGameSportVariant(1);
         self::assertSame(GameMode::AllInOneGame, $sportVariant->getGameMode());
-        self::assertSame(1, $sportVariant->nrOfGamesPerPlace);
+        self::assertSame(1, $sportVariant->nrOfCycles);
     }
 
 //    public function testTotalNrOfGames(): void
@@ -39,7 +39,7 @@ class AllInOneGameTest extends TestCase
         self::assertSame(0, $persistVariant->getNrOfHomePlaces());
         self::assertSame(0, $persistVariant->getNrOfAwayPlaces());
         self::assertSame(0, $persistVariant->getNrOfGamePlaces());
-        self::assertSame(0, $persistVariant->getNrOfCycles());
+        self::assertSame(1, $persistVariant->getNrOfCycles());
         // self::assertSame(1, $persistVariant->getNrOfGamesPerPlace());
     }
 
