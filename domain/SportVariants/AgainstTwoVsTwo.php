@@ -8,9 +8,9 @@ namespace SportsHelpers\SportVariants;
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
 readonly class AgainstTwoVsTwo extends AgainstAbstract implements \Stringable
 {
-    public function __construct(int $nrOfCycles)
+    public function __construct(int $nrOfCycles, int $nrOfCycleParts = 0)
     {
-        parent::__construct(2, 2, $nrOfCycles);
+        parent::__construct(2, 2, $nrOfCycles, $nrOfCycleParts);
     }
 
     /**

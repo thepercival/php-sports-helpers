@@ -13,7 +13,8 @@ use SportsHelpers\SportVariants\Persist\SportPersistVariant;
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
 readonly abstract class AgainstAbstract implements SportVariant
 {
-    public function __construct(public int $nrOfHomePlaces, public int $nrOfAwayPlaces, public int $nrOfCycles)
+    public function __construct(public int $nrOfHomePlaces, public int $nrOfAwayPlaces,
+                                public int $nrOfCycles, public int $nrOfCycleParts)
     {
     }
 
@@ -79,12 +80,12 @@ readonly abstract class AgainstAbstract implements SportVariant
             $this->nrOfAwayPlaces,
             0,
             $this->nrOfCycles,
-            0
+            $this->nrOfCycleParts
         );
     }
 
     public function __toString()
     {
-        return 'against(' . $this->nrOfHomePlaces . 'vs' . $this->nrOfAwayPlaces . ')' . ' nrOfCycles=>' . $this->nrOfCycles;
+        return 'against(' . $this->nrOfHomePlaces . 'vs' . $this->nrOfAwayPlaces . ')' . ' nrOfCycles=>' . $this->nrOfCycles . ',' . $this->nrOfCycleParts;
     }
 }
