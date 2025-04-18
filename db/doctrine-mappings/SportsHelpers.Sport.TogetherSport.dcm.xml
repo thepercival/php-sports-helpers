@@ -6,6 +6,5 @@
         <field name="nrOfAwayPlaces" column="nrOfAwayPlaces" type="smallint"  nullable="false" unique="false"/>
         <field name="nrOfGamePlaces" column="nrOfGamePlaces" type="smallint"  nullable="false" unique="false"/>
         <field name="nfOfCycles" column="nfOfCycles" type="smallint"  nullable="false" unique="false"/>
-        <field name="nrOfCycleParts" column="nrOfCycleParts" type="smallint" nullable="false" unique="false"/>
     </mapped-superclass>
 </doctrine-mapping>
