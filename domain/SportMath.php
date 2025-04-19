@@ -106,15 +106,15 @@ class SportMath
         return (int)(($number1 * $number2) / $tmp1);
     }
 
-    public function getNrOfDivides(int $number, int $divider, int $minimalNumber): int
-    {
-        $nrOfDivides = 0;
-        while ($number >= $minimalNumber) {
-            $number /= $divider;
-            $nrOfDivides++;
-        }
-        return $nrOfDivides;
-    }
+//    public function getNrOfDivides(int $number, int $divider, int $minimalNumber): int
+//    {
+//        $nrOfDivides = 0;
+//        while ($number >= $minimalNumber) {
+//            $number /= $divider;
+//            $nrOfDivides++;
+//        }
+//        return $nrOfDivides;
+//    }
 
     public function above(int $top, int $bottom): int
     {

@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Tests;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
-use SportsHelpers\PlaceRanges;
-use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
 use SportsHelpers\RefereeInfo;
 use SportsHelpers\SelfReferee;
 use SportsHelpers\SelfRefereeInfo;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
-use SportsHelpers\SportVariants\AgainstTwoVsTwo;
-use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\SportVariants\Helpers\MinNrOfPlacesCalculator;
-use SportsHelpers\SportVariants\Single as SingleSportVariant;
 
 final class RefereeInfoTest extends TestCase
 {

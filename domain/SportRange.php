@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class SportRange implements \Stringable
+readonly class SportRange implements \Stringable
 {
     protected int $min;
     protected int $max;
