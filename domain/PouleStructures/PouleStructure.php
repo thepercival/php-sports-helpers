@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace SportsHelpers\PouleStructures;
 
 use SportsHelpers\SelfReferee;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
-use SportsHelpers\SportVariants\AgainstOneVsTwo;
-use SportsHelpers\SportVariants\AgainstTwoVsTwo;
-use SportsHelpers\SportVariants\AllInOneGame;
-use SportsHelpers\SportVariants\Helpers\SportVariantWithNrOfPlacesCreator as VariantCreator;
-use SportsHelpers\SportVariants\Single;
+use SportsHelpers\Sports\AgainstOneVsOne;
+use SportsHelpers\Sports\AgainstOneVsTwo;
+use SportsHelpers\Sports\AgainstTwoVsTwo;
+use SportsHelpers\Sports\TogetherSport;
 use Stringable;
 
 readonly class PouleStructure implements Stringable
@@ -81,23 +79,6 @@ readonly class PouleStructure implements Stringable
         return $nrOfPoulesByNrOfPlaces;
     }
 
-    /**
-     * @param list<AllInOneGame|Single|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo> $sportVariants
-     * @return int
-     */
-    public function calculateTotalNrOfGames(array $sportVariants): int
-    {
-        $nrOfGames = 0;
-        foreach ($this->poules as $nrOfPlaces) {
-            foreach ($sportVariants as $sportVariant) {
-                $nrOfGames += (new VariantCreator())->createWithNrOfPlaces($nrOfPlaces, $sportVariant)->getTotalNrOfGames();
-            }
-        }
-        return $nrOfGames;
-    }
-
-
-
 //    /**
 //     * @param array|SportConfig[] $sportConfigs
 //     * @param int $gameMode
@@ -115,20 +96,18 @@ readonly class PouleStructure implements Stringable
 //    }
 
     /**
-     * @param list<AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|AllInOneGame|Single> $sportVariants
+     * @param list<AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|TogetherSport> $sports
      * @param SelfReferee $selfReferee
      * @return bool
      */
-    public function isCompatibleWithSportsAndSelfReferee(
-        array     $sportVariants,
-        SelfReferee $selfReferee): bool
+    public function isCompatibleWithSportsAndSelfReferee(array $sports, SelfReferee $selfReferee): bool
     {
         if ($selfReferee === SelfReferee::SamePoule) {
-            foreach ($sportVariants as $sportVariant) {
-                if( $sportVariant instanceof AllInOneGame) {
+            foreach ($sports as $sport) {
+                $nrOfGamePlaces = $sport->getNrOfGamePlaces();
+                if( $nrOfGamePlaces === null) {
                     return false;
                 }
-                $nrOfGamePlaces = ( $sportVariant instanceof Single) ? $sportVariant->nrOfGamePlaces : $sportVariant->getNrOfGamePlaces();
                 if( $nrOfGamePlaces >= $this->getSmallestPoule() ) {
                     return false;
                 }
@@ -138,6 +117,24 @@ readonly class PouleStructure implements Stringable
         }
         return true;
     }
+
+    /**
+     * @param list<AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|TogetherSport> $sports
+     * @return bool
+     */
+    public function isCompatibleWithSports(array $sports): bool
+    {
+        foreach ($sports as $sport) {
+            if (!($sport instanceof TogetherSport && $sport->getNrOfGamePlaces() === null)) {
+                $nrOfGamePlaces = $sport->getNrOfGamePlaces();
+                if( $nrOfGamePlaces > $this->getSmallestPoule()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * @return non-empty-list<int>
      */

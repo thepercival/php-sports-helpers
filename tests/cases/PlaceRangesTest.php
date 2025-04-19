@@ -8,20 +8,19 @@ use Exception;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\PlaceRanges;
 use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
-use SportsHelpers\SportVariants\AgainstOneVsOne;
-use SportsHelpers\SportVariants\AgainstTwoVsTwo;
-use SportsHelpers\SportVariants\AllInOneGame as AllInOneGameSportVariant;
-use SportsHelpers\SportVariants\Helpers\MinNrOfPlacesCalculator;
-use SportsHelpers\SportVariants\Single as SingleSportVariant;
+use SportsHelpers\Sports\AgainstOneVsOne;
+use SportsHelpers\Sports\AgainstTwoVsTwo;
+use SportsHelpers\Sports\Calculators\MinNrOfPlacesCalculator;
+use SportsHelpers\Sports\TogetherSport;
 
 final class PlaceRangesTest extends TestCase
 {
     public function testSingleSportNrOfGamePlacesValid(): void
     {
         $nrOfGamePlaces = 3;
-        $singleSportVariant = new SingleSportVariant($nrOfGamePlaces, 3);
+        $togetherSports = [new TogetherSport($nrOfGamePlaces)]; // 3
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$singleSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 3;
@@ -40,9 +39,9 @@ final class PlaceRangesTest extends TestCase
     public function testSingleSportNrOfGamePlacesInvalid(): void
     {
         $nrOfGamePlaces = 3;
-        $singleSportVariant = new SingleSportVariant($nrOfGamePlaces, 1);
+        $togetherSports = [new TogetherSport($nrOfGamePlaces)]; // 1
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$singleSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 2;
@@ -62,7 +61,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesValid2(): void
     {
-        $againstSportVariant = new AgainstOneVsOne(1);
+        $againstSportVariant = new AgainstOneVsOne();
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 2;
@@ -83,7 +82,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesInvalid(): void
     {
-        $againstSportVariant = new AgainstTwoVsTwo(1);
+        $againstSportVariant = new AgainstTwoVsTwo();
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 3;
@@ -105,7 +104,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testAgainsteSportNrOfGamePlacesValid(): void
     {
-        $againstSportVariant = new AgainstTwoVsTwo(1);
+        $againstSportVariant = new AgainstTwoVsTwo();
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$againstSportVariant]);
         $maxNrOfPlacesPerPoule = 4;
@@ -125,9 +124,9 @@ final class PlaceRangesTest extends TestCase
 
     public function testAllInOneGameNrOfGamePlacesValid(): void
     {
-        $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
+        $togetherSports = [new TogetherSport(null)];
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 2;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -145,9 +144,9 @@ final class PlaceRangesTest extends TestCase
 
     public function testMinNrOfPlacesPerPouleInvalid(): void
     {
-        $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
+        $togetherSports = [new TogetherSport(null)];
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 1;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -166,9 +165,9 @@ final class PlaceRangesTest extends TestCase
 
     public function testLargePerPouleRoundValid(): void
     {
-        $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
+        $togetherSports = [new TogetherSport(null)];
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 5;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -187,9 +186,9 @@ final class PlaceRangesTest extends TestCase
 
     public function testLargePerPouleInvalid(): void
     {
-        $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
+        $togetherSports = [new TogetherSport(null)];
 
-        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
+        $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule($togetherSports);
         $maxNrOfPlacesPerPoule = 5;
         $minNrOfPlacesPerRound = $minNrOfPlacesPerPoule;
         $maxNrOfPlacesPerRound = 10;
@@ -209,7 +208,7 @@ final class PlaceRangesTest extends TestCase
 
     public function testLargePerRoundInvalid(): void
     {
-        $allInOneGameSportVariant = new AllInOneGameSportVariant(1);
+        $allInOneGameSportVariant = new TogetherSport(1);
 
         $minNrOfPlacesPerPoule = (new MinNrOfPlacesCalculator())->calculateMinNrOfPlacesPerPoule([$allInOneGameSportVariant]);
         $maxNrOfPlacesPerPoule = 5;
@@ -226,6 +225,6 @@ final class PlaceRangesTest extends TestCase
 
         $structure = new BalancedPouleStructure(5, 5, 5, 5, 5);
         self::expectException(Exception::class);
-        $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
+        $placeRanges->validateStructure($structure);
     }
 }
