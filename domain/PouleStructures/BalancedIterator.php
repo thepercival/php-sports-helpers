@@ -40,7 +40,7 @@ class BalancedIterator implements Iterator
 
     public function key(): string
     {
-        return (string)$this->current;
+        throw new Exception('no key implemented');
     }
 
     public function next(): void

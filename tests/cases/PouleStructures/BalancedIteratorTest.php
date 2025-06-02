@@ -62,13 +62,13 @@ final class BalancedIteratorTest extends TestCase
         self::assertSame([5], $balancedPouleStructure->toArray());
     }
 
-    public function testKey(): void
+    public function testContent(): void
     {
         $placesRange = new SportRange(10, 10);
         $placesPerPouleRange = new SportRange(5, 5);
         $pouleRange = new SportRange(2, 2);
         $iterator = new BalancedPouleStructureIterator($placesRange, $placesPerPouleRange, $pouleRange);
-        self::assertSame("5,5", $iterator->key());
+        self::assertSame('{"poules":[5,5],"totalNrOfPlaces":10}', json_encode($iterator->current()));
     }
 
     public function testValid(): void

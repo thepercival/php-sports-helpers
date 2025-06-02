@@ -12,13 +12,13 @@ class TogetherSportTest extends TestCase
     public function testCreation(): void
     {
         $sportVariant = new TogetherSport(3);
-        self::assertSame(3, $sportVariant->getNrOfGamePlaces());
+        self::assertSame(3, $sportVariant->nrOfGamePlaces);
     }
 
     public function testCreationAllInOneGame(): void
     {
         $sportVariant = new TogetherSport(null);
-        self::assertSame(null, $sportVariant->getNrOfGamePlaces());
+        self::assertSame(null, $sportVariant->nrOfGamePlaces);
     }
 
 //    public function testTotalNrOfGamesPerPlace(): void

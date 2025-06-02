@@ -93,7 +93,7 @@ class PouleStructureTest extends TestCase
     public function testToString(): void
     {
         $pouleStructure = new PouleStructure(3, 2, 2);
-        self::assertSame("3,2,2", (string)$pouleStructure);
+        self::assertSame('{"poules":[3,2,2],"totalNrOfPlaces":7}', json_encode($pouleStructure));
     }
 
 

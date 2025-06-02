@@ -11,7 +11,7 @@ use SportsHelpers\SportMath;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-readonly abstract class AgainstSport
+readonly abstract class AgainstSportAbstract
 {
     public function __construct(public int $nrOfHomePlaces, public int $nrOfAwayPlaces)
     {

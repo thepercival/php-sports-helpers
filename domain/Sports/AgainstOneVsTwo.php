@@ -6,7 +6,7 @@ namespace SportsHelpers\Sports;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-readonly class AgainstOneVsTwo extends AgainstSport
+readonly class AgainstOneVsTwo extends AgainstSportAbstract
 {
     public function __construct()
     {

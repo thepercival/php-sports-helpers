@@ -1,0 +1,6 @@
+SportsHelpers\Sports\TogetherSport:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    nrOfGamePlaces:
+      type: integer
