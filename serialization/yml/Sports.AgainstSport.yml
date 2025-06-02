@@ -1,15 +1,10 @@
-SportsHelpers\Sport\PersistVariant:
+SportsHelpers\Sports\AgainstSport:
   exclusion_policy: ALL
   exclude: false
   properties:
-    gameMode:
     nrOfHomePlaces:
       type: integer
     nrOfAwayPlaces:
       type: integer
     nrOfGamePlaces:
-      type: integer
-    nrOfH2h:
-      type: integer
-    nrOfGamesPerPlace:
       type: integer

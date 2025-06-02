@@ -9,15 +9,14 @@ use SportsHelpers\Sports\AgainstOneVsOne;
 use SportsHelpers\Sports\AgainstOneVsTwo;
 use SportsHelpers\Sports\AgainstTwoVsTwo;
 use SportsHelpers\Sports\TogetherSport;
-use Stringable;
 
-readonly class PouleStructure implements Stringable
+readonly class PouleStructure
 {
     /**
      * @var non-empty-list<int> $poules
      */
-    protected array $poules;
-    protected int $totalNrOfPlaces;
+    public array $poules;
+    public int $totalNrOfPlaces;
 
     public function __construct(int ...$nrOfPlaces)
     {
@@ -104,9 +103,13 @@ readonly class PouleStructure implements Stringable
     {
         if ($selfReferee === SelfReferee::SamePoule) {
             foreach ($sports as $sport) {
-                $nrOfGamePlaces = $sport->getNrOfGamePlaces();
-                if( $nrOfGamePlaces === null) {
-                    return false;
+                if( $sport instanceof TogetherSport) {
+                    if( $sport->nrOfGamePlaces === null) {
+                        return false;
+                    }
+                    $nrOfGamePlaces = $sport->nrOfGamePlaces;
+                } else {
+                    $nrOfGamePlaces = $sport->getNrOfGamePlaces();
                 }
                 if( $nrOfGamePlaces >= $this->getSmallestPoule() ) {
                     return false;
@@ -125,8 +128,8 @@ readonly class PouleStructure implements Stringable
     public function isCompatibleWithSports(array $sports): bool
     {
         foreach ($sports as $sport) {
-            if (!($sport instanceof TogetherSport && $sport->getNrOfGamePlaces() === null)) {
-                $nrOfGamePlaces = $sport->getNrOfGamePlaces();
+            if (!($sport instanceof TogetherSport && $sport->nrOfGamePlaces === null)) {
+                $nrOfGamePlaces = $sport->nrOfGamePlaces ?? 0;
                 if( $nrOfGamePlaces > $this->getSmallestPoule()) {
                     return false;
                 }
@@ -141,10 +144,5 @@ readonly class PouleStructure implements Stringable
     public function toArray(): array
     {
         return $this->poules;
-    }
-
-    public function __toString(): string
-    {
-        return implode(',', $this->toArray());
     }
 }
