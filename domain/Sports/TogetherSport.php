@@ -6,7 +6,7 @@ namespace SportsHelpers\Sports;
 
 readonly class TogetherSport
 {
-    public function __construct(protected int|null $nrOfGamePlaces )
+    public function __construct(public int|null $nrOfGamePlaces )
     {
     }
 
