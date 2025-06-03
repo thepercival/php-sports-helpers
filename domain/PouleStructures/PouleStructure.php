@@ -16,7 +16,6 @@ readonly class PouleStructure
      * @var non-empty-list<int> $poules
      */
     public array $poules;
-    public int $totalNrOfPlaces;
 
     public function __construct(int ...$nrOfPlaces)
     {
@@ -30,7 +29,6 @@ readonly class PouleStructure
             throw new \Exception('nrOfPlaces-list can not be empty', E_ERROR);
         }
         $this->poules = array_values($nrOfPlaces);
-        $this->totalNrOfPlaces = array_sum($this->poules);
     }
 
     public function getNrOfPoules(): int
@@ -40,7 +38,7 @@ readonly class PouleStructure
 
     public function getNrOfPlaces(): int
     {
-        return $this->totalNrOfPlaces;
+        return array_sum($this->poules);;
     }
 
     public function getBiggestPoule(): int
