@@ -7,7 +7,7 @@ namespace SportsHelpers;
 /**
  * @template T
  */
-abstract class Counter implements \Countable
+abstract readonly class Counter implements \Countable
 {
     /**
      * @param T $countedObject

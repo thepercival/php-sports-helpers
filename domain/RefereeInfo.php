@@ -2,7 +2,10 @@
 
 namespace SportsHelpers;
 
-final readonly class RefereeInfo
+/**
+ * @psalm-api
+ */
+readonly class RefereeInfo
 {
     public SelfRefereeInfo $selfRefereeInfo;
     public int $nrOfReferees;
