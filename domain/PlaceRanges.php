@@ -8,7 +8,10 @@ use Exception;
 use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
 use SportsHelpers\PouleStructures\BalancedCreator as BalancedPouleStructureCreator;
 
-final readonly class PlaceRanges
+/**
+ * @psalm-api
+ */
+readonly class PlaceRanges
 {
     public SportRange $placesPerPouleSmall;
     public SportRange $placesPerRoundSmall;
