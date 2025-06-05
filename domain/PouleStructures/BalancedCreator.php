@@ -4,18 +4,10 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructures;
 
-use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
-
-class BalancedCreator
+final readonly class BalancedCreator
 {
     /**
      * nrOfPlaces = 11, nrOfPoules = 2 wordt [6,5]
-     *
-     *
-     * @param int $nrOfPlaces
-     * @param int $nrOfPoules
-     * @return BalancedPouleStructure
-     * @throws \Exception
      */
     public function createBalanced(int $nrOfPlaces, int $nrOfPoules): BalancedPouleStructure
     {

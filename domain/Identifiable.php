@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class Identifiable
+abstract class Identifiable
 {
     public int|null $id = null;
 }

@@ -6,7 +6,7 @@ namespace SportsHelpers\PouleStructures;
 
 use Exception;
 
-readonly class ValidMinimumBalancedPouleStructure extends BalancedPouleStructure
+final readonly class ValidMinimumBalancedPouleStructure extends BalancedPouleStructure
 {
     public function __construct(private int $minNrOfPoulePlaces, int ...$nrOfPlaces)
     {
