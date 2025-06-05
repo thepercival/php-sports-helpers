@@ -7,13 +7,15 @@ namespace SportsHelpers\DbEnums;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use SportsHelpers\Against\AgainstSide;
 
-class AgainstSideType extends EnumDbType
+final class AgainstSideType extends EnumDbType
 {
+    #[\Override]
     public static function getNameHelper(): string
     {
         return 'enum_AgainstSide';
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         if ($value === AgainstSide::Home->value) {
@@ -25,7 +27,8 @@ class AgainstSideType extends EnumDbType
         return null;
     }
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform)
+    #[\Override]
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'varchar(4)';
     }

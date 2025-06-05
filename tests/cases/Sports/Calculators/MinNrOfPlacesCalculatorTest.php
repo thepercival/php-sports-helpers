@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sports\Calculators\MinNrOfPlacesCalculator;
 use SportsHelpers\Sports\TogetherSport;
 
-class  MinNrOfPlacesCalculatorTest extends TestCase
+final class MinNrOfPlacesCalculatorTest extends TestCase
 {
     public function testGetMinNrOfPlacesPerPoule_ZeroSports(): void
     {

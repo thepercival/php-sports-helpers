@@ -8,7 +8,7 @@ use Exception;
 use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
 use SportsHelpers\PouleStructures\BalancedCreator as BalancedPouleStructureCreator;
 
-readonly class PlaceRanges
+final readonly class PlaceRanges
 {
     public SportRange $placesPerPouleSmall;
     public SportRange $placesPerRoundSmall;

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\PouleStructures\PouleStructure;
 use SportsHelpers\Sports\AgainstOneVsOne;
 
-class PouleStructureTest extends TestCase
+final class PouleStructureTest extends TestCase
 {
 
     public function testConstructor(): void
@@ -93,7 +93,7 @@ class PouleStructureTest extends TestCase
     public function testToString(): void
     {
         $pouleStructure = new PouleStructure(3, 2, 2);
-        self::assertSame('{"poules":[3,2,2],"totalNrOfPlaces":7}', json_encode($pouleStructure));
+        self::assertSame('{"poules":[3,2,2]}', json_encode($pouleStructure));
     }
 
 

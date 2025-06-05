@@ -6,11 +6,10 @@ namespace SportsHelpers\Sports\Calculators;
 
 use SportsHelpers\Sports\AgainstOneVsOne;
 use SportsHelpers\Sports\AgainstOneVsTwo;
-use SportsHelpers\Sports\AgainstSport;
 use SportsHelpers\Sports\AgainstTwoVsTwo;
 use SportsHelpers\Sports\TogetherSport;
 
-class MinNrOfPlacesCalculator
+final class MinNrOfPlacesCalculator
 {
     public const int MinNrOfPlacesPerPoule = 2;
 
@@ -29,7 +28,7 @@ class MinNrOfPlacesCalculator
         }
         $minimum = min(
             array_map(function (TogetherSport|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo $sport) {
-                return $this->getMinNrOfPlacesPerPouleForSport($sport);
+                return $sport->getNrOfGamePlaces() ?? 1;
             }, $sports)
         );
 
@@ -37,10 +36,5 @@ class MinNrOfPlacesCalculator
             $minimum = self::MinNrOfPlacesPerPoule;
         }
         return $minimum;
-    }
-
-    protected function getMinNrOfPlacesPerPouleForSport(TogetherSport|AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo $sport): int
-    {
-        return $sport->nrOfGamePlaces ?? self::MinNrOfPlacesPerPoule;
     }
 }
