@@ -1,8 +1,0 @@
-SportsHelpers\Sport\VariantWithFields:
-  exclusion_policy: ALL
-  exclude: false
-  properties:
-    persistVariant:
-      type: SportsHelpers\Sport\PersistVariant
-    nrOfFields:
-      type: integer

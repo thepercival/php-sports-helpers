@@ -1,4 +1,4 @@
-SportsHelpers\PouleStructure:
+SportsHelpers\PouleStructures\PouleStructure:
   exclusion_policy: ALL
   exclude: false
   properties:

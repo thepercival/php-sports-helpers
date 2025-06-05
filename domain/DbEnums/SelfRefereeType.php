@@ -7,13 +7,15 @@ namespace SportsHelpers\DbEnums;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use SportsHelpers\SelfReferee;
 
-class SelfRefereeType extends EnumDbType
+final class SelfRefereeType extends EnumDbType
 {
+    #[\Override]
     public static function getNameHelper(): string
     {
         return 'enum_SelfReferee';
     }
 
+    #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         if ($value === SelfReferee::OtherPoules->value) {
@@ -28,7 +30,8 @@ class SelfRefereeType extends EnumDbType
         return null;
     }
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform)
+    #[\Override]
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'varchar(11)';
     }
