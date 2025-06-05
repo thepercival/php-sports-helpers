@@ -6,5 +6,3 @@ SportsHelpers\Sports\AgainstSport:
       type: integer
     nrOfAwayPlaces:
       type: integer
-    nrOfGamePlaces:
-      type: integer

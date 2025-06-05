@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-readonly class SportRange implements \Stringable
+final readonly class SportRange implements \Stringable
 {
     protected int $min;
     protected int $max;
@@ -57,6 +57,7 @@ readonly class SportRange implements \Stringable
         return $array;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return '[' . $this->getMin() . self::Seperator . $this->getMax() . ']';

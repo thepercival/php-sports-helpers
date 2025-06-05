@@ -2,17 +2,19 @@
 
 namespace SportsHelpers;
 
-class SelfRefereeInfo
+final readonly class SelfRefereeInfo
 {
-    public int $nrIfSimSelfRefs = 0;
-    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefs = 0)
+    public int $nrIfSimSelfRefs;
+    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefsParam = 0)
     {
+        $nrIfSimSelfRefs = null;
         if ($selfReferee !== SelfReferee::Disabled) {
-            if( $nrIfSimSelfRefs > 0 ) {
-                $this->nrIfSimSelfRefs = $nrIfSimSelfRefs;
+            if( $nrIfSimSelfRefsParam > 0 ) {
+                $nrIfSimSelfRefs = $nrIfSimSelfRefsParam;
             } else {
-                $this->nrIfSimSelfRefs = 1;
+                $nrIfSimSelfRefs = 1;
             }
         }
+        $this->nrIfSimSelfRefs = $nrIfSimSelfRefs ?? 0;
     }
 }

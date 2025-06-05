@@ -2,7 +2,7 @@
 
 namespace SportsHelpers\Sports\Calculators;
 
-class GameAmountCalculator
+final class GameAmountCalculator
 {
     public function __construct()
     {

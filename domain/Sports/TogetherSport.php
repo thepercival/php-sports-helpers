@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sports;
 
-readonly class TogetherSport
+final readonly class TogetherSport
 {
     public function __construct(public int|null $nrOfGamePlaces )
     {

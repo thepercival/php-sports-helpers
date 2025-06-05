@@ -7,7 +7,7 @@ namespace SportsHelpers\Tests\Sports;
 use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sports\TogetherSport;
 
-class TogetherSportTest extends TestCase
+final class TogetherSportTest extends TestCase
 {
     public function testCreation(): void
     {
