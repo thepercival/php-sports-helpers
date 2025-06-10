@@ -28,6 +28,6 @@ final readonly class BalancedCreator
             array_push($innerData, $nrOfPlacesToAdd);
             $nrOfPlaces -= $nrOfPlacesPerPoule;
         }
-        return new BalancedPouleStructure(...$innerData);
+        return new BalancedPouleStructure($innerData);
     }
 }

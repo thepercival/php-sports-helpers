@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Against;
 
-use SportsHelpers\Against\AgainstSide as AgainstSide;
 
 enum AgainstSide: string
 {

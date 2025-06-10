@@ -10,21 +10,15 @@ use SportsHelpers\SelfRefereeInfo;
 
 final class SelfRefereeInfoTest extends TestCase
 {
-    public function testDisabled(): void
-    {
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::Disabled, 1);
-        self::assertEquals(0, $selfRefereeInfo->nrIfSimSelfRefs);
-    }
-    
     public function testNotDisabledSmallerThanOne(): void
     {
+        self::expectException(\Exception::class);
         $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 0);
-        self::assertEquals(1, $selfRefereeInfo->nrIfSimSelfRefs);
     }
 
     public function testNotDisabledGreaterThanZero(): void
     {
-        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 1);
-        self::assertEquals(1, $selfRefereeInfo->nrIfSimSelfRefs);
+        $selfRefereeInfo = new SelfRefereeInfo(SelfReferee::SamePoule, 2);
+        self::assertEquals(2, $selfRefereeInfo->nrOfSimSelfRefs);
     }
 }
