@@ -18,6 +18,7 @@ abstract class EnumDbType extends Type
         return static::getNameHelper();
     }
 
+
     #[Override]
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): string|null
     {
