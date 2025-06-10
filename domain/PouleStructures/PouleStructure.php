@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructures;
 
+use Exception;
 use SportsHelpers\SelfReferee;
 use SportsHelpers\Sports\AgainstOneVsOne;
 use SportsHelpers\Sports\AgainstOneVsTwo;
@@ -17,18 +18,22 @@ readonly class PouleStructure
      */
     public array $poules;
 
-    public function __construct(int ...$nrOfPlaces)
+    /**
+     * @param list<int> $poules
+     * @throws Exception
+     */
+    public function __construct(array $poules)
     {
         uasort(
-            $nrOfPlaces,
+            $poules,
             function (int $nrOfPlacesPouleA, int $nrOfPlacesPouleB): int {
                 return $nrOfPlacesPouleA > $nrOfPlacesPouleB ? -1 : 1;
             }
         );
-        if (count($nrOfPlaces) === 0) {
-            throw new \Exception('nrOfPlaces-list can not be empty', E_ERROR);
+        if (count($poules) === 0) {
+            throw new Exception('nrOfPlaces-list can not be empty', E_ERROR);
         }
-        $this->poules = array_values($nrOfPlaces);
+        $this->poules = array_values($poules);
     }
 
     public function getNrOfPoules(): int
@@ -38,7 +43,7 @@ readonly class PouleStructure
 
     public function getNrOfPlaces(): int
     {
-        return array_sum($this->poules);;
+        return array_sum($this->poules);
     }
 
     public function getBiggestPoule(): int
@@ -113,10 +118,9 @@ readonly class PouleStructure
                     return false;
                 }
             }
-        } elseif ($selfReferee === SelfReferee::OtherPoules) {
-            return $this->getNrOfPoules() > 1;
-        }
-        return true;
+            return true;
+        } // elseif ($selfReferee === SelfReferee::OtherPoules) {
+        return $this->getNrOfPoules() > 1;
     }
 
     /**

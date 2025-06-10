@@ -16,7 +16,7 @@ final class AgainstSideType extends EnumDbType
     }
 
     #[\Override]
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    public function convertToPHPValue($value, AbstractPlatform $platform): AgainstSide|null
     {
         if ($value === AgainstSide::Home->value) {
             return AgainstSide::Home;

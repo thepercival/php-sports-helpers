@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace SportsHelpers\PouleStructures;
 
 use Exception;
-use SportsHelpers\PouleStructures;
 
 readonly class BalancedPouleStructure extends PouleStructure
 {
-    public function __construct(int ...$nrOfPlaces)
+    /**
+     * @param list<int> $poules
+     * @throws Exception
+     */
+    public function __construct(array $poules)
     {
-        parent::__construct(...$nrOfPlaces);
+        parent::__construct($poules);
         if ($this->getBiggestPoule() - $this->getSmallestPoule() > 1) {
             throw new Exception('this poulestructure is not balanced', E_ERROR);
         }
@@ -45,6 +48,6 @@ readonly class BalancedPouleStructure extends PouleStructure
         }
         $poules = $this->poules;
         array_pop($poules);
-        return new self(...$poules);
+        return new self($poules);
     }
 }

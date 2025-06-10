@@ -14,68 +14,68 @@ final class PouleStructureTest extends TestCase
     public function testConstructor(): void
     {
         self::expectException(\Exception::class);
-        new PouleStructure();
+        new PouleStructure([]);
     }
 
 
     public function testNrOfPoules(): void
     {
-        $pouleStructure = new PouleStructure(3, 2);
+        $pouleStructure = new PouleStructure([3, 2]);
         self::assertSame(2, $pouleStructure->getNrOfPoules());
     }
 
     public function testSort(): void
     {
-        $pouleStructure = new PouleStructure(2, 3);
+        $pouleStructure = new PouleStructure([2, 3]);
         self::assertSame(3, $pouleStructure->toArray()[0]);
         self::assertSame(2, $pouleStructure->toArray()[1]);
     }
 
     public function testNrOfPlaces(): void
     {
-        $pouleStructure = new PouleStructure(3, 2);
+        $pouleStructure = new PouleStructure([3, 2]);
         self::assertSame(5, $pouleStructure->getNrOfPlaces());
     }
 
     public function testBiggestPoule(): void
     {
-        $pouleStructure = new PouleStructure(3, 3, 2);
+        $pouleStructure = new PouleStructure([3, 3, 2]);
         self::assertSame(3, $pouleStructure->getBiggestPoule());
     }
 
     public function testSmallestPoule(): void
     {
-        $pouleStructure = new PouleStructure(3, 3, 2);
+        $pouleStructure = new PouleStructure([3, 3, 2]);
         self::assertSame(2, $pouleStructure->getSmallestPoule());
     }
 
     public function testAlmostBalanced(): void
     {
-        $pouleStructure = new PouleStructure(3, 2);
+        $pouleStructure = new PouleStructure([3, 2]);
         self::assertTrue($pouleStructure->isAlmostBalanced());
     }
 
     public function testNotAlmostBalanced(): void
     {
-        $pouleStructure = new PouleStructure(4, 2);
+        $pouleStructure = new PouleStructure([4, 2]);
         self::assertFalse($pouleStructure->isAlmostBalanced());
     }
 
     public function testBalanced(): void
     {
-        $pouleStructure = new PouleStructure(2, 2);
+        $pouleStructure = new PouleStructure([2, 2]);
         self::assertTrue($pouleStructure->isBalanced());
     }
 
     public function testNotBalanced(): void
     {
-        $pouleStructure = new PouleStructure(3, 2);
+        $pouleStructure = new PouleStructure([3, 2]);
         self::assertFalse($pouleStructure->isBalanced());
     }
 
     public function testNrOfPoulesByNrOfPlaces(): void
     {
-        $pouleStructure = new PouleStructure(3, 2, 2);
+        $pouleStructure = new PouleStructure([3, 2, 2]);
         $nrOfPoulesByNrOfPlaces = $pouleStructure->getNrOfPoulesByNrOfPlaces();
         self::assertSame(1, $nrOfPoulesByNrOfPlaces[3]);
         self::assertSame(2, $nrOfPoulesByNrOfPlaces[2]);
@@ -84,7 +84,7 @@ final class PouleStructureTest extends TestCase
 //    public function testTotalNrOfGames(): void
 //    {
 //        $sport = new AgainstSportOneVsOne( 1);
-//        $pouleStructure = new PouleStructure(3, 2, 2);
+//        $pouleStructure = new PouleStructure([3, 2, 2]);
 //        self::assertSame(5, $pouleStructure->calculateTotalNrOfGames([$sport]));
 //    }
 
@@ -92,7 +92,7 @@ final class PouleStructureTest extends TestCase
 
     public function testToString(): void
     {
-        $pouleStructure = new PouleStructure(3, 2, 2);
+        $pouleStructure = new PouleStructure([3, 2, 2]);
         self::assertSame('{"poules":[3,2,2]}', json_encode($pouleStructure));
     }
 
