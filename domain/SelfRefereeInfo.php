@@ -4,17 +4,10 @@ namespace SportsHelpers;
 
 final readonly class SelfRefereeInfo
 {
-    public int $nrIfSimSelfRefs;
-    public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefsParam = 0)
+    public function __construct(public SelfReferee $selfReferee, public int $nrOfSimSelfRefs = 1)
     {
-        $nrIfSimSelfRefs = null;
-        if ($selfReferee !== SelfReferee::Disabled) {
-            if( $nrIfSimSelfRefsParam > 0 ) {
-                $nrIfSimSelfRefs = $nrIfSimSelfRefsParam;
-            } else {
-                $nrIfSimSelfRefs = 1;
-            }
+        if( $nrOfSimSelfRefs < 1 ) {
+            throw new \Exception("Nr of sim self referee must be a positive integer");
         }
-        $this->nrIfSimSelfRefs = $nrIfSimSelfRefs ?? 0;
     }
 }

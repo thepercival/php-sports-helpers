@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\DbEnums;
 
+use BackedEnum;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use UnitEnum;
@@ -11,18 +12,6 @@ use UnitEnum;
 abstract class EnumDbType extends Type
 {
     abstract public static function getNameHelper(): string;
-
-    /**
-     * @psalm-suppress MixedPropertyFetch
-     */
-    #[\Override]
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
-    {
-        if( $value instanceof UnitEnum ) {
-            return $value->value;
-        }
-        return $value;
-    }
 
     public function getName(): string
     {

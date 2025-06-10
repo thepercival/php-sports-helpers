@@ -20,7 +20,7 @@ trait Repository
     public function save(mixed $object, bool $onlyFlushObject = false): mixed
     {
         try {
-            $this->_em->persist($object);
+            $this->getEntityManager()->persist($object);
             $this->flush($onlyFlushObject ? $object : null);
         } catch (Exception $e) {
             throw new Exception($e->getMessage(), E_ERROR);
@@ -35,7 +35,7 @@ trait Repository
      */
     public function remove(mixed $object, bool $onlyFlushObject = false): void
     {
-        $this->_em->remove($object);
+        $this->getEntityManager()->remove($object);
         $this->flush($onlyFlushObject ? $object : null);
     }
 
@@ -44,6 +44,6 @@ trait Repository
      */
     public function flush(mixed $object = null): void
     {
-        $this->_em->flush($object);
+        $this->getEntityManager()->flush($object);
     }
 }
