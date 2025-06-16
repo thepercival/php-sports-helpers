@@ -1,8 +1,6 @@
 name: Generate tag
 
 on:
-  push:
-    branches-ignore: [ main ]
   pull_request:
     branches: [ main ]
     types:
