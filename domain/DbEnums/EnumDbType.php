@@ -18,7 +18,7 @@ abstract class EnumDbType extends Type
     #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
-        if( $value instanceof BackedEnum ) {
+        if( $value instanceof BackedEnum ) {  
             return $value->value;
         }
         return $value;
