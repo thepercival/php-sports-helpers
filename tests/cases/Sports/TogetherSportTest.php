@@ -18,6 +18,7 @@ final class TogetherSportTest extends TestCase
     public function testCreationAllInOneGame(): void
     {
         $sportVariant = new TogetherSport(null);
+
         self::assertSame(null, $sportVariant->nrOfGamePlaces);
     }
 
