@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SportsHelpers\DbEnums;
 
+use BackedEnum;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
-use UnitEnum;
 
 abstract class EnumDbType extends Type
 {
@@ -16,9 +16,9 @@ abstract class EnumDbType extends Type
      * @psalm-suppress MixedPropertyFetch
      */
     #[\Override]
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
-        if( $value instanceof UnitEnum ) {
+        if( $value instanceof BackedEnum ) {
             return $value->value;
         }
         return $value;

@@ -24,7 +24,7 @@ readonly class RefereeInfo
 //        $this->nrOfReferees = $nrOfReferees;
 //    }
 
-    private function __construct(public SelfRefereeInfo|null $selfRefereeInfo, public int $nrOfReferees )
+    private function __construct(public SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
     {
 
     }
