@@ -6,11 +6,14 @@ namespace SportsHelpers\Sports;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-final readonly class AgainstOneVsTwo extends AgainstSportAbstract
+final readonly class AgainstOneVsTwo
 {
+    use AgainstSportTrait;
+
     public function __construct()
     {
-        parent::__construct(1, 2);
+        $this->nrOfHomePlaces = 1;
+        $this->nrOfAwayPlaces = 2;
     }
 
     /**

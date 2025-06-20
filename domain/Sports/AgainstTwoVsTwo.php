@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SportsHelpers\Sports;
 
-final readonly class AgainstTwoVsTwo extends AgainstSportAbstract
+final readonly class AgainstTwoVsTwo
 {
+    use AgainstSportTrait;
+
     public function __construct()
     {
-        parent::__construct(2, 2);
+        $this->nrOfHomePlaces = 2;
+        $this->nrOfAwayPlaces = 2;
     }
 
     /**
