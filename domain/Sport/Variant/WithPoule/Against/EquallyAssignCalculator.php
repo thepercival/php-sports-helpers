@@ -6,7 +6,7 @@ use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWit
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 
 
-class EquallyAssignCalculator
+final class EquallyAssignCalculator
 {
     /**
      * @param int $nrOfPlaces

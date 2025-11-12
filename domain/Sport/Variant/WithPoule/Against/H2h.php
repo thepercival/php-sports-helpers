@@ -6,17 +6,19 @@ namespace SportsHelpers\Sport\Variant\WithPoule\Against;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
 
-class H2h extends AgainstWithPoule
+final class H2h extends AgainstWithPoule
 {
     public function __construct(int $nrOfPlaces, protected AgainstH2h $sportVariant)
     {
         parent::__construct($nrOfPlaces, $sportVariant);
     }
 
+    #[\Override]
     public function getSportVariant(): AgainstH2h {
         return $this->sportVariant;
     }
 
+    #[\Override]
     public function getTotalNrOfGames(): int
     {
         return $this->sportVariant->getNrOfGamesOneH2h($this->nrOfPlaces) * $this->sportVariant->getNrOfH2H();

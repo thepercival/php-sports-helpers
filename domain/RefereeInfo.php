@@ -2,7 +2,7 @@
 
 namespace SportsHelpers;
 
-class RefereeInfo
+final class RefereeInfo
 {
     public SelfRefereeInfo $selfRefereeInfo;
     public int $nrOfReferees = 0;

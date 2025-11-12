@@ -7,7 +7,7 @@ namespace SportsHelpers\PouleStructure;
 use Exception;
 use SportsHelpers\PouleStructure;
 
-class ValidMinimumBalanced extends Balanced
+final class ValidMinimumBalanced extends Balanced
 {
     public function __construct(private int $minNrOfPoulePlaces, int ...$nrOfPlaces)
     {

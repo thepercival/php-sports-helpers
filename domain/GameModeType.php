@@ -6,16 +6,18 @@ namespace SportsHelpers;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
-class GameModeType extends EnumDbType
+final class GameModeType extends EnumDbType
 {
     // const NAME = 'enum_GameMode'; // modify to match your type name
 
+    #[\Override]
     public static function getNameHelper(): string
     {
         return 'enum_GameMode';
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform)
+    #[\Override]
+    public function convertToPHPValue($value, AbstractPlatform $platform): GameMode|null
     {
         if ($value === GameMode::Single->value) {
             return GameMode::Single;
@@ -29,7 +31,8 @@ class GameModeType extends EnumDbType
         return null;
     }
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform)
+    #[\Override]
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return 'varchar(12)';
     }

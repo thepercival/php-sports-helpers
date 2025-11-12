@@ -15,6 +15,7 @@ abstract class EnumDbType extends Type
     /**
      * @psalm-suppress MixedPropertyFetch
      */
+    #[\Override]
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if( $value instanceof UnitEnum ) {
@@ -23,7 +24,7 @@ abstract class EnumDbType extends Type
         return $value;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return static::getNameHelper();
     }
@@ -31,7 +32,7 @@ abstract class EnumDbType extends Type
     /**
      * {@inheritdoc}
      */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
     {
         return true;
     }

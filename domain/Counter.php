@@ -7,7 +7,7 @@ namespace SportsHelpers;
 /**
  * @template T
  */
-class Counter implements \Countable
+final class Counter implements \Countable
 {
     /**
      * @param T $countedObject
@@ -40,6 +40,7 @@ class Counter implements \Countable
         $this->count += $count;
     }
 
+    #[\Override]
     public function count(): int
     {
         return $this->count;

@@ -9,7 +9,7 @@ use SportsHelpers\Sport\Variant\Against;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-class H2h extends Against implements \Stringable
+final class H2h extends Against implements \Stringable
 {
     public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfH2H)
     {
@@ -21,6 +21,7 @@ class H2h extends Against implements \Stringable
         return $this->nrOfH2H;
     }
 
+    #[\Override]
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(
@@ -33,6 +34,7 @@ class H2h extends Against implements \Stringable
         );
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return parent::__toString() . $this->getNrOfH2H() . ':0';

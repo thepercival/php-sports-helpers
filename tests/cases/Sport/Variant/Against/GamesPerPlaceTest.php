@@ -10,7 +10,7 @@ use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 
-class GamesPerPlaceTest extends TestCase
+final class GamesPerPlaceTest extends TestCase
 {
     public function testCreation(): void
     {
@@ -65,7 +65,6 @@ class GamesPerPlaceTest extends TestCase
     public function testGetNrOfGamesPerPlace(): void
     {
         $sportVariant = new AgainstSportGppVariant(1, 2, 2);
-        self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
         self::assertSame(2, $sportVariant->getNrOfGamesPerPlace());
 
         $sportVariant = new AgainstSportGppVariant(2, 2, 2);

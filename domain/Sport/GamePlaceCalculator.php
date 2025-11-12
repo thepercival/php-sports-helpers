@@ -9,7 +9,7 @@ use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
 use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
 
-class GamePlaceCalculator
+final class GamePlaceCalculator
 {
     public function __construct()
     {

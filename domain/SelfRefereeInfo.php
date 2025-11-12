@@ -2,7 +2,7 @@
 
 namespace SportsHelpers;
 
-class SelfRefereeInfo
+final class SelfRefereeInfo
 {
     public int $nrIfSimSelfRefs = 0;
     public function __construct(public SelfReferee $selfReferee, int $nrIfSimSelfRefs = 0)

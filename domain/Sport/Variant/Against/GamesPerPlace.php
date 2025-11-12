@@ -13,7 +13,7 @@ use SportsHelpers\SportMath;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-class GamesPerPlace extends Against implements \Stringable
+final class GamesPerPlace extends Against implements \Stringable
 {
     public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfGamesPerPlace)
     {
@@ -79,6 +79,7 @@ class GamesPerPlace extends Against implements \Stringable
 //        return (int)ceil($nrOfGames / $nrOfGamesPerGameRound);
 //    }
 
+    #[\Override]
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(
@@ -91,6 +92,7 @@ class GamesPerPlace extends Against implements \Stringable
         );
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return parent::__toString() . '0:' . $this->getNrOfGamesPerPlace();

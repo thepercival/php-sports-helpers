@@ -10,7 +10,7 @@ use SportsHelpers\SelfReferee;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2hSportVariant;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGppSportVariant;
 
-class PouleStructureTest extends TestCase
+final class PouleStructureTest extends TestCase
 {
 
     public function testConstructor(): void

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-class SportMath
+final class SportMath
 {
     public function getSmallestCommonDividend(int $number1, int $number2): int
     {
@@ -110,7 +110,7 @@ class SportMath
     {
         $nrOfDivides = 0;
         while ($number >= $minimalNumber) {
-            $number /= $divider;
+            $number =  (int)($number / $divider);
             $nrOfDivides++;
         }
         return $nrOfDivides;
@@ -130,7 +130,7 @@ class SportMath
     public function faculty(float $x): float
     {
         if ($x > 1) {
-            return $this->faculty($x - 1) * $x;
+            return $this->faculty($x - 1.0) * $x;
         }
         return 1;
     }

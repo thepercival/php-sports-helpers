@@ -12,16 +12,18 @@ use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
 /**
  * @template-extends SportVariantWithPoule<SingleVariant>
  */
-class Single extends SportVariantWithPoule
+final class Single extends SportVariantWithPoule
 {
     public function __construct(int $nrOfPlaces, protected SingleVariant $sportVariant ) {
         parent::__construct($nrOfPlaces );
     }
 
+    #[\Override]
     public function getSportVariant(): SingleVariant {
         return $this->sportVariant;
     }
 
+    #[\Override]
     public function getTotalNrOfGames(): int
     {
         $totalNrOfGames = $this->getTotalNrOfGamePlaces() / $this->sportVariant->getNrOfGamePlaces();

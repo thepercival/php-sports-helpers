@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant\AllInOneGame as AllInOneGameSportVariant;
 
-class AllInOneGameTest extends TestCase
+final class AllInOneGameTest extends TestCase
 {
     public function testCreation(): void
     {

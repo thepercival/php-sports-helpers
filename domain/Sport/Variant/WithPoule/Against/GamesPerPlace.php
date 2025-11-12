@@ -9,17 +9,19 @@ use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
 use SportsHelpers\SportMath;
 
-class GamesPerPlace extends AgainstWithPoule
+final class GamesPerPlace extends AgainstWithPoule
 {
     public function __construct(int $nrOfPlaces, protected AgainstGpp $sportVariant)
     {
         parent::__construct($nrOfPlaces, $sportVariant);
     }
 
+    #[\Override]
     public function getSportVariant(): AgainstGpp {
         return $this->sportVariant;
     }
 
+    #[\Override]
     public function getTotalNrOfGames(): int
     {
         $totalNrOfGamePlaces =  $this->nrOfPlaces * $this->sportVariant->getNrOfGamesPerPlace();
@@ -115,12 +117,12 @@ class GamesPerPlace extends AgainstWithPoule
 
     public function getMinAgainstAmountPerPlace(): int
     {
-        return (int)floor($this->getMinNrOfAgainstPlacesForPlace() / ($this->getNrOfPlaces() - 1));
+        return (int)floor($this->getMinNrOfAgainstPlacesForPlace() / ((float)$this->getNrOfPlaces() - 1.0));
     }
 
     public function getMaxAgainstAmountPerPlace(): int
     {
-        return (int)ceil($this->getMaxNrOfAgainstPlacesForPlace() / ($this->getNrOfPlaces() - 1));
+        return (int)ceil($this->getMaxNrOfAgainstPlacesForPlace() / ((float)$this->getNrOfPlaces() - 1.0));
     }
 
     public function getMinNrOfAgainstPlacesForPlace(): float

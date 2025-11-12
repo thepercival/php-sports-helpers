@@ -6,7 +6,7 @@ namespace SportsHelpers\PouleStructure;
 
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 
-class BalancedCreator
+final class BalancedCreator
 {
     /**
      * nrOfPlaces = 11, nrOfPoules = 2 wordt [6,5]

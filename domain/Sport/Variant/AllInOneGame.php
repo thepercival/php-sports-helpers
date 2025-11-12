@@ -8,7 +8,7 @@ use SportsHelpers\GameMode;
 use SportsHelpers\Sport\PersistVariant;
 use SportsHelpers\Sport\Variant;
 
-class AllInOneGame extends Base implements Variant
+final class AllInOneGame extends Base implements Variant
 {
     public function __construct(protected int $nrOfGamesPerPlace)
     {
@@ -36,6 +36,7 @@ class AllInOneGame extends Base implements Variant
         return true;
     }
 
+    #[\Override]
     public function toPersistVariant(): PersistVariant
     {
         return new PersistVariant(

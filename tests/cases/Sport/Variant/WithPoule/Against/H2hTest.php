@@ -11,7 +11,7 @@ use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstSportH2hVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
 
-class H2hTest extends TestCase
+final class H2hTest extends TestCase
 {
     public function testTotalNrOfGames(): void
     {

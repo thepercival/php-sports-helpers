@@ -12,16 +12,18 @@ use SportsHelpers\Sport\WithPoule as SportVariantWithPoule;
 /**
  * @template-extends SportVariantWithPoule<AllInOneGameVariant>
  */
-class AllInOneGame extends SportVariantWithPoule
+final class AllInOneGame extends SportVariantWithPoule
 {
     public function __construct(int $nrOfPlaces, protected AllInOneGameVariant $sportVariant ) {
         parent::__construct($nrOfPlaces);
     }
 
+    #[\Override]
     public function getSportVariant(): AllInOneGameVariant {
         return $this->sportVariant;
     }
 
+    #[\Override]
     public function getTotalNrOfGames(): int
     {
         return $this->sportVariant->getNrOfGamesPerPlace();

@@ -10,7 +10,7 @@ use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Against\EquallyAssignCalculator;
 use SportsHelpers\Sport\Variant\WithPoule\Against\GamesPerPlace as AgainstGppWithPoule;
 
-class EquallyAssignCalculatorTest extends TestCase
+final class EquallyAssignCalculatorTest extends TestCase
 {
     public function testEqualAgainst4Places(): void
     {

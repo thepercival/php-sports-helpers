@@ -9,7 +9,7 @@ use SportsHelpers\Sport\Variant\WithPoule\Against\H2h as AgainstH2hWithPoule;
 use SportsHelpers\Sport\Variant\WithPoule\AllInOneGame as AllInOneGameWithPoule;
 use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
 
-class Creator
+final class Creator
 {
     public function createWithPoule(
         int $nrOfPlaces,

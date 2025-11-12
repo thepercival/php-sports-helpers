@@ -11,7 +11,7 @@ use SportsHelpers\SelfRefereeInfo;
 use SportsHelpers\Sport\Variant\Single as SingleSportVariant;
 use SportsHelpers\Sport\Variant\WithPoule\Single as SingleWithPoule;
 
-class SingleTest extends TestCase
+final class SingleTest extends TestCase
 {
     public function testCreation(): void
     {

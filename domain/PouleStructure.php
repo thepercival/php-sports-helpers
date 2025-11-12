@@ -146,6 +146,7 @@ class PouleStructure implements Stringable
         return $this->poules;
     }
 
+    #[\Override]
     public function __toString(): string
     {
         return implode(',', $this->toArray());

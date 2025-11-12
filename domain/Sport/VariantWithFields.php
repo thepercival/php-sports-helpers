@@ -9,7 +9,7 @@ use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
 use SportsHelpers\Sport\Variant\AllInOneGame;
 use SportsHelpers\Sport\Variant\Single;
 
-class VariantWithFields implements \Stringable
+final class VariantWithFields implements \Stringable
 {
     protected PersistVariant $persistVariant;
 
@@ -34,8 +34,9 @@ class VariantWithFields implements \Stringable
         return $this->nrOfFields;
     }
 
+    #[\Override]
     public function __toString(): string
     {
-        return $this->getSportVariant() . ' f(' . $this->nrOfFields . ')';
+        return ((string)$this->getSportVariant()) . ' f(' . $this->nrOfFields . ')';
     }
 }

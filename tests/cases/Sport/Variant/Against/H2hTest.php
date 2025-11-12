@@ -9,7 +9,7 @@ use SportsHelpers\GameMode;
 use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstSportGppVariant;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstSportH2hVariant;
 
-class H2hTest extends TestCase
+final class H2hTest extends TestCase
 {
     public function testCreation(): void
     {

@@ -7,6 +7,7 @@ namespace SportsHelpers;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use SportsHelpers\Output\Color;
 
 abstract class Output
@@ -17,7 +18,7 @@ abstract class Output
     {
         if ($logger === null) {
             $logger = new Logger('sports-logger');
-            $handler = new StreamHandler('php://stdout', Logger::INFO);
+            $handler = new StreamHandler('php://stdout', LogLevel::INFO);
             $logger->pushHandler($handler);
         }
         $this->logger = $logger;
