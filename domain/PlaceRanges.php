@@ -8,7 +8,10 @@ use Exception;
 use SportsHelpers\PouleStructure\Balanced as BalancedPouleStructure;
 use SportsHelpers\PouleStructure\BalancedCreator as BalancedPouleStructureCreator;
 
-final class PlaceRanges
+/**
+ * @api
+ */
+class PlaceRanges
 {
     private SportRange $placesPerPouleSmall;
     private SportRange $placesPerRoundSmall;
