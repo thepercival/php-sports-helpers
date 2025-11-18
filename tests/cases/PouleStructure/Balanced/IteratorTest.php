@@ -56,7 +56,7 @@ final class IteratorTest extends TestCase
     {
         $placesRange = new SportRange(5, 10);
         $placesPerPouleRange = new SportRange(4, 5);
-        $iterator = new BalancedPouleStructureIterator($placesRange, $placesPerPouleRange);
+        $iterator = new BalancedPouleStructureIterator($placesRange, $placesPerPouleRange,null);
         $balancedPouleStructure = $iterator->current();
         self::assertNotNull($balancedPouleStructure);
         self::assertSame([5], $balancedPouleStructure->toArray());
