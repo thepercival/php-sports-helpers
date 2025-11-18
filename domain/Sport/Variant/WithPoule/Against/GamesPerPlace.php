@@ -9,7 +9,10 @@ use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
 use SportsHelpers\SportMath;
 
-final class GamesPerPlace extends AgainstWithPoule
+/**
+ * @api
+ */
+class GamesPerPlace extends AgainstWithPoule
 {
     public function __construct(int $nrOfPlaces, protected AgainstGpp $sportVariant)
     {

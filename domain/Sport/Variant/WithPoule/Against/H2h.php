@@ -6,7 +6,10 @@ namespace SportsHelpers\Sport\Variant\WithPoule\Against;
 use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
 use SportsHelpers\Sport\Variant\WithPoule\Against as AgainstWithPoule;
 
-final class H2h extends AgainstWithPoule
+/**
+ * @api
+ */
+class H2h extends AgainstWithPoule
 {
     public function __construct(int $nrOfPlaces, protected AgainstH2h $sportVariant)
     {
