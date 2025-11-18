@@ -11,7 +11,10 @@ use SportsHelpers\Sport\Variant\AllInOneGame;
 use SportsHelpers\Sport\Variant\Single;
 use SportsHelpers\Identifiable;
 
-final class PersistVariant extends Identifiable
+/**
+ * @api
+ */
+class PersistVariant extends Identifiable
 {
     public function __construct(
         protected GameMode $gameMode,
