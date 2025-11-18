@@ -79,14 +79,14 @@ final class SportMathTest extends TestCase
     {
         $math = new SportMath();
 
-        self::assertSame(0, $math->getGreatestCommonDivisor([]));
-        self::assertSame(1, $math->getGreatestCommonDivisor([1]));
-        self::assertSame(2, $math->getGreatestCommonDivisor([2]));
-        self::assertSame(4, $math->getGreatestCommonDivisor([8,4]));
-        self::assertSame(2, $math->getGreatestCommonDivisor([2, 8,4]));
-        self::assertSame(1, $math->getGreatestCommonDivisor([2, 8,1]));
+        self::assertSame(0, $math->getGreatestCommonDivisor([],null));
+        self::assertSame(1, $math->getGreatestCommonDivisor([1],null));
+        self::assertSame(2, $math->getGreatestCommonDivisor([2],null));
+        self::assertSame(4, $math->getGreatestCommonDivisor([8,4],null));
+        self::assertSame(2, $math->getGreatestCommonDivisor([2, 8,4],null));
+        self::assertSame(1, $math->getGreatestCommonDivisor([2, 8,1],null));
 
-        self::assertSame(3, $math->getGreatestCommonDivisor([15, 18]));
+        self::assertSame(3, $math->getGreatestCommonDivisor([15, 18],null));
     }
 
     public function testGetLeastCommonMultiple(): void

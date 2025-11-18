@@ -9,7 +9,10 @@ use SportsHelpers\Sport\Variant\Against;
 
 // gebruik bij 1 vs 1: Opgegeven in H2h(3 en 2 even vaak tegen elkaar)
 // gebruik bij Mixed: NrOfGamesPerPlace(3 en 2 even veel wedstrijden)
-final class H2h extends Against implements \Stringable
+/**
+ * @api
+ */
+class H2h extends Against implements \Stringable
 {
     public function __construct(int $nrOfHomePlaces, int $nrOfAwayPlaces, protected int $nrOfH2H)
     {

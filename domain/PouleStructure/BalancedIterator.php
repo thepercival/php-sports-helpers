@@ -21,7 +21,7 @@ final class BalancedIterator implements Iterator
     public function __construct(
         private SportRange $placeRange,
         private SportRange $placesPerPouleRange,
-        SportRange $pouleRange = null
+        SportRange|null $pouleRange
     ) {
         $this->balancedCreator = new BalancedCreator();
         if ($pouleRange === null) {

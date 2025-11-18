@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 /**
+ * @api
  * @template T
  */
-final class Counter implements \Countable
+class Counter implements \Countable
 {
     /**
      * @param T $countedObject

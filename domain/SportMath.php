@@ -20,7 +20,7 @@ final class SportMath
      * @param int|null $gcd
      * @return int
      */
-    public function getGreatestCommonDivisor(array $numbers, int $gcd = null): int
+    public function getGreatestCommonDivisor(array $numbers, int|null $gcd): int
     {
         if ($gcd === null) {
             $gcd = array_pop($numbers);
