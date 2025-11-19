@@ -37,14 +37,14 @@ abstract class Output
         return false;
     }
 
-    public function outputString(string|int $value, int $minLength = null, Color|null $color = null): void
+    public function outputString(string|int $value, int|null $minLength = null, Color|null $color = null): void
     {
         $str = '' . $value;
         $str = $this->stringToMinLength($str, $minLength);
         $this->logger->info(Color::getColored($color, $str));
     }
 
-    public function stringToMinLength(string $value, int $minLength = null): string
+    public function stringToMinLength(string $value, int|null $minLength = null): string
     {
         if ($minLength > 0) {
             while (strlen($value) < $minLength) {
