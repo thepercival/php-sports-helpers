@@ -12,18 +12,6 @@ abstract class EnumDbType extends Type
 {
     abstract public static function getNameHelper(): string;
 
-    /**
-     * @psalm-suppress MixedPropertyFetch
-     */
-    #[\Override]
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
-    {
-        if( $value instanceof UnitEnum ) {
-            return $value->value;
-        }
-        return $value;
-    }
-
     public function getName(): string
     {
         return static::getNameHelper();
