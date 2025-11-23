@@ -18,6 +18,18 @@ abstract class EnumDbType extends Type
     }
 
     /**
+     * @psalm-suppress MixedPropertyFetch
+     */
+    #[\Override]
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
+    {
+        if( $value instanceof UnitEnum ) {
+            return $value->value;
+        }
+        return $value;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function requiresSQLCommentHint(AbstractPlatform $platform): bool
