@@ -59,16 +59,18 @@ abstract class OutputAbstract
     {
         switch ($number) {
             case 1:
-                return Color::Red;
+                return Color::White;
             case 2:
-                return Color::Green;
+                return Color::Red;
             case 3:
-                return Color::Yellow;
+                return Color::Green;
             case 4:
                 return Color::Blue;
             case 5:
-                return Color::Magenta;
+                return Color::Yellow;
             case 6:
+                return Color::Magenta;
+            case 7:
                 return Color::Cyan;
         }
         return Color::White;

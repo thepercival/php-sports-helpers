@@ -8,13 +8,13 @@ use SportsHelpers\Output;
 
 enum Color: string
 {
+    case White = '0;37';
     case Red = '0;31';
     case Green = '0;32';
     case Yellow = '0;33';
     case Blue = '0;34';
     case Magenta = '0;35';
     case Cyan = '0;36';
-    case White = '0;37';
 }
 
 /*
