@@ -14,13 +14,8 @@ abstract class Output
 {
     protected LoggerInterface $logger;
 
-    public function __construct(LoggerInterface|null $logger)
+    public function __construct(LoggerInterface $logger)
     {
-        if ($logger === null) {
-            $logger = new Logger('sports-logger');
-            $handler = new StreamHandler('php://stdout', LogLevel::INFO);
-            $logger->pushHandler($handler);
-        }
         $this->logger = $logger;
     }
 
