@@ -2,41 +2,47 @@
 
 declare(strict_types=1);
 
-namespace SportsHelpers;
+namespace SportsHelpers\Output;
 
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
-use SportsHelpers\Output\Color;
 
-abstract class Output
+abstract class OutputAbstract
 {
     protected LoggerInterface $logger;
+    private bool $useColors = true;
 
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
 
-    protected function useColors(): bool
+    protected function setUseColors(LoggerInterface $logger): void
     {
-        if (!($this->logger instanceof Logger)) {
-            return false;
-        }
-        foreach ($this->logger->getHandlers() as $handler) {
-            if ($handler instanceof \Monolog\Handler\StreamHandler && $handler->getUrl() === "php://stdout") {
-                return true;
+        if ($logger instanceof Logger) {
+            foreach ($logger->getHandlers() as $handler) {
+                if (!($handler instanceof StreamHandler && $handler->getUrl() === "php://stdout")) {
+                    $this->useColors = false;
+                }
             }
         }
-        return false;
+    }
+
+    public function getColoredString(Color|null $color, string $content): string
+    {
+        if ($color === null || $this->useColors === false) {
+            return $content;
+        }
+        $coloredString = "\033[" . $color->value . "m";
+        return $coloredString . $content . "\033[0m";
     }
 
     public function outputString(string|int $value, int|null $minLength = null, Color|null $color = null): void
     {
         $str = '' . $value;
         $str = $this->stringToMinLength($str, $minLength);
-        $this->logger->info(Color::getColored($color, $str));
+        $this->logger->info($this->getColoredString($color, $str));
     }
 
     public function stringToMinLength(string $value, int|null $minLength = null): string

@@ -15,15 +15,6 @@ enum Color: string
     case Magenta = '0;35';
     case Cyan = '0;36';
     case White = '0;37';
-
-    public static function getColored(Color|null $color, string $content): string
-    {
-        if ($color === null) {
-            return $content;
-        }
-        $coloredString = "\033[" . $color->value . "m";
-        return $coloredString . $content . "\033[0m";
-    }
 }
 
 /*
