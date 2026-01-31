@@ -7,11 +7,11 @@
   "authors": [
     {
       "name": "Coen Dunnink",
-      "email": "coendunnink@gmail.com"
+      "email": "cdkdev@pm.me"
     }
   ],
   "support": {
-    "email": "coendunnink@gmail.com"
+    "email": "cdkdev@pm.me"
   },
   "require": {
     "php": ">=8.4",
