@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructures;
 
-final readonly class BalancedCreator
+final class BalancedPouleStructureCreator
 {
     /**
      * nrOfPlaces = 11, nrOfPoules = 2 wordt [6,5]
@@ -28,6 +28,6 @@ final readonly class BalancedCreator
             array_push($innerData, $nrOfPlacesToAdd);
             $nrOfPlaces -= $nrOfPlacesPerPoule;
         }
-        return new BalancedPouleStructure($innerData);
+        return new BalancedPouleStructure(...$innerData);
     }
 }

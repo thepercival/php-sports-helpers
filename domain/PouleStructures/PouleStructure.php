@@ -4,36 +4,36 @@ declare(strict_types=1);
 
 namespace SportsHelpers\PouleStructures;
 
-use Exception;
+use SportsHelpers\PouleStructure as PouleStructureBase;
 use SportsHelpers\SelfReferee;
-use SportsHelpers\Sports\AgainstOneVsOne;
-use SportsHelpers\Sports\AgainstOneVsTwo;
-use SportsHelpers\Sports\AgainstTwoVsTwo;
-use SportsHelpers\Sports\TogetherSport;
+use SportsHelpers\Sport\Variant\Against\GamesPerPlace as AgainstGpp;
+use SportsHelpers\Sport\Variant\Against\H2h as AgainstH2h;
+use SportsHelpers\Sport\Variant\AllInOneGame;
+use SportsHelpers\Sport\Variant\Single;
+use SportsHelpers\Sport\Variant\Creator as VariantCreator;
+use Stringable;
 
-readonly class PouleStructure
+readonly class PouleStructure implements Stringable
 {
     /**
      * @var non-empty-list<int> $poules
      */
-    public array $poules;
+    protected array $poules;
+    protected int $nrOfGamePlaces;
 
-    /**
-     * @param list<int> $poules
-     * @throws Exception
-     */
-    public function __construct(array $poules)
+    public function __construct(int ...$nrOfPlaces)
     {
         uasort(
-            $poules,
+            $nrOfPlaces,
             function (int $nrOfPlacesPouleA, int $nrOfPlacesPouleB): int {
                 return $nrOfPlacesPouleA > $nrOfPlacesPouleB ? -1 : 1;
             }
         );
-        if (count($poules) === 0) {
-            throw new Exception('nrOfPlaces-list can not be empty', E_ERROR);
+        if (count($nrOfPlaces) === 0) {
+            throw new \Exception('nrOfPlaces-list can not be empty', E_ERROR);
         }
-        $this->poules = array_values($poules);
+        $this->poules = array_values($nrOfPlaces);
+        $this->nrOfGamePlaces = array_sum($this->poules);
     }
 
     public function getNrOfPoules(): int
@@ -43,7 +43,7 @@ readonly class PouleStructure
 
     public function getNrOfPlaces(): int
     {
-        return array_sum($this->poules);
+        return $this->nrOfGamePlaces;
     }
 
     public function getBiggestPoule(): int
@@ -81,6 +81,23 @@ readonly class PouleStructure
         return $nrOfPoulesByNrOfPlaces;
     }
 
+    /**
+     * @param list<AllInOneGame|Single|AgainstH2h|AgainstGpp> $sportVariants
+     * @return int
+     */
+    public function getTotalNrOfGames(array $sportVariants): int
+    {
+        $nrOfGames = 0;
+        foreach ($this->poules as $nrOfPlaces) {
+            foreach ($sportVariants as $sportVariant) {
+                $nrOfGames += (new VariantCreator())->createWithPoule($nrOfPlaces, $sportVariant)->getTotalNrOfGames();
+            }
+        }
+        return $nrOfGames;
+    }
+
+
+
 //    /**
 //     * @param array|SportConfig[] $sportConfigs
 //     * @param int $gameMode
@@ -98,48 +115,27 @@ readonly class PouleStructure
 //    }
 
     /**
-     * @param list<AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|TogetherSport> $sports
+     * @param list<Single|AgainstH2h|AgainstGpp|AllInOneGame> $sportVariants
      * @param SelfReferee $selfReferee
      * @return bool
      */
-    public function isCompatibleWithSportsAndSelfReferee(array $sports, SelfReferee $selfReferee): bool
+    public function sportsAndSelfRefereeAreCompatible(
+        array     $sportVariants,
+        SelfReferee $selfReferee): bool
     {
         if ($selfReferee === SelfReferee::SamePoule) {
-            foreach ($sports as $sport) {
-                if( $sport instanceof TogetherSport) {
-                    if( $sport->nrOfGamePlaces === null) {
-                        return false;
-                    }
-                    $nrOfGamePlaces = $sport->nrOfGamePlaces;
-                } else {
-                    $nrOfGamePlaces = $sport->getNrOfGamePlaces();
+            foreach ($sportVariants as $sportVariant) {
+                if ($sportVariant instanceof AllInOneGame) {
+                    return false;
                 }
-                if( $nrOfGamePlaces >= $this->getSmallestPoule() ) {
+                if ($sportVariant->getNrOfGamePlaces() >= $this->getSmallestPoule()) {
                     return false;
                 }
             }
-            return true;
-        } // elseif ($selfReferee === SelfReferee::OtherPoules) {
+//        } elseif ($selfReferee === SelfReferee::OtherPoules) {
+        }
         return $this->getNrOfPoules() > 1;
     }
-
-    /**
-     * @param list<AgainstOneVsOne|AgainstOneVsTwo|AgainstTwoVsTwo|TogetherSport> $sports
-     * @return bool
-     */
-    public function isCompatibleWithSports(array $sports): bool
-    {
-        foreach ($sports as $sport) {
-            if (!($sport instanceof TogetherSport && $sport->nrOfGamePlaces === null)) {
-                $nrOfGamePlaces = $sport->nrOfGamePlaces ?? 0;
-                if( $nrOfGamePlaces > $this->getSmallestPoule()) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     /**
      * @return non-empty-list<int>
      */
@@ -147,4 +143,11 @@ readonly class PouleStructure
     {
         return $this->poules;
     }
+
+    #[\Override]
+    public function __toString(): string
+    {
+        return implode(',', $this->toArray());
+    }
+
 }

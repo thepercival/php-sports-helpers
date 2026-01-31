@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 use Exception;
-use SportsHelpers\PouleStructures\BalancedPouleStructure as BalancedPouleStructure;
-use SportsHelpers\PouleStructures\BalancedCreator as BalancedPouleStructureCreator;
+use SportsHelpers\PouleStructures\BalancedPouleStructure;
+use SportsHelpers\PouleStructures\BalancedPouleStructureCreator;
 
 /**
- * @psalm-api
+ * @api
  */
-readonly class PlaceRanges
+class PlaceRanges
 {
-    public SportRange $placesPerPouleSmall;
-    public SportRange $placesPerRoundSmall;
-    public int $nrOfPlacesSmallLargeBorder;
-    public SportRange|null $placesPerPouleLarge;
-    public SportRange|null $placesPerRoundLarge;
+    private SportRange $placesPerPouleSmall;
+    private SportRange $placesPerRoundSmall;
+    private int $nrOfPlacesSmallLargeBorder;
+    private SportRange|null $placesPerPouleLarge = null;
+    private SportRange|null $placesPerRoundLarge = null;
     // private minNrOfPlacesPerPoule: number;
     // private minNrOfPlacesPerRound: number;
 
@@ -32,21 +32,22 @@ readonly class PlaceRanges
         $this->placesPerPouleSmall = $this->initRange($minNrOfPlacesPerPoule, $maxNrOfPlacesPerPouleSmall);
         $this->placesPerRoundSmall = $this->initRange($minNrOfPlacesPerRound, $maxNrOfPlacesPerRoundSmall);
         $this->nrOfPlacesSmallLargeBorder = $maxNrOfPlacesPerRoundSmall;
-        $placesPerPouleLarge = null;
-        $placesPerRoundLarge = null;
         if ($maxNrOfPlacesPerPouleLarge !== null) {
-            $placesPerPouleLarge = $this->initRange($minNrOfPlacesPerPoule, $maxNrOfPlacesPerPouleLarge);
+            $this->placesPerPouleLarge = $this->initRange($minNrOfPlacesPerPoule, $maxNrOfPlacesPerPouleLarge);
             if ($maxNrOfPlacesPerRoundLarge !== null) {
-                $placesPerRoundLarge = $this->initRange($minNrOfPlacesPerRound, $maxNrOfPlacesPerRoundLarge);
+                $this->placesPerRoundLarge = $this->initRange($minNrOfPlacesPerRound, $maxNrOfPlacesPerRoundLarge);
             }
         }
-        $this->placesPerPouleLarge = $placesPerPouleLarge;
-        $this->placesPerRoundLarge = $placesPerRoundLarge;
     }
 
     protected function initRange(int $min, int $max): SportRange
     {
         return new SportRange($min, $max >= $min ? $max : $min);
+    }
+
+    public function getPlacesPerPouleSmall(): SportRange
+    {
+        return $this->placesPerPouleSmall;
     }
 
     public function validateStructure(BalancedPouleStructure $structure): void

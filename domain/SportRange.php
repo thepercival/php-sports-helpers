@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-final readonly class SportRange implements \Stringable
+final class SportRange implements \Stringable
 {
+    public const string Seperator = '->';
     protected int $min;
     protected int $max;
-    public const string Seperator = '->';    
 
     public function __construct(int $min, int $max)
     {

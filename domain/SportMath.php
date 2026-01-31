@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SportsHelpers;
 
-final readonly class SportMath
+final class SportMath
 {
     public function getSmallestCommonDividend(int $number1, int $number2): int
     {
@@ -20,7 +20,7 @@ final readonly class SportMath
      * @param int|null $gcd
      * @return int
      */
-    public function getGreatestCommonDivisor(array $numbers, int $gcd = null): int
+    public function getGreatestCommonDivisor(array $numbers, int|null $gcd): int
     {
         if ($gcd === null) {
             $gcd = array_pop($numbers);
@@ -106,15 +106,15 @@ final readonly class SportMath
         return (int)(($number1 * $number2) / $tmp1);
     }
 
-//    public function getNrOfDivides(int $number, int $divider, int $minimalNumber): int
-//    {
-//        $nrOfDivides = 0;
-//        while ($number >= $minimalNumber) {
-//            $number /= $divider;
-//            $nrOfDivides++;
-//        }
-//        return $nrOfDivides;
-//    }
+    public function getNrOfDivides(int $number, int $divider, int $minimalNumber): int
+    {
+        $nrOfDivides = 0;
+        while ($number >= $minimalNumber) {
+            $number =  (int)($number / $divider);
+            $nrOfDivides++;
+        }
+        return $nrOfDivides;
+    }
 
     public function above(int $top, int $bottom): int
     {
@@ -127,10 +127,10 @@ final readonly class SportMath
         return (int)$x;
     }
 
-    public function faculty(int $x): int
+    public function faculty(float $x): float
     {
         if ($x > 1) {
-            return $this->faculty($x - 1) * $x;
+            return $this->faculty($x - 1.0) * $x;
         }
         return 1;
     }

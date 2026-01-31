@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="../vendor/autoload.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
+<phpunit displayDetailsOnTestsThatTriggerDeprecations="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" bootstrap="../vendor/autoload.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
   <coverage>
     <report>
       <html outputDirectory="./codecoverage/html" lowUpperBound="50" highLowerBound="80"/>
@@ -17,7 +17,6 @@
       <directory suffix=".php">../domain</directory>
     </include>
     <exclude>
-      <directory suffix="Repository.php">../domain</directory>
       <directory suffix="Output.php">../domain</directory>
       <directory>../domain/DbEnums</directory>
       <directory>../domain/Old</directory>

@@ -8,13 +8,9 @@ use Exception;
 
 readonly class BalancedPouleStructure extends PouleStructure
 {
-    /**
-     * @param list<int> $poules
-     * @throws Exception
-     */
-    public function __construct(array $poules)
+    public function __construct(int ...$nrOfPlaces)
     {
-        parent::__construct($poules);
+        parent::__construct(...$nrOfPlaces);
         if ($this->getBiggestPoule() - $this->getSmallestPoule() > 1) {
             throw new Exception('this poulestructure is not balanced', E_ERROR);
         }
@@ -41,13 +37,13 @@ readonly class BalancedPouleStructure extends PouleStructure
         return $idx + 1;
     }
 
-    public function removePoule2(): self
-    {
-        if (count($this->poules) <= 1) {
-            throw new Exception('not enough poules', E_ERROR);
-        }
-        $poules = $this->poules;
-        array_pop($poules);
-        return new self($poules);
-    }
+//    public function removePoule2(): self
+//    {
+//        if (count($this->poules) <= 1) {
+//            throw new Exception('not enough poules', E_ERROR);
+//        }
+//        $poules = $this->poules;
+//        array_pop($poules);
+//        return new self($poules);
+//    }
 }

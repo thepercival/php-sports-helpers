@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use SportsHelpers\Sport\Variant\WithNrOfPlaces\Against\EquallyAssignCalculator;
 use SportsHelpers\SportVariants\AgainstGpp as AgainstSportGppVariant;
 
-class EquallyAssignCalculatorTest extends TestCase
+final class EquallyAssignCalculatorTest extends TestCase
 {
     public function testEqualAgainst4Places(): void
     {

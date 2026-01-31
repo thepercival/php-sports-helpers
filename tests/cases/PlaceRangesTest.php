@@ -32,7 +32,7 @@ final class PlaceRangesTest extends TestCase
             $maxNrOfPlacesPerRound,
             null
         );
-        $structure = new BalancedPouleStructure([3]);
+        $structure = new BalancedPouleStructure(3);
         self::assertTrue($placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules()));
     }
 
@@ -54,7 +54,7 @@ final class PlaceRangesTest extends TestCase
             null
         );
 
-        $structure = new BalancedPouleStructure([2]);
+        $structure = new BalancedPouleStructure(2);
         self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
@@ -76,7 +76,7 @@ final class PlaceRangesTest extends TestCase
             null
         );
 
-        $structure = new BalancedPouleStructure([2, 2]);
+        $structure = new BalancedPouleStructure(2, 2);
         self::assertTrue($placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules()));
     }
 
@@ -97,7 +97,7 @@ final class PlaceRangesTest extends TestCase
             null
         );
 
-        $structure = new BalancedPouleStructure([3]);
+        $structure = new BalancedPouleStructure(3);
         self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
@@ -118,7 +118,7 @@ final class PlaceRangesTest extends TestCase
             $maxNrOfPlacesPerRound,
             null
         );
-        $structure = new BalancedPouleStructure([4]);
+        $structure = new BalancedPouleStructure(4);
         self::assertTrue($placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules()));
     }
 
@@ -138,7 +138,7 @@ final class PlaceRangesTest extends TestCase
             $maxNrOfPlacesPerRound,
             null
         );
-        $structure = new BalancedPouleStructure([2]);
+        $structure = new BalancedPouleStructure(2);
         self::assertTrue($placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules()));
     }
 
@@ -158,7 +158,7 @@ final class PlaceRangesTest extends TestCase
             $maxNrOfPlacesPerRound,
             null
         );
-        $structure = new BalancedPouleStructure([1]);
+        $structure = new BalancedPouleStructure(1);
         self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
@@ -180,7 +180,7 @@ final class PlaceRangesTest extends TestCase
             20
         );
 
-        $structure = new BalancedPouleStructure([5, 5, 5]);
+        $structure = new BalancedPouleStructure(5, 5, 5);
         self::assertTrue($placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules()));
     }
 
@@ -201,7 +201,7 @@ final class PlaceRangesTest extends TestCase
             20
         );
 
-        $structure = new BalancedPouleStructure([6, 6, 6]);
+        $structure = new BalancedPouleStructure(6, 6, 6);
         self::expectException(Exception::class);
         $placeRanges->validate($structure->getNrOfPlaces(), $structure->getNrOfPoules());
     }
@@ -223,7 +223,7 @@ final class PlaceRangesTest extends TestCase
             20
         );
 
-        $structure = new BalancedPouleStructure([5, 5, 5, 5, 5]);
+        $structure = new BalancedPouleStructure(5, 5, 5, 5, 5);
         self::expectException(Exception::class);
         $placeRanges->validateStructure($structure);
     }

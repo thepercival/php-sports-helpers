@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SportsHelpers\DbEnums;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use SportsHelpers\EnumDbType;
 use SportsHelpers\SelfReferee;
 
 final class SelfRefereeType extends EnumDbType

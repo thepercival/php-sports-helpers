@@ -2,18 +2,27 @@
 
 declare(strict_types=1);
 
-namespace oldsportshelpers\old;
+namespace SportsHelpers\Sport\Variant;
 
-use oldsportshelpers\old\Persist\SportPersistVariant;
+use SportsHelpers\GameMode;
+use SportsHelpers\Sport\PersistVariant;
+use SportsHelpers\Sport\Variant;
 
-readonly class Single implements SportVariant
+final class Single extends Base implements Variant
 {
-    public function __construct(public int $nrOfGamePlaces, public int $nrOfGamesPerPlace)
+    public function __construct(protected int $nrOfGamePlaces, protected int $nrOfGamesPerPlace)
     {
+        parent::__construct(GameMode::Single);
     }
 
-    public function getGameMode(): GameMode {
-        return GameMode::Single;
+    public function getNrOfGamesPerPlace(): int
+    {
+        return $this->nrOfGamesPerPlace;
+    }
+
+    public function getNrOfGamePlaces(): int
+    {
+        return $this->nrOfGamePlaces;
     }
 
 //    public function getNrOfGameGroups(int $nrOfPlaces): int
@@ -37,29 +46,23 @@ readonly class Single implements SportVariant
 //    }
 
 
-    public function toPersistVariant(): SportPersistVariant
+    #[\Override]
+    public function toPersistVariant(): PersistVariant
     {
-        return new SportPersistVariant(
+        return new PersistVariant(
             $this->getGameMode(),
             0,
             0,
-            $this->nrOfGamePlaces,
+            $this->getNrOfGamePlaces(),
             0,
-            $this->nrOfGamesPerPlace,
+            $this->getNrOfGamesPerPlace(),
         );
     }
 
     public function __toString()
     {
-        return 'single(' . $this->nrOfGamePlaces . ') gpp=>' . $this->nrOfGamesPerPlace;
+        return 'single(' . $this->getNrOfGamePlaces() . ') gpp=>' . $this->getNrOfGamesPerPlace();
     }
 
-    public function toJson(): string {
-        $name = [
-            'nrOfGamesPerPlace' => $this->nrOfGamesPerPlace,
-            'nrOfGamePlaces' => $this->nrOfGamePlaces
-        ];
-        $json = json_encode($name);
-        return $json === false ? '?' : $json;
-    }
+
 }

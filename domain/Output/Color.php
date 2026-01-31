@@ -6,22 +6,13 @@ namespace SportsHelpers\Output;
 
 enum Color: string
 {
+    case White = '0;37';
     case Red = '0;31';
     case Green = '0;32';
     case Yellow = '0;33';
     case Blue = '0;34';
     case Magenta = '0;35';
     case Cyan = '0;36';
-    case White = '0;37';
-
-    public static function getColored(Color|null $color, string $content): string
-    {
-        if ($color === null) {
-            return $content;
-        }
-        $coloredString = "\033[" . $color->value . "m";
-        return $coloredString . $content . "\033[0m";
-    }
 }
 
 /*

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace oldsportshelpers\old\Sport;
 
-class GamePlaceCalculator
+final class GamePlaceCalculator
 {
     public function __construct()
     {
