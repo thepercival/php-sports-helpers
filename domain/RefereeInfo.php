@@ -5,7 +5,7 @@ namespace SportsHelpers;
 /**
  * @api
  */
-class RefereeInfo
+readonly class RefereeInfo
 {
     protected function __construct(public SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
     {

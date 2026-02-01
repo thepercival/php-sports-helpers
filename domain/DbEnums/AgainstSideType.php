@@ -6,7 +6,6 @@ namespace SportsHelpers\DbEnums;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use SportsHelpers\Against\AgainstSide;
-use SportsHelpers\EnumDbType;
 
 final class AgainstSideType extends EnumDbType
 {
