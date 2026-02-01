@@ -7,7 +7,7 @@ namespace SportsHelpers;
  */
 class RefereeInfo
 {
-    private function __construct(public SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
+    protected function __construct(public SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
     {
 
     }
