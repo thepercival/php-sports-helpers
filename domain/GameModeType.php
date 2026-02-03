@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SportsHelpers;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
+use SportsHelpers\DbEnums\EnumDbType;
 
 final class GameModeType extends EnumDbType
 {

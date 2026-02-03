@@ -132,9 +132,11 @@ readonly class PouleStructure implements Stringable
                     return false;
                 }
             }
-//        } elseif ($selfReferee === SelfReferee::OtherPoules) {
         }
-        return $this->getNrOfPoules() > 1;
+        elseif ($selfReferee === SelfReferee::OtherPoules) {
+            return $this->getNrOfPoules() > 1;
+        }
+        return true;
     }
     /**
      * @return non-empty-list<int>
