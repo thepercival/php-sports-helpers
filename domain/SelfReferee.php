@@ -6,6 +6,7 @@ namespace SportsHelpers;
 
 enum SelfReferee: string
 {
+    case Disabled = 'disabled';
     case OtherPoules = 'otherPoules';
     case SamePoule = 'samePoule';
 }
