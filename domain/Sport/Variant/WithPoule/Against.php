@@ -34,6 +34,7 @@ abstract class Against extends SportVariantWithPoule
         return $this->nrOfPlaces - ($this->nrOfPlaces % $this->againstVariant->getNrOfGamePlaces());
     }
 
+
     public function getNrOfGamesSimultaneously(): int
     {
         return (int)ceil($this->getNrOfGamePlacesSimultaneously() / $this->againstVariant->getNrOfGamePlaces());
