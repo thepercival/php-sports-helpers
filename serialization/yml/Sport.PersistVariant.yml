@@ -13,3 +13,11 @@ SportsHelpers\Sport\PersistVariant:
       type: integer
     nrOfGamesPerPlace:
       type: integer
+
+# gameMode :          "against"
+#  nrOfHomePlaces :    1
+#  nrOfAwayPlaces :    1
+#  nrOfGamePlaces :    0
+#  nrOfGamesPerPlace : 0
+#  nrOfH2H :           3
+
