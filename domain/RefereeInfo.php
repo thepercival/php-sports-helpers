@@ -7,9 +7,11 @@ namespace SportsHelpers;
  */
 readonly class RefereeInfo
 {
-    protected function __construct(public SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
-    {
+    public SelfRefereeInfo $selfRefereeInfo;
 
+    protected function __construct(SelfRefereeInfo|null $selfRefereeInfo = null, public int $nrOfReferees = 0 )
+    {
+        $this->selfRefereeInfo = $selfRefereeInfo ?? new SelfRefereeInfo(SelfReferee::Disabled);
     }
 
     public static function fromSelfRefereeInfo(SelfRefereeInfo $selfRefereeInfo): self {

@@ -22,7 +22,6 @@ final class RefereeInfoTest extends TestCase
     public function testRefereeInfoNrOfReferees(): void
     {
         $refereeInfo = RefereeInfo::fromNrOfReferees(12);
-        self::assertNull($refereeInfo->selfRefereeInfo);
         self::assertEquals(12, $refereeInfo->nrOfReferees);
     }
 
