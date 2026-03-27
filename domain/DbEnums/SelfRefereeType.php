@@ -18,6 +18,9 @@ final class SelfRefereeType extends EnumDbType
     #[\Override]
     public function convertToPHPValue($value, AbstractPlatform $platform): SelfReferee|null
     {
+        if ($value === SelfReferee::Disabled->value) {
+            return SelfReferee::Disabled;
+        }
         if ($value === SelfReferee::OtherPoules->value) {
             return SelfReferee::OtherPoules;
         }
