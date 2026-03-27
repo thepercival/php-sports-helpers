@@ -1,0 +1,8 @@
+SportsHelpers\RefereeInfo:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    selfRefereeInfo:
+      type: SportsHelpers\SelfRefereeInfo
+    nrOfReferees:
+      type: integer

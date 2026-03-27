@@ -1,0 +1,7 @@
+SportsHelpers\SelfRefereeInfo:
+  exclusion_policy: ALL
+  exclude: false
+  properties:
+    selfReferee:
+    nrOfSimSelfRefs:
+      type: integer
