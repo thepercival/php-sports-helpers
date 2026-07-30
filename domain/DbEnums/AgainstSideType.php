@@ -30,6 +30,6 @@ final class AgainstSideType extends EnumDbType
     #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        return 'varchar(4)';
+        return 'VARCHAR(4)';
     }
 }

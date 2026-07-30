@@ -35,6 +35,6 @@ final class GameModeType extends EnumDbType
     #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        return 'varchar(12)';
+        return 'VARCHAR(12)';
     }
 }
