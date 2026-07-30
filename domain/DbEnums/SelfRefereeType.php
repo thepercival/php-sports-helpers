@@ -33,6 +33,6 @@ final class SelfRefereeType extends EnumDbType
     #[\Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
-        return 'varchar(11)';
+        return 'VARCHAR(11)';
     }
 }
